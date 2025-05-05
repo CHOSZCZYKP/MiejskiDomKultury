@@ -30,5 +30,6 @@ namespace MiejskiDomKultury
         {
             Main.Content = new Rejestracja();
         }
+
     }
 }

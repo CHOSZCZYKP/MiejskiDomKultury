@@ -23,7 +23,7 @@
                    FontSize="20"
                    Margin="5"
                    Padding="5" />
-                <TextBox x:Name="TextBoxLogin" 
+                <local:PlaceholderTextBox Placeholder="login" x:Name="TextBoxLogin" 
                  Width="200" 
                  FontSize="20" 
                  Margin="5" 
@@ -36,7 +36,7 @@
                    FontSize="20"
                    Margin="5"
                    Padding="5"/>
-                <PasswordBox x:Name="PasswordBox" 
+                <local:PlaceholderPasswordBox Placeholder="haslo" x:Name="PasswordBox" 
                      Width="200" 
                      FontSize="20" 
                      Margin="5" 

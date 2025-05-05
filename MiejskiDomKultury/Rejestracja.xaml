@@ -9,6 +9,6 @@
       Title="Rejestracja">
 
     <Grid>
-        <local:PlaceholderTextBox Placeholder="wdas" />
+        
     </Grid>
 </Page>
