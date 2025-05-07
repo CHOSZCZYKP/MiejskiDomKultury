@@ -10,11 +10,13 @@ namespace MiejskiDomKultury.Data
 {
     public class DbContextDomKultury : DbContext
     {
-        public DbContextDomKultury(DbContextOptions<DbContextDomKultury> options) : base(options)
+        
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            
-        }
+            optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=MiejskiDomKultury;Trusted_Connection=True;");
 
+
+        }
         public DbSet<Ban> Bany { get; set; }
         public DbSet<Przedmiot> Przedmioty { get; set; }
         public DbSet<Rezerwacja> Rezerwacje { get; set; }

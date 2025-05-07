@@ -1,14 +1,39 @@
 ﻿using System.Configuration;
 using System.Data;
 using System.Windows;
+using Microsoft.Extensions.DependencyInjection;
+using MiejskiDomKultury.Interfaces;
+using MiejskiDomKultury.Services;
 
 namespace MiejskiDomKultury
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
+    
     public partial class App : Application
     {
+        public static IServiceProvider ServiceProvider { get; private set; }
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            var services = new ServiceCollection();
+
+            ConfigureServices(services);
+
+            ServiceProvider = services.BuildServiceProvider();
+
+
+            base.OnStartup(e);
+        }
+
+        private void ConfigureServices(IServiceCollection services)
+        {
+            services.AddSingleton<IUserRepository, UserRepositoryService>();
+
+            // tu trzeba wrzucić widoki, które wykorzystują DI, jeśli nie wykorzystują to też można xdd
+            services.AddTransient<Logowanie>();
+            services.AddTransient<Home>();
+            services.AddTransient<Rejestracja>(); 
+
+        }
     }
 
 }

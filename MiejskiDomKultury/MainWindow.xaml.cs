@@ -8,6 +8,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Extensions.DependencyInjection;
+using MiejskiDomKultury.Interfaces;
 
 namespace MiejskiDomKultury
 {
@@ -23,13 +25,14 @@ namespace MiejskiDomKultury
 
         private void Logowanie_Click(object sender, RoutedEventArgs e)
         {
-            Main.Content = new Logowanie();
+            Main.Content = App.ServiceProvider.GetRequiredService<Logowanie>();
         }
 
         private void Rejestracja_Click(object sender, RoutedEventArgs e)
         {
-            Main.Content = new Rejestracja();
+            Main.Content = App.ServiceProvider.GetRequiredService<Rejestracja>();
         }
+
 
     }
 }

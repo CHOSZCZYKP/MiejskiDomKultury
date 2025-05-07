@@ -47,7 +47,8 @@
             Width="280" 
             FontSize="20" 
             Margin="5" 
-            Padding="5" />
+            Padding="5" 
+            Click="Login_Click"/>
         </StackPanel>
     </Grid>
 </Page>
