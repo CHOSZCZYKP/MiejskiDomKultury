@@ -1,6 +1,7 @@
 ﻿using System.Configuration;
 using System.Data;
 using System.Windows;
+using DotNetEnv;
 using Microsoft.Extensions.DependencyInjection;
 using MiejskiDomKultury.Interfaces;
 using MiejskiDomKultury.Services;
@@ -10,6 +11,10 @@ namespace MiejskiDomKultury
     
     public partial class App : Application
     {
+        public App()
+        {
+            Env.Load("SecretFile.env");
+        }
         public static IServiceProvider ServiceProvider { get; private set; }
 
         protected override void OnStartup(StartupEventArgs e)
