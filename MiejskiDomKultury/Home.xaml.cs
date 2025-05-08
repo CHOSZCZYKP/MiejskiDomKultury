@@ -35,5 +35,10 @@ namespace MiejskiDomKultury
         {
 
         }
+        private void Chat_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new ChatBot());
+        }
+
     }
 }

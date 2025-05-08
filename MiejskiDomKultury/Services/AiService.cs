@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection.Metadata;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using OpenAI;
 using OpenAI.Assistants;
@@ -48,85 +49,85 @@ namespace MiejskiDomKultury.Services
                     "plik.txt",
                     FileUploadPurpose.Assistants
                 );
+                if (salesFile == null || string.IsNullOrEmpty(salesFile.Id))
+                {
+                    Console.WriteLine("Nie udało się wgrać pliku.");
 
+                }
                 Console.WriteLine($"File uploaded successfully: {salesFile.Id}");
 
                 AssistantCreationOptions assistantOptions = new()
                 {
+                    
                     Name = "MDK Aystent",
                     Instructions =
-               "Jesteś asystentem, która pomaga użytkownikom w poznaniu historii i zasad oraz możliwości Miejskiego Domu Kultury."
+               "Jesteś asystentem dla klientów Miejskiego Domu Kultury, która pomaga użytkownikom w poznaniu historii i zasad oraz możliwości Miejskiego Domu Kultury korzystaj z pliku plik.txt.",
+                    Tools =
+            {
+                new FileSearchToolDefinition(),
+                new CodeInterpreterToolDefinition(),
+            },
+                    ToolResources = new()
+                    {
+                        FileSearch = new()
+                        {
+                            NewVectorStores =
+                    {
+                        new VectorStoreCreationHelper([salesFile.Id]),
+                    }
+                        }
+                    },
                 };
 
 
                 Assistant assistant = assistantClient.CreateAssistant("gpt-4o", assistantOptions);
-
-                ThreadCreationOptions threadOptions = new()
-                {
-                    InitialMessages = {text }
-                };
-
-                ThreadRun threadRun = assistantClient.CreateThreadAndRun(assistant.Id, threadOptions);
-                do
-                {
-                    Thread.Sleep(TimeSpan.FromSeconds(1));
-                    threadRun = assistantClient.GetRun(threadRun.ThreadId, threadRun.Id);
-                } while (!threadRun.Status.IsTerminal);
-
           
-                CollectionResult<ThreadMessage> messages
-                    = assistantClient.GetMessages(threadRun.ThreadId, new MessageCollectionOptions() { Order = MessageCollectionOrder.Ascending });
 
-                var response = "";
-
-                foreach (ThreadMessage message in messages)
-                {
-                    Console.Write($"[{message.Role.ToString().ToUpper()}]: ");
-                    foreach (MessageContent contentItem in message.Content)
+              
+                    ThreadCreationOptions threadOptions = new()
                     {
-                        if (!string.IsNullOrEmpty(contentItem.Text))
+                        InitialMessages = { text }
+                    };
+
+                    ThreadRun threadRun = assistantClient.CreateThreadAndRun(assistant.Id, threadOptions);
+                    do
+                    {
+                        Thread.Sleep(TimeSpan.FromSeconds(1));
+                        threadRun = assistantClient.GetRun(threadRun.ThreadId, threadRun.Id);
+                    } while (!threadRun.Status.IsTerminal);
+
+
+                    CollectionResult<ThreadMessage> messages
+                        = assistantClient.GetMessages(threadRun.ThreadId, new MessageCollectionOptions() { Order = MessageCollectionOrder.Ascending });
+
+
+                 
+                    foreach (ThreadMessage message in messages)
+                    {
+                        Console.Write($"[{message.Role.ToString().ToUpper()}]: ");
+
+
+
+                        foreach (MessageContent contentItem in message.Content)
                         {
-                            Console.WriteLine($"{contentItem.Text}");
-
-
-                            if (contentItem.TextAnnotations.Count > 0)
+                            if (!string.IsNullOrEmpty(contentItem.Text) && contentItem.Text != text)
                             {
-                                Console.WriteLine();
 
-                            }
 
-                            // Include annotations, if any.
-                            foreach (TextAnnotation annotation in contentItem.TextAnnotations)
-                            {
-                                if (!string.IsNullOrEmpty(annotation.InputFileId))
-                                {
-                                    Console.WriteLine($"* File citation, file ID: {annotation.InputFileId}");
-                                }
-                                if (!string.IsNullOrEmpty(annotation.OutputFileId))
-                                {
-                                    Console.WriteLine($"* File output, new file ID: {annotation.OutputFileId}");
-                                }
-                            }
+                            return Regex.Replace(contentItem.Text, @"\u3010.*?\u3011", "").Trim();
+
+
+
                         }
-                        if (!string.IsNullOrEmpty(contentItem.ImageFileId))
-                        {
-                            OpenAIFile imageInfo = fileClient.GetFile(contentItem.ImageFileId);
-                            BinaryData imageBytes = fileClient.DownloadFile(contentItem.ImageFileId);
-                            using FileStream stream = File.OpenWrite($"{imageInfo.Filename}.png");
-                            imageBytes.ToStream().CopyTo(stream);
 
-                            Console.WriteLine($"<image: {imageInfo.Filename}.png>");
+                    }
                         }
                     }
-                }
-
-            
-                }
 
 
-
-
-            return "";
+                
+                return "";
+            }
         }
     }
-}
+
