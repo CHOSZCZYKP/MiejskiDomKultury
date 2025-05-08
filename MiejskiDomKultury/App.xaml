@@ -4,6 +4,26 @@
              xmlns:local="clr-namespace:MiejskiDomKultury"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        
+        <!-- Tekst -->
+        <Style TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Times New Roman"/>
+            <Setter Property="Foreground" Value="Black"/>
+        </Style>
+
+        <!-- Tło -->
+        <Style TargetType="Window">
+            <Setter Property="Background" Value="#ffe1b0"/>
+            <Setter Property="FontFamily" Value="Times New Roman"/>
+        </Style>
+        <Style TargetType="Grid">
+            <Setter Property="Background" Value="#ffe1b0"/>
+        </Style>
+
+        <!-- Przyciski -->
+        <Style TargetType="Button">
+            <Setter Property="FontFamily" Value="Times New Roman"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="Black"/>
+        </Style>
     </Application.Resources>
 </Application>
