@@ -8,23 +8,37 @@
         Title="MainWindow" Height="450" Width="800" MinHeight="600" MinWidth="600">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" 
-            Orientation="Horizontal" 
-            HorizontalAlignment="Right">
-            <Button x:Name="Rejestracja" 
-            Content="Rejestracja" 
-            Margin="5" 
-            Padding="5" 
-            Click="Rejestracja_Click" />
-            <Button x:Name="Logowanie" 
-            Content="Zaloguj" 
-            Margin="5" 
-            Padding="5" 
-            Click="Logowanie_Click" />
+            Orientation="Vertical" 
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center">
+
+            <TextBlock Text="Dom Kultury Ostrołęki"
+                       x:Name="TitleText"
+             FontSize="24"
+             FontWeight="Bold"
+             Width="auto"
+             Margin="0 0 0 10"
+             TextAlignment="Center"
+             HorizontalAlignment="Center" />
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button x:Name="Rejestracja" 
+                Content="Rejestracja" 
+                Margin="5" 
+                Padding="5" 
+                Click="Rejestracja_Click" />
+                <Button x:Name="Logowanie" 
+                Content="Zaloguj" 
+                Margin="5" 
+                Padding="5" 
+                Click="Logowanie_Click" />
+            </StackPanel>
         </StackPanel>
         <Frame x:Name="Main" 
        Grid.Row="1" 
