@@ -9,6 +9,17 @@
       Title="Home">
 
     <Grid>
-       
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Button x:Name="Rezeracja" Content="Rezerwacja" Width="150" Height="30" Margin="10" Click="Rezeracja_Click"/>
+            <Button x:Name="Wypozyczalnia" Content="Wypożyczalnia" Width="150" Height="30" Margin="10" Click="Wypozyczalnia_Click"/>
+        </StackPanel>
+        <Border BorderThickness="2" BorderBrush="Red" Grid.Row="1" Margin="10">
+
+            <TextBlock Text="Komunikaty i inne bajery" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="36"/>
+        </Border>
     </Grid>
 </Page>
