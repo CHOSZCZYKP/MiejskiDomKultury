@@ -19,10 +19,10 @@
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <TextBlock x:Name="text_login" 
-                   Text="Login:" 
+                   Text="Email:" 
                    FontSize="20"
                    Margin="5"
-                   Padding="5" />
+                   Padding="5" Height="37" />
                 <local:PlaceholderTextBox Placeholder="login" x:Name="TextBoxLogin" 
                  Width="200" 
                  FontSize="20" 
@@ -35,7 +35,7 @@
                    Text="Hasło:" 
                    FontSize="20"
                    Margin="5"
-                   Padding="5"/>
+                   Padding="5" Height="37"/>
                 <local:PlaceholderPasswordBox Placeholder="haslo" x:Name="PasswordBox" 
                      Width="200" 
                      FontSize="20" 

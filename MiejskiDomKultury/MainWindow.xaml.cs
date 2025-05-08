@@ -22,8 +22,7 @@ namespace MiejskiDomKultury
         public MainWindow()
         {
             InitializeComponent();
-            AIService ai = new AIService();
-            ai.GetAssistantResponse("Kiedy powstał dom kultury?");
+            Main.Content = App.ServiceProvider.GetRequiredService<Home>();
         }
 
         private void Logowanie_Click(object sender, RoutedEventArgs e)

@@ -36,7 +36,8 @@ namespace MiejskiDomKultury
             // tu trzeba wrzucić widoki, które wykorzystują DI, jeśli nie wykorzystują to też można xdd
             services.AddTransient<Logowanie>();
             services.AddTransient<Home>();
-            services.AddTransient<Rejestracja>(); 
+            services.AddTransient<Rejestracja>();
+            services.AddTransient<Logo>();
 
         }
     }

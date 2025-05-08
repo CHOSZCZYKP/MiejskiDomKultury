@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,23 +16,13 @@ using System.Windows.Shapes;
 namespace MiejskiDomKultury
 {
     /// <summary>
-    /// Logika interakcji dla klasy Home.xaml
+    /// Interaction logic for Logo.xaml
     /// </summary>
-    public partial class Home : Page
+    public partial class Logo : Page
     {
-        public Home()
+        public Logo()
         {
             InitializeComponent();
-        }
-
-        private void Rezeracja_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new Rezerwacje());
-        }
-
-        private void Wypozyczalnia_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }
