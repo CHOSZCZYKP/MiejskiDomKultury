@@ -21,7 +21,6 @@ namespace MiejskiDomKultury
         public MainWindow()
         {
             InitializeComponent();
-            Main.Content = App.ServiceProvider.GetRequiredService<Logo>();
         }
 
         private void Logowanie_Click(object sender, RoutedEventArgs e)
