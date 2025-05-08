@@ -10,6 +10,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Extensions.DependencyInjection;
 using MiejskiDomKultury.Interfaces;
+using MiejskiDomKultury.Services;
 
 namespace MiejskiDomKultury
 {
@@ -21,6 +22,8 @@ namespace MiejskiDomKultury
         public MainWindow()
         {
             InitializeComponent();
+            AIService ai = new AIService();
+            ai.GetAssistantResponse("Kiedy powstał dom kultury?");
         }
 
         private void Logowanie_Click(object sender, RoutedEventArgs e)
