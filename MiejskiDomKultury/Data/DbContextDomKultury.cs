@@ -1,7 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using DotNetEnv;
+using Microsoft.EntityFrameworkCore;
 using MiejskiDomKultury.Model;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,10 +12,13 @@ namespace MiejskiDomKultury.Data
 {
     public class DbContextDomKultury : DbContext
     {
-        
+        static DbContextDomKultury()
+        {
+            Env.Load(Path.Combine(AppContext.BaseDirectory, "SecretFile.env"));
+        }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=MiejskiDomKultury;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer(Environment.GetEnvironmentVariable("Database_KEY"));
         }
 
         public DbSet<Ban> Bany { get; set; }
