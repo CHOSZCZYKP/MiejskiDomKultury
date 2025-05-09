@@ -5,6 +5,7 @@ using DotNetEnv;
 using Microsoft.Extensions.DependencyInjection;
 using MiejskiDomKultury.Interfaces;
 using MiejskiDomKultury.Services;
+using MiejskiDomKultury.Views.Administrator;
 
 namespace MiejskiDomKultury
 {
@@ -37,6 +38,14 @@ namespace MiejskiDomKultury
             services.AddTransient<Logowanie>();
             services.AddTransient<Home>();
             services.AddTransient<Rejestracja>();
+            services.AddTransient<PanelAdmina>();
+            services.AddTransient<TabelaUzytkownicyAdmin>();
+            services.AddTransient<TabelaBanyAdmin>();
+            services.AddTransient<TabelaSaleAdmin>();
+            services.AddTransient<TabelaWypozyczeniaAdmin>();
+            services.AddTransient<TabelaRezerwacjeAdmin>();
+            services.AddTransient<TabelaTransakcjeAdmin>();
+            services.AddTransient<WykresyStatystyk>();
             services.AddTransient<Logo>();
 
         }

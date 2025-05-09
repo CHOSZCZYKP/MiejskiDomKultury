@@ -1,0 +1,35 @@
+﻿<Page x:Class="MiejskiDomKultury.Views.Administrator.TabelaUzytkownicyAdmin"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MiejskiDomKultury.Views.Administrator"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="TabelaUzytkownicyAdmin">
+
+    <Grid>
+        <DataGrid x:Name="DataGridUzytkownicy"
+                  Width="auto"
+                  Margin="10">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Imię"
+                                    Binding="{Binding Imie}"
+                                    Width="*" />
+                <DataGridTextColumn Header="Nazwisko"
+                                    Binding="{Binding Nazwisko}"
+                                    Width="*" />
+                <DataGridTextColumn Header="Email"
+                                    Binding="{Binding Email}"
+                                    Width="*" />
+                <DataGridTextColumn Header="Nazwa użytkownika"
+                                    Binding="{Binding NazwaUzytkownika}"
+                                    Width="*" />
+                <DataGridTextColumn Header="Czy ma bana"
+                                    Binding="{Binding CzyMaBana}"
+                                    Width="0.5*" />
+                
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Page>

@@ -11,6 +11,7 @@ using System.Windows.Shapes;
 using Microsoft.Extensions.DependencyInjection;
 using MiejskiDomKultury.Interfaces;
 using MiejskiDomKultury.Services;
+using MiejskiDomKultury.Views.Administrator;
 
 namespace MiejskiDomKultury
 {
@@ -35,6 +36,9 @@ namespace MiejskiDomKultury
             Main.Content = App.ServiceProvider.GetRequiredService<Rejestracja>();
         }
 
-
+        private void PanelAdmina_Click(object sender, RoutedEventArgs e)
+        {
+            Main.Content = App.ServiceProvider.GetRequiredService<Views.Administrator.PanelAdmina>();
+        }
     }
 }

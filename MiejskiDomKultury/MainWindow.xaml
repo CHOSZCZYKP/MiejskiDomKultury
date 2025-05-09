@@ -13,18 +13,23 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" 
-            Orientation="Horizontal" 
-            HorizontalAlignment="Right">
+                    Orientation="Horizontal" 
+                    HorizontalAlignment="Right">
+            <Button x:Name="PanelAdmina"
+                    Content="Panel Administratora"
+                    Margin="5"
+                    Padding="5"
+                    Click="PanelAdmina_Click" />
             <Button x:Name="Rejestracja" 
-            Content="Rejestracja" 
-            Margin="5" 
-            Padding="5" 
-            Click="Rejestracja_Click" />
+                    Content="Rejestracja" 
+                    Margin="5" 
+                    Padding="5" 
+                    Click="Rejestracja_Click" />
             <Button x:Name="Logowanie" 
-            Content="Zaloguj" 
-            Margin="5" 
-            Padding="5" 
-            Click="Logowanie_Click" />
+                    Content="Zaloguj" 
+                    Margin="5" 
+                    Padding="5" 
+                    Click="Logowanie_Click" />
         </StackPanel>
         <Frame x:Name="Main" 
        Grid.Row="1" 
