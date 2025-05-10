@@ -61,5 +61,10 @@ namespace MiejskiDomKultury.Views.Administrator
         {
             ContentAdmin.Content = App.ServiceProvider.GetRequiredService<TabelaRezerwacjeAdmin>();
         }
+
+        private void TabelaPrzedmioty_Click(object sender, RoutedEventArgs e)
+        {
+            ContentAdmin.Content = App.ServiceProvider.GetRequiredService<TabelaPrzedmiotyAdmin>();
+        }
     }
 }

@@ -45,5 +45,11 @@ namespace MiejskiDomKultury
         {
             Main.Content = App.ServiceProvider.GetRequiredService<Home>();
         }
+
+        private void Ustawiania_Click(object sender, RoutedEventArgs e)
+        {
+            Ustawienia ustawienia = new Ustawienia();
+            ustawienia.Show();
+        }
     }
 }

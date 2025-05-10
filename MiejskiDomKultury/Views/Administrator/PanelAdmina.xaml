@@ -60,6 +60,12 @@
                     Padding="10"
                     Width="auto"
                     Click="TabelaRezerwacje_Click"/>
+            <Button x:Name="TabelaPrzedmioty"
+                    Content="Przedmioty"
+                    Margin="10"
+                    Padding="10"
+                    Width="auto"
+                    Click="TabelaPrzedmioty_Click"/>
         </StackPanel>
         <Frame x:Name="ContentAdmin" 
                Grid.Row="1" 

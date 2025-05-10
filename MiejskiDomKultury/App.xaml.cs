@@ -45,6 +45,7 @@ namespace MiejskiDomKultury
             services.AddTransient<TabelaWypozyczeniaAdmin>();
             services.AddTransient<TabelaRezerwacjeAdmin>();
             services.AddTransient<TabelaTransakcjeAdmin>();
+            services.AddTransient<TabelaPrzedmiotyAdmin>();
             services.AddTransient<WykresyStatystyk>();
             services.AddTransient<Logo>();
 

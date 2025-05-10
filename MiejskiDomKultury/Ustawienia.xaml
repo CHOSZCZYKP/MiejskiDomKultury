@@ -1,0 +1,113 @@
+﻿<Window x:Class="MiejskiDomKultury.Ustawienia"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MiejskiDomKultury"
+        mc:Ignorable="d"
+        Title="Ustawienia" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock x:Name="TytulUstawienia"
+                   Text="Ustawienia"
+                   FontSize="36"
+                   FontWeight="Bold"
+                   Margin="30"
+                   Padding="10"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   Grid.ColumnSpan="2" />
+        <TextBlock x:Name="JezykTextBlock"
+                   Grid.Row="1"
+                   Text="Język:"
+                   Margin="5"
+                   Padding="5"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Right" />
+        <ComboBox x:Name="JezykComboBox"
+                  Grid.Row="1"
+                  Grid.Column="1"
+                  VerticalAlignment="Center"
+                  HorizontalAlignment="Left"
+                  Margin="5"
+                  Padding="5"/>
+
+        <TextBlock x:Name="StareHasloTextBlock"
+                   Grid.Row="2"
+                   Text="Stare hasło:"
+                   Margin="5"
+                   Padding="5"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Right" />
+        <local:PlaceholderPasswordBox x:Name="StareHasloUstawienia"
+                                      Grid.Column="1"
+                                      Grid.Row="2"
+                                      Placeholder="Wpisz stare hasło..."
+                                      Margin="5"
+                                      Padding="5"
+                                      Width="200"
+                                      VerticalAlignment="Center"
+                                      HorizontalAlignment="Left"/>
+
+        <TextBlock x:Name="NoweHasloTextBlock"
+                   Grid.Row="3"
+                   Text="Nowe hasło:"
+                   Margin="5"
+                   Padding="5"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Right" />
+        <local:PlaceholderPasswordBox x:Name="NoweHasloUstawienia"
+                                      Grid.Column="1"
+                                      Grid.Row="3"
+                                      Placeholder="Wpisz nowe hasło..."
+                                      Margin="5"
+                                      Padding="5"
+                                      Width="200"
+                                      VerticalAlignment="Center"
+                                      HorizontalAlignment="Left"/>
+
+        <TextBlock x:Name="PowtorzNoweHasloTextBlock"
+                   Grid.Row="4"
+                   Text="Powtórz nowe hasło:"
+                   Margin="5"
+                   Padding="5"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Right" />
+        <local:PlaceholderPasswordBox x:Name="PowtorzNoweHasloUstawienia"
+                                      Grid.Column="1"
+                                      Grid.Row="4"
+                                      Placeholder="Powtórz nowe hasło..."
+                                      Margin="5"
+                                      Padding="5"
+                                      Width="200"
+                                      VerticalAlignment="Center"
+                                      HorizontalAlignment="Left"/>
+
+        <StackPanel Orientation="Horizontal"
+                    Grid.Row="5"
+                    Grid.Column="1"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Right">
+            <Button x:Name="ZapiszUstawienia"
+                    Content="Zapisz"
+                    Margin="10"
+                    Padding="10"/>
+            <Button x:Name="AnulujUstawienia"
+                    Content="Anuluj"
+                    Margin="10"
+                    Padding="10"/>
+        </StackPanel>
+    </Grid>
+</Window>

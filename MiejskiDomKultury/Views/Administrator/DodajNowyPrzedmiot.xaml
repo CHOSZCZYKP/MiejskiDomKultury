@@ -1,0 +1,117 @@
+﻿<Window x:Class="MiejskiDomKultury.Views.Administrator.DodajNowyPrzedmiot"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MiejskiDomKultury.Views.Administrator"
+        xmlns:core="clr-namespace:MiejskiDomKultury"
+        mc:Ignorable="d"
+        Title="DodajNowyPrzedmiot" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="1.38*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock x:Name="TytulDodajPrzedmiot"
+                   Grid.ColumnSpan="2"
+                   Text="Dodaj nowy przedmiot"
+                   FontSize="36"
+                   FontWeight="Bold"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   Margin="10"
+                   Padding="10" />
+        
+        <TextBlock x:Name="DodajPrzedmiotNazwa"
+                   Grid.Row="1"
+                   Text="Nazwa:"
+                   Margin="10"
+                   Padding="10"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Right"/>
+        <core:PlaceholderTextBox x:Name="WprowadzNazwePrzedmiotu"
+                                 Grid.Row="1"
+                                 Grid.Column="1"
+                                 Placeholder="Wpisz nazwę..."
+                                 Margin="10"
+                                 Padding="10"
+                                 VerticalAlignment="Center"
+                                 HorizontalAlignment="Left"
+                                 Width="200"/>
+
+        <TextBlock x:Name="DodajPrzedmiotStan"
+                   Grid.Row="2"
+                   Text="Stan:"
+                   Margin="10"
+                   Padding="10"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Right"/>
+        <core:PlaceholderTextBox x:Name="WprowadzStanPrzedmiotu"
+                                 Grid.Row="2"
+                                 Grid.Column="1"
+                                 Placeholder="Wpisz stan..."
+                                 Margin="10"
+                                 Padding="10"
+                                 VerticalAlignment="Center"
+                                 HorizontalAlignment="Left"
+                                 Width="200"/>
+
+        <TextBlock x:Name="DodajPrzedmiotTyp"
+                   Grid.Row="3"
+                   Text="Typ:"
+                   Margin="10"
+                   Padding="10"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Right"/>
+        <core:PlaceholderTextBox x:Name="WprowadzTypPrzedmiotu"
+                                 Grid.Row="3"
+                                 Grid.Column="1"
+                                 Placeholder="Wpisz typ..."
+                                 Margin="10"
+                                 Padding="10"
+                                 VerticalAlignment="Center"
+                                 HorizontalAlignment="Left"
+                                 Width="200"/>
+        
+        <TextBlock x:Name="DodajPrzedmiotCenaZaDobe"
+                   Grid.Row="4"
+                   Text="Cena za dobe:"
+                   Margin="10"
+                   Padding="10"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Right"/>
+        <core:PlaceholderTextBox x:Name="WprowadzCenaZaDobePrzedmiotu"
+                                 Grid.Row="4"
+                                 Grid.Column="1"
+                                 Placeholder="Wpisz nazwę..."
+                                 Margin="10"
+                                 Padding="10"
+                                 VerticalAlignment="Center"
+                                 HorizontalAlignment="Left"
+                                 Width="200"/>
+
+        <StackPanel Orientation="Horizontal"
+                    Grid.Row="5"
+                    Grid.Column="1"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Right">
+            <Button x:Name="DodajNowyPrzedmiotPrzycisk"
+                    Content="Dodaj"
+                    Margin="10"
+                    Padding="10"/>
+            <Button x:Name="AnulujNowyPrzedmiotPrzycisk"
+                    Content="Anuluj"
+                    Margin="10"
+                    Padding="10"/>
+        </StackPanel>
+    </Grid>
+</Window>

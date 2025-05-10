@@ -21,36 +21,42 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Text="Ostrołęcki Dom Kultury"
-                   FontSize="24"
-                   FontWeight="Bold"
-                   VerticalAlignment="Center"
-                   Grid.Column="0"
-                   Margin="10" />
+                           FontSize="24"
+                           FontWeight="Bold"
+                           VerticalAlignment="Center"
+                           Grid.Column="0"
+                           Margin="10" />
 
                 <StackPanel Orientation="Horizontal"
-                    HorizontalAlignment="Right"
-                    VerticalAlignment="Center"
-                    Grid.Column="1">
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            Grid.Column="1">
+                    <Button x:Name="Ustawiania"
+                            Margin="5"
+                            Padding="5"
+                            Click="Ustawiania_Click">
+                        <Image Source="Assets\settings.png"/>
+                    </Button>
                     <Button x:Name="PanelMenu"
-                    Content="Menu"
-                    Margin="5"
-                    Padding="5"
-                    Click="PanelMenu_Click" />
+                            Content="Menu"
+                            Margin="5"
+                            Padding="5"
+                            Click="PanelMenu_Click" />
                     <Button x:Name="PanelAdmina"
-                    Content="Panel Administratora"
-                    Margin="5"
-                    Padding="5"
-                    Click="PanelAdmina_Click" />
+                            Content="Panel Administratora"
+                            Margin="5"
+                            Padding="5"
+                            Click="PanelAdmina_Click" />
                     <Button x:Name="Rejestracja" 
-                    Content="Rejestracja" 
-                    Margin="5" 
-                    Padding="5" 
-                    Click="Rejestracja_Click" />
+                            Content="Rejestracja" 
+                            Margin="5" 
+                            Padding="5" 
+                            Click="Rejestracja_Click" />
                     <Button x:Name="Logowanie" 
-                    Content="Zaloguj" 
-                    Margin="5" 
-                    Padding="5" 
-                    Click="Logowanie_Click" />
+                            Content="Zaloguj" 
+                            Margin="5" 
+                            Padding="5" 
+                            Click="Logowanie_Click" />
                 </StackPanel>
             </Grid>
         </Border>
