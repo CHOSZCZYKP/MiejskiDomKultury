@@ -40,5 +40,10 @@ namespace MiejskiDomKultury
         {
             Main.Content = App.ServiceProvider.GetRequiredService<Views.Administrator.PanelAdmina>();
         }
+
+        private void PanelMenu_Click(object sender, RoutedEventArgs e)
+        {
+            Main.Content = App.ServiceProvider.GetRequiredService<Home>();
+        }
     }
 }

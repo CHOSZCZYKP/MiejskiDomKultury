@@ -4,10 +4,32 @@
              xmlns:local="clr-namespace:MiejskiDomKultury"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
+        <!-- Kolory/Gradienty -->
+        <LinearGradientBrush x:Key="ButtonGradient" StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="#FFFFFF" Offset="0.0"/>
+            <GradientStop Color="#EEEEEE" Offset="1.0"/>
+        </LinearGradientBrush>
+
+        <LinearGradientBrush x:Key="ButtonHoverGradient" StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="#9CD7ED" Offset="0.0"/>
+            <GradientStop Color="#8C9DEA" Offset="1.0"/>
+        </LinearGradientBrush>
+
+        <LinearGradientBrush x:Key="ButtonClickGradient" StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="#8C9DEA" Offset="0.0"/>
+            <GradientStop Color="#9CD7ED" Offset="1.0"/>
+        </LinearGradientBrush>
+
+        <LinearGradientBrush x:Key="NavGradient" StartPoint="0,0" EndPoint="1,0">
+            <GradientStop Color="#EFD3A5" Offset="0.0"/>
+            <GradientStop Color="#ffe1b0" Offset="1.0"/>
+        </LinearGradientBrush>
+
         <!-- Tekst -->
         <Style TargetType="TextBlock">
             <Setter Property="FontFamily" Value="Times New Roman"/>
             <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontSize" Value="14"/>
         </Style>
 
         <!-- Tło -->
@@ -22,8 +44,29 @@
         <!-- Przyciski -->
         <Style TargetType="Button">
             <Setter Property="FontFamily" Value="Times New Roman"/>
-            <Setter Property="Background" Value="White"/>
             <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border"
+                                Background="{StaticResource ButtonGradient}"
+                                BorderBrush="Black"
+                                Padding="5"
+                                BorderThickness="1">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="{StaticResource ButtonHoverGradient}" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="{StaticResource ButtonClickGradient}" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
     </Application.Resources>
 </Application>
