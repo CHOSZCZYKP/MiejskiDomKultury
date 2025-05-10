@@ -28,13 +28,13 @@ namespace MiejskiDomKultury
             );
         }
 
-        private async void SendMessage(string userMessage)
+        private void SendMessage(string userMessage)
         {
             try
             {
-                DisplayMessage("Ja", userMessage);
+                
                 AIService ai = new AIService();
-                string response = ai.GetAssistantResponse(userMessage);
+                string response =  ai.GetAssistantResponse(userMessage);
                 
                 DisplayMessage("Bot", response);
             }
@@ -44,7 +44,7 @@ namespace MiejskiDomKultury
             }
         }
 
-        private void DisplayMessage(string sender, string message)
+        private  void DisplayMessage(string sender, string message)
         {
             ChatListBox.Items.Add($"[{sender}]: {message}");
             ChatListBox.ScrollIntoView(ChatListBox.Items[ChatListBox.Items.Count - 1]);
@@ -53,9 +53,10 @@ namespace MiejskiDomKultury
         private void SendButton_Click(object sender, RoutedEventArgs e)
         {
             string message = ChatInputTextBox.Text;
+            DisplayMessage("Ja", message);
             if (!string.IsNullOrWhiteSpace(message))
             {
-          
+                DisplayMessage("Ja", message);
                 SendMessage(message);
                 ChatInputTextBox.Clear();
             }
