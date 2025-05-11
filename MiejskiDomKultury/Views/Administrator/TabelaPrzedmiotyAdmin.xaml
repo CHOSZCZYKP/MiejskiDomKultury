@@ -20,7 +20,7 @@
                 Margin="10"
                 Click="DodajPrzedmiot_Click" />
 
-        <DataGrid x:Name="DataGridUzytkownicy"
+        <DataGrid x:Name="DataGridPrzedmiotyAdmin"
                   Grid.Row="1"
                   Width="auto"
                   Margin="10">

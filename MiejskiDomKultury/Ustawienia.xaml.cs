@@ -22,6 +22,17 @@ namespace MiejskiDomKultury
         public Ustawienia()
         {
             InitializeComponent();
+            MotywToggleButton.Content = "Motyw Jasny";
+        }
+
+        private void MotywToggleButton_Checked(object sender, RoutedEventArgs e)
+        {
+            MotywToggleButton.Content = "Motyw Ciemny";
+        }
+
+        private void MotywToggleButton_Unchecked(object sender, RoutedEventArgs e)
+        {
+            MotywToggleButton.Content = "Motyw Jasny";
         }
     }
 }

@@ -33,7 +33,7 @@ namespace MiejskiDomKultury
 
         private void Wypozyczalnia_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new WypozyczaniePrzedmiotow());
         }
         private void Chat_Click(object sender, RoutedEventArgs e)
         {

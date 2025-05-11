@@ -9,7 +9,7 @@
       Title="TabelaTransakcjeAdmin">
 
     <Grid>
-        <DataGrid x:Name="DataGridUzytkownicy"
+        <DataGrid x:Name="DataGridTransakcjeAdmin"
           Width="auto"
           Margin="10">
             <DataGrid.Columns>

@@ -9,7 +9,7 @@
       Title="TabelaWypozyczeniaAdmin">
 
     <Grid>
-        <DataGrid x:Name="DataGridUzytkownicy"
+        <DataGrid x:Name="DataGridWypozyczeniaAdmin"
           Width="auto"
           Margin="10">
             <DataGrid.Columns>

@@ -18,6 +18,7 @@
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
 
         <TextBlock x:Name="TytulUstawienia"
@@ -95,8 +96,26 @@
                                       VerticalAlignment="Center"
                                       HorizontalAlignment="Left"/>
 
+        <TextBlock x:Name="MotywTextBlock"
+                   Grid.Row="5"
+                   Text="Motyw:"
+                   Margin="5"
+                   Padding="5"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Right" />
+        <ToggleButton x:Name="MotywToggleButton"
+                      Grid.Column="1"
+                      Grid.Row="5"
+                      Width="200"
+                      Margin="5"
+                      Padding="5"
+                      VerticalAlignment="Center"
+                      HorizontalAlignment="Left"
+                      Checked="MotywToggleButton_Checked"
+                      Unchecked="MotywToggleButton_Unchecked"/>
+
         <StackPanel Orientation="Horizontal"
-                    Grid.Row="5"
+                    Grid.Row="6"
                     Grid.Column="1"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Right">

@@ -9,7 +9,7 @@
       Title="TabelaBanyAdmin">
 
     <Grid>
-        <DataGrid x:Name="DataGridUzytkownicy"
+        <DataGrid x:Name="DataGridBanyAdmin"
           Width="auto"
           Margin="10">
             <DataGrid.Columns>

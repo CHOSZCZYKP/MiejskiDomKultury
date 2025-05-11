@@ -9,7 +9,7 @@
       Title="TabelaRezerwacjeAdmin">
 
     <Grid>
-        <DataGrid x:Name="DataGridUzytkownicy"
+        <DataGrid x:Name="DataGridRezerwacjeAdmin"
           Width="auto"
           Margin="10">
             <DataGrid.Columns>

@@ -9,7 +9,7 @@
       Title="TabelaSaleAdmin">
 
     <Grid>
-        <DataGrid x:Name="DataGridUzytkownicy"
+        <DataGrid x:Name="DataGridSaleAdmin"
           Width="auto"
           Margin="10">
             <DataGrid.Columns>
