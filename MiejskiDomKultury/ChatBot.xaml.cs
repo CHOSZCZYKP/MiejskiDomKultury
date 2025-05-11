@@ -56,7 +56,7 @@ namespace MiejskiDomKultury
             DisplayMessage("Ja", message);
             if (!string.IsNullOrWhiteSpace(message))
             {
-                DisplayMessage("Ja", message);
+                
                 SendMessage(message);
                 ChatInputTextBox.Clear();
             }

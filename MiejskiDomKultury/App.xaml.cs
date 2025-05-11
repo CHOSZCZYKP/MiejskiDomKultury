@@ -48,7 +48,7 @@ namespace MiejskiDomKultury
             services.AddTransient<TabelaPrzedmiotyAdmin>();
             services.AddTransient<WykresyStatystyk>();
             services.AddTransient<Logo>();
-
+            services.AddTransient<AvailableMovies>();
         }
     }
 

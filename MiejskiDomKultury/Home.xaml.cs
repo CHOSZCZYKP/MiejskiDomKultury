@@ -40,5 +40,10 @@ namespace MiejskiDomKultury
             NavigationService.Navigate(new ChatBot());
         }
 
+
+        private void Film_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new AvailableMovies());
+        }
     }
 }

@@ -31,6 +31,10 @@ namespace MiejskiDomKultury.Data
         public DbSet<Uzytkownik> Uzytkownicy { get; set; }
         public DbSet<Wypozyczenie> Wypozyczenia { get; set; }
 
+        public DbSet<Movie> Filmy { get; set; }
+        public DbSet<MovieShow> Seanse { get; set; }
+        public DbSet<MovieTicket> Bilety { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
