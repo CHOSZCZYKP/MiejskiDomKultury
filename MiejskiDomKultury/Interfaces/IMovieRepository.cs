@@ -11,7 +11,13 @@ namespace MiejskiDomKultury.Interfaces
     {
          List<int> GetTakenSeats(int seansId);
 
-         List<Movie> GetAvailableMovies();
+         List<Film> GetAvailableMovies();
+
+        List<DateTime> GetMovieShowDates(int movieId);
+
+        List<int> GetFreeSeats(int seansId);
+
+        Seans GetSeans(DateTime date, int movieId);
 
     }
 }

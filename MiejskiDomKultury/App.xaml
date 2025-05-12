@@ -68,5 +68,15 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <Style x:Key="TakenSeatButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Gray"/>
+           
+        </Style>
+        <Style x:Key="FreeSeatButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="CornflowerBlue"/>
+
+        </Style>
+
     </Application.Resources>
 </Application> 

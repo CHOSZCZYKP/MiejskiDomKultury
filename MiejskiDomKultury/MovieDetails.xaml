@@ -1,7 +1,4 @@
-﻿
-
-<!-- MovieDetails.xaml -->
-<Page x:Class="MiejskiDomKultury.MovieDetails"
+﻿<Page x:Class="MiejskiDomKultury.MovieDetails"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -11,28 +8,65 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Movie Details">
     <Grid Margin="20">
-        <StackPanel>
-            <TextBlock Text="{Binding Title}" FontSize="28" FontWeight="Bold" Margin="0 0 0 20" />
-            <TextBlock Text="{Binding Description}" FontSize="16" Margin="0 0 0 20" TextWrapping="Wrap" />
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Informacje o filmie -->
+        <StackPanel Grid.Column="0" Margin="0 0 20 0">
+            <TextBlock Text="{Binding Tytul}" FontSize="28" FontWeight="Bold" Margin="0 0 0 20" />
+            <TextBlock Text="{Binding Opis}" FontSize="16" Margin="0 0 0 20" TextWrapping="Wrap" />
 
             <TextBlock Text="Rok:" FontWeight="Bold" FontSize="18" />
-            <TextBlock Text="{Binding Year}" FontSize="16" Margin="0 0 0 20" />
+            <TextBlock Text="{Binding Rok}" FontSize="16" Margin="0 0 0 20" />
+
             <TextBlock Text="W rolach głównych:" FontWeight="Bold" FontSize="18" />
-            <ItemsControl ItemsSource="{Binding ActorsNames}" Margin="0 0 0 20">
+            <ItemsControl ItemsSource="{Binding Aktorzy}" Margin="0 0 0 20">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding}" FontSize="16" />
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
+
             <TextBlock Text="Gatunek:" FontWeight="Bold" FontSize="18" />
-            <ItemsControl ItemsSource="{Binding Kinds}" Margin="0 0 0 20">
+            <ItemsControl ItemsSource="{Binding Gatunek}" Margin="0 0 0 20">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding}" FontSize="16" />
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
+
+            <TextBlock Text="Dostępne seanse:" FontWeight="Bold" FontSize="18" Margin="0 0 0 10" />
+            <ItemsControl ItemsSource="{Binding ShowDates}" Margin="0 0 0 20">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button Content="{Binding}" 
+                    Tag="{Binding}" 
+                    Width="150" 
+                    FontSize="16" 
+                    Margin="0 0 5 5"
+                    Click="ShowDateButton_Click" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
         </StackPanel>
+
+        <!-- Plakat po prawej stronie -->
+        <Grid Grid.Column="1">
+            <Image x:Name="PosterImage" 
+                   Stretch="Uniform" 
+                   Margin="0,0,0,10" 
+                   VerticalAlignment="Center" 
+                   HorizontalAlignment="Center" />
+        </Grid>
     </Grid>
 </Page>

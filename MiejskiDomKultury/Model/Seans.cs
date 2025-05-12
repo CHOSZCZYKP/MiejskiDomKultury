@@ -6,15 +6,17 @@ using System.Threading.Tasks;
 
 namespace MiejskiDomKultury.Model
 {
-    public class Movie
+    public class Seans
     {
-        public int Id { get; set; }
-        public string Title { get; set; }
-        public List<string> ActorsNames { get; set; }
-        public int Year { get; set; }
-        public string Description { get; set; }
 
-        public List<string> Kinds { get; set; }
+        public int Id { get; set; }
+        public int FilmId { get; set; }
+
+        public Film Film { get; set; }
+
+        public DateTime DataStart { get; set; }
+
+        public int Czas { get; set; }
 
         public ICollection<Uzytkownik> Widzowie { get; set; } = new List<Uzytkownik>();
     }

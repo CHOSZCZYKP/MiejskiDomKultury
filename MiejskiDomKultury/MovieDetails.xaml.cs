@@ -1,31 +1,55 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using MiejskiDomKultury.Model;
+using MiejskiDomKultury.Services;
 
 namespace MiejskiDomKultury
 {
-    ///<summary>
+    /// <summary>
     /// Logika interakcji dla klasy MovieDetails.xaml
-    ///</summary>
+    /// </summary>
     public partial class MovieDetails : Page
     {
-        public MovieDetails(Movie film)
+
+        Film Film { get; set; }
+        public MovieDetails(Film film)
         {
             InitializeComponent();
-            
+            PosterImage.Source = new BitmapImage(new Uri(film.PlakatURL));
             DataContext = film;
+            this.Film = film;
+            LoadShowDates(film.Id);
+        }
+
+        private  void LoadShowDates(int movieId)
+        {
+            MovieRepositoryService mr = new MovieRepositoryService();
+            List<DateTime> showDates =  mr.GetMovieShowDates(movieId);
+
+            // Update the DataContext to include the show dates
+            DataContext = new
+            {
+                ((Film)DataContext).Tytul,
+                ((Film)DataContext).Opis,
+                ((Film)DataContext).Rok,
+                ((Film)DataContext).Aktorzy,
+                ((Film)DataContext).Gatunki,
+                ShowDates = showDates.Select(date => date.ToString("dd-MM-yyyy HH:mm")).ToList()
+            };
+        }
+
+        private void ShowDateButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button button && button.Tag is string showDate)
+            {
+                MessageBox.Show($"Wybrano seans: {showDate}");
+                NavigationService.Navigate(new SeatsReservation(showDate, Film));
+            }
         }
     }
 }

@@ -18,27 +18,61 @@ namespace MiejskiDomKultury.Services
         {
             _context = new DbContextDomKultury();
         }
-        public List<Movie> GetAvailableMovies()
+        public List<Film> GetAvailableMovies()
         {
-            Movie film = new Movie
+            Film film = new Film
             {
-                ActorsNames = new List<string> { "Malcolm McDowell", "Patrick Magee", "Michael Bates" },
-                Description = "Alex DeLarge wraz ze swoim gangiem sieje spustoszenie na ulicach. Kiedy trafia do więzienia, otrzymuje propozycję odmiany swojego życia.",
-                Kinds = new List<string> { "Crime", "Drama", "Sci-Fi" },
-                Title = "Mechaniczna pomarańcza",
-                Year = 1971
+                Aktorzy = new List<string> { "Malcolm McDowell", "Patrick Magee", "Michael Bates" },
+                Opis = "Alex DeLarge wraz ze swoim gangiem sieje spustoszenie na ulicach. Kiedy trafia do więzienia, otrzymuje propozycję odmiany swojego życia.",
+                Gatunki = new List<string> { "Crime", "Drama", "Sci-Fi" },
+                Tytul = "Mechaniczna pomarańcza",
+                Rok = 1971
             };
 
-            Movie film2 = new Movie
+            Film film2 = new Film
             {
-                ActorsNames = new List<string> { "Keir Dullea", "Gary Lockwood", "Douglas Rain" },
-                Description = "\"2001: Odyseja kosmiczna\" to wyprawa w krainę jutra, mapa ludzkiego przeznaczenia, droga do nieskończoności i fascynująca opowieść o starciu człowieka z maszyną - arcydzieło sztuki filmowej, które wyróżniono Oscarem za efekty specjalne.",
-                Kinds = new List<string> { "Adventure", "Drama", "Sci-Fi" },
-                Title = "2001: Odyseja kosmiczna",
-                Year = 1968
+                Aktorzy = new List<string> { "Keir Dullea", "Gary Lockwood", "Douglas Rain" },
+                Opis = "\"2001: Odyseja kosmiczna\" to wyprawa w krainę jutra, mapa ludzkiego przeznaczenia, droga do nieskończoności i fascynująca opowieść o starciu człowieka z maszyną - arcydzieło sztuki filmowej, które wyróżniono Oscarem za efekty specjalne.",
+                Gatunki = new List<string> { "Adventure", "Drama", "Sci-Fi" },
+                PlakatURL = "https://m.media-amazon.com/images/M/MV5BNjU0NDFkMTQtZWY5OS00MmZhLTg3Y2QtZmJhMzMzMWYyYjc2XkEyXkFqcGc@._V1_SX300.jpg",
+                Tytul = "2001: Odyseja kosmiczna",
+                Rok = 1968
             };
 
-            return new List<Movie> { film, film2 };
+            return new List<Film> { film, film2 };
+        }
+
+
+
+        public List<int> GetFreeSeats(int seansId)
+        {
+            return new List<int> { 1, 5, 12, 20, 21, 23, 30 };
+        }
+
+        public List<DateTime> GetMovieShowDates(int movieId)
+        {
+            return new List<DateTime> {DateTime.Now, DateTime.Now.AddDays(1), DateTime.Now.AddDays(2), DateTime.Now.AddDays(3) };
+           // return _context.Seanse.Where(p => p.DateStart < DateTime.Now).Select(p => p.DateStart).ToList();
+        }
+
+        public Seans GetSeans(DateTime date, int movieId)
+        {
+            // return _context.Seanse.FirstOrDefault(p=>p.DataStart == date && p.FilmId==movieId);
+            return new Seans
+            {
+                DataStart = DateTime.Now,
+                Czas = 120,
+                Film = new Film
+                {
+                    Aktorzy = new List<string> { "Keir Dullea", "Gary Lockwood", "Douglas Rain" },
+                    Opis = "\"2001: Odyseja kosmiczna\" to wyprawa w krainę jutra, mapa ludzkiego przeznaczenia, droga do nieskończoności i fascynująca opowieść o starciu człowieka z maszyną - arcydzieło sztuki filmowej, które wyróżniono Oscarem za efekty specjalne.",
+                    Gatunki = new List<string> { "Adventure", "Drama", "Sci-Fi" },
+                    PlakatURL = "https://m.media-amazon.com/images/M/MV5BNjU0NDFkMTQtZWY5OS00MmZhLTg3Y2QtZmJhMzMzMWYyYjc2XkEyXkFqcGc@._V1_SX300.jpg",
+                    Tytul = "2001: Odyseja kosmiczna",
+                    Rok = 1968
+                },
+                Id = 21
+            };
         }
 
         public List<int> GetTakenSeats(int seansId)

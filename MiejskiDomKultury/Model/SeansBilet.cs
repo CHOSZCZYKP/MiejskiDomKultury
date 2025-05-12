@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace MiejskiDomKultury.Model
 {
-    public class MovieTicket
+    public class SeansBilet
     {
         public int Id { get; set; }
         public int SeansId {get;set;}
-        public MovieShow Seans { get; set; }
+        public Seans Seans { get; set; }
 
         public int SeatNumber { get; set; }
 

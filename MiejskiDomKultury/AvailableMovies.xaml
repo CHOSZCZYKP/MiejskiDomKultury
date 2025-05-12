@@ -19,7 +19,7 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal" Margin="0 5">
-                            <TextBlock Text="{Binding Title}" Width="200" VerticalAlignment="Center"/>
+                            <TextBlock Text="{Binding Tytul}" Width="200" VerticalAlignment="Center"/>
                             <Button Content="Do szczegółów" 
                                     Margin="10 0 0 0"
                                     Click="MovieDetailsButton_Click"

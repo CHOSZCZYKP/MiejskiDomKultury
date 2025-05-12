@@ -11,20 +11,20 @@ namespace MiejskiDomKultury
     public partial class AvailableMovies : Page
     {
         private MovieRepositoryService _moviesRepositoryService;
-        public ObservableCollection<Movie> FilteredMovies { get; set; }
+        public ObservableCollection<Film> FilteredMovies { get; set; }
 
         public AvailableMovies()
         {
             InitializeComponent();
             _moviesRepositoryService = new MovieRepositoryService();
-            FilteredMovies = new ObservableCollection<Movie>(_moviesRepositoryService.GetAvailableMovies());
+            FilteredMovies = new ObservableCollection<Film>(_moviesRepositoryService.GetAvailableMovies());
             DataContext = this;
         }
 
         public void FilterMovies(string searchText)
         {
             var allMovies = _moviesRepositoryService.GetAvailableMovies();
-            var filtered = allMovies.Where(f => f.Title.Contains(searchText, System.StringComparison.OrdinalIgnoreCase)).ToList();
+            var filtered = allMovies.Where(f => f.Tytul.Contains(searchText, System.StringComparison.OrdinalIgnoreCase)).ToList();
             FilteredMovies.Clear();
             foreach (var movie in filtered)
             {
@@ -41,7 +41,7 @@ namespace MiejskiDomKultury
         private void MovieDetailsButton_Click(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;
-            var selectedMovie = button.Tag as Movie;
+            var selectedMovie = button.Tag as Film;
 
             if (selectedMovie != null)
             {

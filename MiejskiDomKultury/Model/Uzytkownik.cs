@@ -38,6 +38,6 @@ namespace MiejskiDomKultury.Model
         public ICollection<Ban> Bany { get; set; } = new List<Ban>();
         public ICollection<Transakcja> Transakcje { get; set; } = new List<Transakcja>();
         public ICollection<Wypozyczenie> Wypozyczenia { get; set; } = new List<Wypozyczenie>();
-        public ICollection<MovieShow> Seanse { get; set; } = new List<MovieShow>();
+        public ICollection<Seans> Seanse { get; set; } = new List<Seans>();
     }
 }
