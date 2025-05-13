@@ -72,7 +72,7 @@ namespace MiejskiDomKultury.Services
         public List<DateTime> GetMovieShowDates(int movieId)
         {
            // return new List<DateTime> {DateTime.Now, DateTime.Now.AddDays(1), DateTime.Now.AddDays(2), DateTime.Now.AddDays(3) };
-            return _context.Seanse.Where(p => p.DataStart > DateTime.Now).Select(p => p.DataStart).ToList();
+            return _context.Seanse.Where(p => p.DataStart > DateTime.Now && p.FilmId==movieId).Select(p => p.DataStart).ToList();
         }
 
         public Seans GetSeans(DateTime date, int movieId)
