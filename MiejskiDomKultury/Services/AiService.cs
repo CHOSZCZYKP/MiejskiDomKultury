@@ -24,7 +24,7 @@ namespace MiejskiDomKultury.Services
 
 
 #pragma warning disable OPENAI001
-        public string GetAssistantResponse(string prompt)
+        public async Task<string> GetAssistantResponse(string prompt)
         {
             // Mock up funckji 
             string CheckRoomAvailability(string roomName, string date, string startTime, string endTime)
@@ -112,7 +112,7 @@ namespace MiejskiDomKultury.Services
 
                 assistantOptions.Tools.Add(checkRoomAvailabilityTool);
 
-                Assistant assistant = client.CreateAssistant("gpt-4-turbo", assistantOptions);
+                Assistant assistant =await client.CreateAssistantAsync("gpt-4-turbo", assistantOptions);
                 #endregion
 
 
@@ -124,7 +124,7 @@ namespace MiejskiDomKultury.Services
                     InitialMessages = { prompt }
                 };
 
-                ThreadRun run = client.CreateThreadAndRun(assistant.Id, threadOptions);
+                ThreadRun run = await client.CreateThreadAndRunAsync(assistant.Id, threadOptions);
                 #endregion
 
                 #region
@@ -132,7 +132,7 @@ namespace MiejskiDomKultury.Services
                 while (!run.Status.IsTerminal)
                 {
                     Thread.Sleep(TimeSpan.FromSeconds(1));
-                    run = client.GetRun(run.ThreadId, run.Id);
+                    run =await client.GetRunAsync(run.ThreadId, run.Id);
 
 
                     if (run.Status == RunStatus.RequiresAction)
@@ -170,7 +170,7 @@ namespace MiejskiDomKultury.Services
                         }
 
 
-                        run = client.SubmitToolOutputsToRun(run.ThreadId, run.Id, toolOutputs);
+                        run =await client.SubmitToolOutputsToRunAsync(run.ThreadId, run.Id, toolOutputs);
                     }
                 }
                 #endregion

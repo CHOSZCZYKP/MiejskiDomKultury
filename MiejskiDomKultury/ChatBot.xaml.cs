@@ -18,6 +18,7 @@ namespace MiejskiDomKultury
         {
             InitializeComponent();
             InitializeChatClient();
+            DisplayMessage("Bot", "Cześć jak mogę Ci pomóć?");
         }
 
         private void InitializeChatClient()
@@ -28,13 +29,13 @@ namespace MiejskiDomKultury
             );
         }
 
-        private void SendMessage(string userMessage)
+        private async Task SendMessage(string userMessage)
         {
             try
             {
                 
                 AIService ai = new AIService();
-                string response =  ai.GetAssistantResponse(userMessage);
+                string response =await  ai.GetAssistantResponse(userMessage);
                 
                 DisplayMessage("Bot", response);
             }

@@ -20,13 +20,13 @@ namespace MiejskiDomKultury.Services
         }
         public List<Film> GetAvailableMovies()
         {
-            Film film = new Film
+            Film film1 = new Film
             {
                 Aktorzy = new List<string> { "Malcolm McDowell", "Patrick Magee", "Michael Bates" },
                 Opis = "Alex DeLarge wraz ze swoim gangiem sieje spustoszenie na ulicach. Kiedy trafia do więzienia, otrzymuje propozycję odmiany swojego życia.",
                 Gatunki = new List<string> { "Crime", "Drama", "Sci-Fi" },
                 Tytul = "Mechaniczna pomarańcza",
-                PlakatURL = "https://i.ebayimg.com/00/s/MTYwMFgxMDYw/z/arkAAOSwNsdXR516/$_57.JPG?set_id=8800005007",
+                PlakatURL = "https://i.ebayimg.com/00/s/MTYwMFgxMDYw/z/arkAAOSwNsdXR516/$_57.JPG",
                 Rok = 1971
             };
 
@@ -40,7 +40,29 @@ namespace MiejskiDomKultury.Services
                 Rok = 1968
             };
 
-            return new List<Film> { film, film2 };
+            Film film3 = new Film
+            {
+                Aktorzy = new List<string> { "Jack Nicholson", "Shelley Duvall", "Danny Lloyd" },
+                Opis = "Pisarka, jego żona i ich syn wprowadzają się do odciętego od świata hotelu, w którym zaczynają dziać się niepokojące rzeczy.",
+                Gatunki = new List<string> { "Horror", "Drama", "Mystery" },
+                PlakatURL = "https://m.media-amazon.com/images/M/MV5BZTQ1ODJkY2ItYzNlZS00ZDM1LThkY2MtOTU2ZjdmZTlmZjk0XkEyXkFqcGc@._V1_SX300.jpg",
+                Tytul = "Lśnienie",
+                Rok = 1980
+            };
+
+            Film film4 = new Film
+            {
+                Aktorzy = new List<string> { "Matthew Modine", "R. Lee Ermey", "Vincent D'Onofrio" },
+                Opis = "Historia rekrutów szkolących się do wojny w Wietnamie oraz ich brutalnej rzeczywistości na froncie.",
+                Gatunki = new List<string> { "Drama", "War" },
+                PlakatURL = "https://m.media-amazon.com/images/M/MV5BYWQ2YjA3MTMtZTg1MC00Y2M5LThmMzAtOGYwYmNlMjg5YjA2XkEyXkFqcGc@._V1_SX300.jpg",
+                Tytul = "Full Metal Jacket",
+                Rok = 1987
+            };
+
+        
+
+            return new List<Film> { film1, film2, film3, film4};
         }
 
 

@@ -38,15 +38,7 @@ namespace MiejskiDomKultury
             }
         }
 
-        private void ConfirmButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (((Button)sender).Tag is Film selectedFilm)
-            {
-                _selectedFilm = selectedFilm;
-                DisplayMovieDetails(selectedFilm);
-                MessageBox.Show($"Film '{selectedFilm.Tytul}' został wybrany!");
-            }
-        }
+        
 
         private void AddScreeningButton_Click(object sender, RoutedEventArgs e)
         {
