@@ -50,6 +50,7 @@ namespace MiejskiDomKultury
             services.AddTransient<WypozyczaniePrzedmiotow>();
             services.AddTransient<Logo>();
             services.AddTransient<AvailableMovies>();
+            services.AddTransient<AddMovie>();
         }
     }
 

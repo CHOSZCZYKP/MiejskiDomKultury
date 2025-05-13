@@ -30,10 +30,10 @@ namespace MiejskiDomKultury
             if (SeatsGrid == null)
                 return;
 
-            int totalSeats = 40; // 4x10 grid
+            int totalSeats = 40; 
             for (int seatNumber = 1; seatNumber <= totalSeats; seatNumber++)
             {
-                int currentSeatNumber = seatNumber;  // Local copy to avoid closure problem
+                int currentSeatNumber = seatNumber;  
 
                 Button seatButton = new Button
                 {

@@ -26,6 +26,7 @@ namespace MiejskiDomKultury.Services
                 Opis = "Alex DeLarge wraz ze swoim gangiem sieje spustoszenie na ulicach. Kiedy trafia do więzienia, otrzymuje propozycję odmiany swojego życia.",
                 Gatunki = new List<string> { "Crime", "Drama", "Sci-Fi" },
                 Tytul = "Mechaniczna pomarańcza",
+                PlakatURL = "https://i.ebayimg.com/00/s/MTYwMFgxMDYw/z/arkAAOSwNsdXR516/$_57.JPG?set_id=8800005007",
                 Rok = 1971
             };
 

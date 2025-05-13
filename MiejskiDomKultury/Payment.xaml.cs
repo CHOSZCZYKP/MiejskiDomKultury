@@ -16,16 +16,16 @@ namespace MiejskiDomKultury
         {
             InitializeComponent();
 
-            // Calculate total price
+            
             int totalPrice = seats.Count * SeatPrice;
 
-            // Create summary text
+            
             string seatsList = string.Join(", ", seats);
             string summaryText = $"Wybrałeś miejsca: {seatsList}\n" +
                                  $"Liczba miejsc: {seats.Count}\n" +
                                  $"Łączna kwota do zapłaty: {totalPrice} zł";
 
-            // Set the text in the summary panel
+     
             SummaryTextBlock.Text = summaryText;
         }
 

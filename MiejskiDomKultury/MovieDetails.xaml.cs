@@ -31,7 +31,6 @@ namespace MiejskiDomKultury
             MovieRepositoryService mr = new MovieRepositoryService();
             List<DateTime> showDates =  mr.GetMovieShowDates(movieId);
 
-            // Update the DataContext to include the show dates
             DataContext = new
             {
                 ((Film)DataContext).Tytul,

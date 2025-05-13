@@ -1,0 +1,54 @@
+﻿<Page x:Class="MiejskiDomKultury.AddMovie"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MiejskiDomKultury"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AddMovie">
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="3*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Search Bar -->
+        <TextBox x:Name="SearchBox" Grid.Row="0" Grid.Column="0" Margin="0,0,10,10" FontSize="18"/>
+        <Button Content="Wyszukaj" Grid.Row="0" Grid.Column="1" Width="150" FontSize="18" Click="SearchButton_Click" />
+
+        <!-- Movie List -->
+        <ListBox x:Name="MovieList" Grid.Row="1" Grid.Column="0" Margin="0,10,10,0" FontSize="16" SelectionChanged="MovieList_SelectionChanged">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Vertical" Margin="0,0,0,10">
+                        <TextBlock Text="{Binding Tytul}" FontWeight="Bold" />
+                        <Button Content="Potwierdź" Tag="{Binding}" Click="ConfirmButton_Click" Margin="0,5,0,0" Width="100" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <!-- Movie Details Panel -->
+        <StackPanel Grid.Row="1" Grid.Column="1" Margin="10,10,0,0" >
+            <TextBlock x:Name="TitleText" FontSize="22" FontWeight="Bold" Margin="0,0,0,10" />
+            <TextBlock x:Name="YearText" FontSize="18" Margin="0,0,0,5" />
+            <TextBlock x:Name="DescriptionText" FontSize="16" TextWrapping="Wrap" />
+        </StackPanel>
+
+        <!-- Screening Form -->
+        <StackPanel x:Name="ScreeningForm" Grid.Row="1" Grid.Column="1" Margin="10,150,0,0" Visibility="Collapsed">
+            <TextBlock Text="Dodaj Termin Emisji" FontSize="20" FontWeight="Bold" Margin="0,20,0,10" />
+            <DatePicker x:Name="ScreeningDate" Margin="0,0,0,10" />
+            <TextBox x:Name="ScreeningTime"  Margin="0,0,0,10" FontSize="16" />
+            <Button Content="Dodaj Termin" Click="AddScreeningButton_Click" Margin="0,0,0,10" Width="150" />
+            <ListBox x:Name="ScreeningTimesList" FontSize="16" Height="150" Margin="0,0,0,10" />
+            <Button Content="Usuń Wybrany Termin" Click="RemoveScreeningButton_Click" Width="200" />
+        </StackPanel>
+    </Grid>
+</Page>
