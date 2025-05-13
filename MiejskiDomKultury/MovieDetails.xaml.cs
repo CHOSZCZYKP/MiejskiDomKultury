@@ -46,7 +46,7 @@ namespace MiejskiDomKultury
         {
             if (sender is Button button && button.Tag is string showDate)
             {
-                MessageBox.Show($"Wybrano seans: {showDate}");
+               
                 NavigationService.Navigate(new SeatsReservation(showDate, Film));
             }
         }

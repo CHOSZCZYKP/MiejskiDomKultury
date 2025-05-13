@@ -9,17 +9,55 @@
       Title="SeatsReservation">
 
     <Grid Margin="10">
-        <Label x:Name="Screen" FontWeight="DemiBold" HorizontalAlignment="Center" Margin="0,0,0,20">Ekran</Label>
-        <UniformGrid x:Name="SeatsGrid" Rows="10" Columns="10" Margin="10,50,10,10" />
-        <Button x:Name="ConfirmButton"
-        Content="Przejdź do płatności"
-        Width="150"
-        Height="40"
-        HorizontalAlignment="Right"
-        VerticalAlignment="Bottom"
-        Margin="0,0,10,10"
-        Click="ConfirmButtonClick"/>
-        
-    </Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
 
+        <Label x:Name="Screen" FontWeight="DemiBold" HorizontalAlignment="Center" Margin="0,0,0,20">Ekran</Label>
+
+        <UniformGrid x:Name="SeatsGrid" Rows="10" Columns="10" Margin="10,50,10,10" Grid.Row="0"/>
+
+        
+            <StackPanel Grid.Row="1" Margin="10,0,10,10">
+                <Grid Margin="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150" />
+                        <ColumnDefinition Width="60" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0">Miejsca wolne</Label>
+                    <Label Grid.Column="1" Background="CornflowerBlue" Width="50" Height="20" HorizontalAlignment="Right"/>
+                </Grid>
+
+                <Grid Margin="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150" />
+                        <ColumnDefinition Width="60" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0">Miejsca zajęte</Label>
+                    <Label Grid.Column="1" Background="Gray" Width="50" Height="20" HorizontalAlignment="Right"/>
+                </Grid>
+
+                <Grid Margin="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150" />
+                        <ColumnDefinition Width="60" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0">Miejsca zarezerwowane</Label>
+                    <Label Grid.Column="1" Background="YellowGreen" Width="50" Height="20" HorizontalAlignment="Right"/>
+                </Grid>
+            </StackPanel>
+
+     
+
+        <Button x:Name="ConfirmButton"
+                Content="Przejdź do płatności"
+                Width="150"
+                Height="40"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Margin="0,0,10,10"
+                Click="ConfirmButtonClick"
+                Grid.Row="1"/>
+    </Grid>
 </Page>

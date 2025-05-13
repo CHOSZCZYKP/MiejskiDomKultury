@@ -68,6 +68,11 @@ namespace MiejskiDomKultury
 
         public void ConfirmButtonClick(object sender, RoutedEventArgs e)
         {
+            if (selectedSeats.Count == 0)
+            {
+                MessageBox.Show("Musisz wybrać miejsce");
+                return;
+            }
             NavigationService.Navigate(new Payment(selectedSeats));
         }
     }

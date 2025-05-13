@@ -11,7 +11,7 @@ namespace MiejskiDomKultury.Model
     {
         public int Id { get; set; }
         public string Tytul { get; set; }
-        public List<string> Aktorzy { get; set; }
+        public List<string>? Aktorzy { get; set; }
         public int Rok { get; set; }
         public string Opis { get; set; }
 

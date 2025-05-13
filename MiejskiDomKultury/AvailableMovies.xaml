@@ -14,7 +14,9 @@
                 <Label VerticalAlignment="Center" >Wyszukaj po nazwie</Label>
                 <TextBox Name="FilterTextBox" Width="300" TextChanged="FilterTextBox_TextChanged" FontSize="20"/>
             </StackPanel>
-
+          
+     
+            
             <ListBox ItemsSource="{Binding FilteredMovies}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>

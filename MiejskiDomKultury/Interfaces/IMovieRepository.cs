@@ -19,5 +19,13 @@ namespace MiejskiDomKultury.Interfaces
 
         Seans GetSeans(DateTime date, int movieId);
 
+        void AddFilm(Film film);
+
+        Task<Film> GetMovieDetailsFromApi(string title, int year);
+
+        Task<List<Film>> GetMoviesByTitleFromApi(string title);
+
+        void AddSeans(Seans seans);
+
     }
 }

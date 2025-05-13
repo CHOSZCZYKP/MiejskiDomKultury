@@ -18,6 +18,7 @@ namespace MiejskiDomKultury
             InitializeComponent();
             _moviesRepositoryService = new MovieRepositoryService();
             FilteredMovies = new ObservableCollection<Film>(_moviesRepositoryService.GetAvailableMovies());
+           
             DataContext = this;
         }
 
@@ -32,10 +33,12 @@ namespace MiejskiDomKultury
             }
         }
 
+      
         private void FilterTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             var textBox = sender as TextBox;
             FilterMovies(textBox.Text);
+            
         }
 
         private void MovieDetailsButton_Click(object sender, RoutedEventArgs e)
