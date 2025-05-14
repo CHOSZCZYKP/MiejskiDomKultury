@@ -24,7 +24,7 @@ namespace MiejskiDomKultury.Model
         [MinLength(2)]
         public string Typ { get; set; } = default!;
         [Required]
-        public decimal CenaZaDobe_Wartość { get; set; }
+        public decimal CenaZaDobe_Wartosc { get; set; }
         [Required]
         [MaxLength(3)]
         [MinLength(3)]
