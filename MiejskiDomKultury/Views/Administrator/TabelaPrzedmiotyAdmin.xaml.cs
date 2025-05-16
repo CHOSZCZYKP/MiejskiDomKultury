@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MiejskiDomKultury.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,15 +21,27 @@ namespace MiejskiDomKultury.Views.Administrator
     /// </summary>
     public partial class TabelaPrzedmiotyAdmin : Page
     {
+        private TabelaPrzedmiotyViewModel _viewModel;
         public TabelaPrzedmiotyAdmin()
         {
             InitializeComponent();
+           // DataContext = new TabelaPrzedmiotyViewModel();
+           _viewModel = new TabelaPrzedmiotyViewModel();
+            _viewModel.WywolajOknoDodajNowyPrzedmiot += WyswietlDodajNowyPrzedmiot;
+            DataContext = _viewModel;
         }
 
-        private void DodajPrzedmiot_Click(object sender, RoutedEventArgs e)
+        
+        private Task<bool> WyswietlDodajNowyPrzedmiot()
         {
-            DodajNowyPrzedmiot nowyPrzedmiot = new DodajNowyPrzedmiot();
-            nowyPrzedmiot.Show();
+            DodajNowyPrzedmiot dodajNowyPrzedmiot = new DodajNowyPrzedmiot();
+            bool? wynik = dodajNowyPrzedmiot.ShowDialog();
+            return Task.FromResult(wynik == true);
         }
+        private void UsunPrzedmiot_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
     }
 }

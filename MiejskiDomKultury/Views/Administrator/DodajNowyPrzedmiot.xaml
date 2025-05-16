@@ -4,12 +4,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MiejskiDomKultury.Views.Administrator"
-        xmlns:core="clr-namespace:MiejskiDomKultury"
+        xmlns:core="clr-namespace:MiejskiDomKultury" xmlns:viewmodel="clr-namespace:MiejskiDomKultury.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:DodajNowyPrzedmiotViewModel}"
         mc:Ignorable="d"
         Title="DodajNowyPrzedmiot" Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="*" MinHeight="66"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
@@ -29,21 +30,22 @@
                    VerticalAlignment="Center"
                    HorizontalAlignment="Center"
                    Margin="10"
-                   Padding="10" />
+                   Padding="5" />
         
         <TextBlock x:Name="DodajPrzedmiotNazwa"
                    Grid.Row="1"
                    Text="Nazwa:"
                    Margin="10"
-                   Padding="10"
+                   Padding="5"
                    VerticalAlignment="Center"
                    HorizontalAlignment="Right"/>
         <core:PlaceholderTextBox x:Name="WprowadzNazwePrzedmiotu"
+                                 Text="{Binding Nazwa, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                  Grid.Row="1"
                                  Grid.Column="1"
                                  Placeholder="Wpisz nazwę..."
                                  Margin="10"
-                                 Padding="10"
+                                 Padding="5"
                                  VerticalAlignment="Center"
                                  HorizontalAlignment="Left"
                                  Width="200"/>
@@ -52,15 +54,16 @@
                    Grid.Row="2"
                    Text="Stan:"
                    Margin="10"
-                   Padding="10"
+                   Padding="5"
                    VerticalAlignment="Center"
                    HorizontalAlignment="Right"/>
         <core:PlaceholderTextBox x:Name="WprowadzStanPrzedmiotu"
+                                 Text="{Binding Stan, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                  Grid.Row="2"
                                  Grid.Column="1"
                                  Placeholder="Wpisz stan..."
                                  Margin="10"
-                                 Padding="10"
+                                 Padding="5"
                                  VerticalAlignment="Center"
                                  HorizontalAlignment="Left"
                                  Width="200"/>
@@ -69,15 +72,16 @@
                    Grid.Row="3"
                    Text="Typ:"
                    Margin="10"
-                   Padding="10"
+                   Padding="5"
                    VerticalAlignment="Center"
                    HorizontalAlignment="Right"/>
         <core:PlaceholderTextBox x:Name="WprowadzTypPrzedmiotu"
+                                 Text="{Binding Typ, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                  Grid.Row="3"
                                  Grid.Column="1"
                                  Placeholder="Wpisz typ..."
                                  Margin="10"
-                                 Padding="10"
+                                 Padding="5"
                                  VerticalAlignment="Center"
                                  HorizontalAlignment="Left"
                                  Width="200"/>
@@ -86,32 +90,54 @@
                    Grid.Row="4"
                    Text="Cena za dobe:"
                    Margin="10"
-                   Padding="10"
+                   Padding="5"
                    VerticalAlignment="Center"
                    HorizontalAlignment="Right"/>
         <core:PlaceholderTextBox x:Name="WprowadzCenaZaDobePrzedmiotu"
+                                 Text="{Binding Cena_Wartosc, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                  Grid.Row="4"
                                  Grid.Column="1"
                                  Placeholder="Wpisz nazwę..."
                                  Margin="10"
-                                 Padding="10"
+                                 Padding="5"
                                  VerticalAlignment="Center"
                                  HorizontalAlignment="Left"
                                  Width="200"/>
 
+        <TextBlock x:Name="DodajPrzedmiotCenaZaDobeWaluta"
+                   Grid.Row="5"
+                   Text="Waluta:"
+                   Margin="10"
+                   Padding="5"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Right"/>
+        <ComboBox x:Name="WalutaComboBox"
+                  Grid.Row="5"
+                  Grid.Column="1"
+                  Margin="15,10,10,10"
+                  Padding="5"
+                  Width="190" 
+                  VerticalAlignment="Center"
+                  HorizontalAlignment="Left"
+                  ItemsSource="{Binding WalutaComboBox}"
+                  SelectedValue="{Binding WybranaWaluta, Mode=TwoWay}"/>
+
         <StackPanel Orientation="Horizontal"
-                    Grid.Row="5"
+                    Grid.Row="6"
                     Grid.Column="1"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Right">
             <Button x:Name="DodajNowyPrzedmiotPrzycisk"
                     Content="Dodaj"
                     Margin="10"
-                    Padding="10"/>
+                    Padding="10"
+                    Command="{Binding DodajCommand}"/>
             <Button x:Name="AnulujNowyPrzedmiotPrzycisk"
                     Content="Anuluj"
                     Margin="10"
-                    Padding="10"/>
+                    Padding="10"
+                    Command="{Binding AnulujCommand}"
+                    CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"/>
         </StackPanel>
     </Grid>
 </Window>
