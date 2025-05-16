@@ -18,7 +18,7 @@ namespace MiejskiDomKultury
         {
             InitializeComponent();
             InitializeChatClient();
-            DisplayMessage("Bot", "Cześć jak mogę Ci pomóć?");
+            DisplayMessage("HAL 9000", "Cześć jak mogę Ci pomóć?");
         }
 
         private void InitializeChatClient()
@@ -37,11 +37,11 @@ namespace MiejskiDomKultury
                 AIService ai = new AIService();
                 string response =await  ai.GetAssistantResponse(userMessage);
                 
-                DisplayMessage("Bot", response);
+                DisplayMessage("HAL 9000", response);
             }
             catch (Exception ex)
             {
-                DisplayMessage("Bot", "Wystąpił błąd: " + ex.Message);
+                DisplayMessage("HAL 9000", "Wystąpił błąd: " + ex.Message);
             }
         }
 

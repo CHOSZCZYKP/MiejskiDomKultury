@@ -9,6 +9,9 @@ using System.Text;
 using System.Text.Json;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore.Metadata;
+using MiejskiDomKultury.Model;
+using MiejskiDomKultury.Views.Administrator;
 using OpenAI;
 using OpenAI.Assistants;
 using OpenAI.Audio;
@@ -20,7 +23,62 @@ namespace MiejskiDomKultury.Services
     public class AIService
     {
 
+        public async Task<NewsResponse> GenerateSubjects()
+        {
+            ChatClient client = new("gpt-4o-mini", apiKey: Environment.GetEnvironmentVariable("OPEN_AI_API_KEY"));
 
+            List<ChatMessage> messages = new()
+    {
+        new UserChatMessage($"Wygeneruj newsa związanego z miastem Ostrołęka, obecna data "+DateTime.Now)
+    };
+
+            ChatCompletionOptions options = new()
+            {
+                ResponseFormat = ChatResponseFormat.CreateJsonSchemaFormat(
+                    jsonSchemaFormatName: "news",
+                    jsonSchema: BinaryData.FromBytes("""
+                {
+                  "type": "object",
+                  "properties": {
+                    "News": {
+                      "type": "object",
+                      "properties": {
+                        "Title": { "type": "string" },
+                        "Content": { "type": "string" }
+                      },
+                      "required": ["Title", "Content"],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": ["News"],
+                  "additionalProperties": false
+                }
+
+            """u8.ToArray()),
+                    jsonSchemaIsStrict: true
+                )
+            };
+
+            ChatCompletion completion = await client.CompleteChatAsync(messages, options);
+
+            using JsonDocument structuredJson = JsonDocument.Parse(completion.Content[0].Text);
+
+
+
+            string jsonContent = completion.Content[0].Text;
+
+            
+            NewsResponse newsResponse = JsonSerializer.Deserialize<NewsResponse>(jsonContent);
+
+
+           
+
+           
+
+
+
+            return newsResponse;
+        }
 
 
 #pragma warning disable OPENAI001
@@ -195,7 +253,17 @@ namespace MiejskiDomKultury.Services
         }
     }
 }
-    
-        
-    
 
+
+
+
+public class NewsItem
+{
+    public string Title { get; set; }
+    public string Content { get; set; }
+}
+
+public class NewsResponse
+{
+    public NewsItem News { get; set; }
+}

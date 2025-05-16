@@ -31,6 +31,9 @@ namespace MiejskiDomKultury.Data
         public DbSet<Uzytkownik> Uzytkownicy { get; set; }
         public DbSet<Wypozyczenie> Wypozyczenia { get; set; }
 
+        
+
+        public DbSet<Ogloszenie> Ogloszenia { get; set; }
         public DbSet<Film> Filmy { get; set; }
         public DbSet<Seans> Seanse { get; set; }
         public DbSet<SeansBilet> Bilety { get; set; }

@@ -17,7 +17,7 @@
             <Button x:Name="Rezeracja" Content="Rezerwacja" Width="150" Height="30" Margin="10" Click="Rezeracja_Click"/>
             <Button x:Name="Wypozyczalnia" Content="Wypożyczalnia" Width="150" Height="30" Margin="10" Click="Wypozyczalnia_Click"/>
             <Button x:Name="Chat" Content="Chat" Width="150" Height="30" Margin="10" Click="Chat_Click"/>
-            <Button x:Name="Filmy" Content="Kino" Width="150" Height="30" Margin="10" Click="Film_Click"/>
+            <Button x:Name="Filmy" Content="Kino Fidelio" Width="150" Height="30" Margin="10" Click="Film_Click"/>
         </StackPanel>
         <Border BorderThickness="2" BorderBrush="Red" Grid.Row="1" Margin="10">
 

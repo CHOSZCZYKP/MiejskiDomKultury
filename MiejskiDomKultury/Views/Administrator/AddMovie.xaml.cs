@@ -55,6 +55,11 @@ namespace MiejskiDomKultury
                 TimeSpan.TryParse(timeText, out TimeSpan screeningTime))
             {
                 DateTime fullDateTime = ScreeningDate.SelectedDate.Value.Add(screeningTime);
+                if(fullDateTime< DateTime.UtcNow)
+                {
+                    MessageBox.Show("Termin musi być z przyszłości");
+                    return;
+                }
                 _screeningTimes.Add(fullDateTime);
                 ScreeningTimesList.ItemsSource = null;
                 ScreeningTimesList.ItemsSource = _screeningTimes;

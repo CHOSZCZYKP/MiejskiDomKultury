@@ -68,11 +68,18 @@
                     Click="TabelaPrzedmioty_Click"/>
 
             <Button x:Name="AddFilm"
-         Content="Filmy"
-         Margin="10"
-         Padding="10"
-         Width="auto"
-         Click="AddFilm_Click"/>
+                    Content="Filmy"
+                    Margin="10"
+                    Padding="10"
+                    Width="auto"
+                    Click="AddFilm_Click"/>
+
+            <Button x:Name="AddOgloszenie"
+                    Content="Ogloszenia"
+                    Margin="10"
+                    Padding="10"
+                    Width="auto"
+                    Click="AddOgloszenie_Click"/>
 
         </StackPanel>
         <Frame x:Name="ContentAdmin" 

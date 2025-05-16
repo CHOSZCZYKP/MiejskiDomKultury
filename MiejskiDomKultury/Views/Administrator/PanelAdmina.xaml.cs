@@ -71,5 +71,10 @@ namespace MiejskiDomKultury.Views.Administrator
         {
             ContentAdmin.Content = App.ServiceProvider.GetRequiredService<AddMovie>();
         }
+
+        private void AddOgloszenie_Click(object sender, RoutedEventArgs e)
+        {
+            ContentAdmin.Content = App.ServiceProvider.GetRequiredService<News>();
+        }
     }
 }

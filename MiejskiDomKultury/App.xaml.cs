@@ -59,6 +59,8 @@ namespace MiejskiDomKultury
             services.AddTransient<Logo>();
             services.AddTransient<AvailableMovies>();
             services.AddTransient<AddMovie>();
+            services.AddTransient<News>();
+            services.AddTransient<AIService>();
 
             services.AddDbContext<DbContextDomKultury>(options =>
             {
