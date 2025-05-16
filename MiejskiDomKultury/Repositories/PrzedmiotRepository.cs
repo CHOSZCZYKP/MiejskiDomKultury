@@ -27,9 +27,21 @@ namespace MiejskiDomKultury.Repositories
         public async Task Commit()
             => await _dbContextDomKultury.SaveChangesAsync();
 
-        public Task EditPrzedmiot(Przedmiot przedmiot)
+        public async Task EditPrzedmiot(Przedmiot przedmiot)
         {
-            throw new NotImplementedException();
+            var istniejacy = await _dbContextDomKultury.Przedmioty.FirstOrDefaultAsync(p => p.Id == przedmiot.Id);
+
+            if (istniejacy != null)
+            {
+                istniejacy.Nazwa = przedmiot.Nazwa;
+                istniejacy.Stan = przedmiot.Stan;
+                istniejacy.Typ = przedmiot.Typ;
+                istniejacy.CenaZaDobe_Waluta = przedmiot.CenaZaDobe_Waluta;
+                istniejacy.CenaZaDobe_Wartosc = przedmiot.CenaZaDobe_Wartosc;
+                istniejacy.Dostepnosc = przedmiot.Dostepnosc;
+
+                await _dbContextDomKultury.SaveChangesAsync();
+            }
         }
 
         public async Task<IEnumerable<Przedmiot>> GetAllPrzedmioty()

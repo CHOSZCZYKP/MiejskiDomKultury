@@ -3,7 +3,8 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:MiejskiDomKultury.Views.Administrator"
+      xmlns:local="clr-namespace:MiejskiDomKultury.Views.Administrator" 
+      xmlns:viewmodel="clr-namespace:MiejskiDomKultury.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:TabelaPrzedmiotyViewModel}"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="TabelaPrzedmiotyAdmin">
@@ -28,17 +29,20 @@
                     Padding="10"
                     Margin="10"
                     Width="200"
-                    Click="UsunPrzedmiot_Click" />
+                    Command="{Binding UsunPrzedmiotCommand}" />
         </StackPanel>
         
 
         <DataGrid x:Name="DataGridPrzedmiotyAdmin"
                   ItemsSource="{Binding PrzemiotyCollection}"
+                  SelectedItem="{Binding WybranyPrzedmiot, Mode=TwoWay}"
+                  RowEditEnding="DataGridPrzedmiotyAdmin_RowEditEnding"
                   Grid.Row="1"
                   Width="auto"
                   Margin="10"
                   AutoGenerateColumns="False"
-                  CanUserAddRows="False">
+                  CanUserAddRows="False"
+                  IsReadOnly="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nazwa"
                         Binding="{Binding Nazwa}"
@@ -50,8 +54,11 @@
                         Binding="{Binding Typ}"
                         Width="*" />
                 <DataGridTextColumn Header="Cena za dobe"
-                        Binding="{Binding CenaZaDobe_Pelna}"
+                        Binding="{Binding CenaZaDobe_Wartosc}"
                         Width="*" />
+                <DataGridTextColumn Header="Waluta"
+                                    Binding="{Binding CenaZaDobe_Waluta}"
+                                    Width="*" />
                 <DataGridTextColumn Header="Dostepność"
                         Binding="{Binding Dostepnosc}"
                         Width="*" />

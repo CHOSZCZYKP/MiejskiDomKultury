@@ -4,7 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MiejskiDomKultury.Views.Administrator"
-        xmlns:core="clr-namespace:MiejskiDomKultury" xmlns:viewmodel="clr-namespace:MiejskiDomKultury.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:DodajNowyPrzedmiotViewModel}"
+        xmlns:core="clr-namespace:MiejskiDomKultury" 
+        xmlns:viewmodel="clr-namespace:MiejskiDomKultury.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:DodajNowyPrzedmiotViewModel}"
         mc:Ignorable="d"
         Title="DodajNowyPrzedmiot" Height="450" Width="800">
     <Grid>

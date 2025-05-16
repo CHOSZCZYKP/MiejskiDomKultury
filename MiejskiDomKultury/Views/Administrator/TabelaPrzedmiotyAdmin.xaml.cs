@@ -1,4 +1,5 @@
-﻿using MiejskiDomKultury.ViewModel;
+﻿using MiejskiDomKultury.Model;
+using MiejskiDomKultury.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,10 +39,18 @@ namespace MiejskiDomKultury.Views.Administrator
             bool? wynik = dodajNowyPrzedmiot.ShowDialog();
             return Task.FromResult(wynik == true);
         }
-        private void UsunPrzedmiot_Click(object sender, RoutedEventArgs e)
+
+        private void DataGridPrzedmiotyAdmin_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)
         {
+            if (e.EditAction == DataGridEditAction.Commit)
+            {
+                var edytowanyPrzedmiot = e.Row.Item as Przedmiot;
 
+                if (_viewModel.ZapiszZmianyCommand.CanExecute(edytowanyPrzedmiot))
+                {
+                    _viewModel.ZapiszZmianyCommand.Execute(edytowanyPrzedmiot);
+                }
+            }
         }
-
     }
 }
