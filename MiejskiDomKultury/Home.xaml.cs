@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using MiejskiDomKultury.Services;
+using MiejskiDomKultury.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +26,7 @@ namespace MiejskiDomKultury
         public Home()
         {
             InitializeComponent();
+
         }
 
         private void Rezeracja_Click(object sender, RoutedEventArgs e)

@@ -61,7 +61,8 @@ namespace MiejskiDomKultury
             services.AddTransient<AddMovie>();
             services.AddTransient<News>();
             services.AddTransient<AIService>();
-
+         
+            
             services.AddDbContext<DbContextDomKultury>(options =>
             {
                 options.UseSqlServer(Environment.GetEnvironmentVariable("Database_KEY"));
