@@ -33,5 +33,7 @@ namespace MiejskiDomKultury.Model
         public bool Dostepnosc { get; set; }
 
         public ICollection<Wypozyczenie> Wypozyczenia { get; set; } = new List<Wypozyczenie>();
+
+        public string CenaZaDobe_Pelna => $"{CenaZaDobe_Wartosc} {CenaZaDobe_Waluta}";
     }
 }
