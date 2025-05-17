@@ -3,7 +3,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using MiejskiDomKultury.Models;
+using MiejskiDomKultury.Model;
 using MiejskiDomKultury.Services;
 
 namespace MiejskiDomKultury.ViewModel
@@ -45,7 +45,17 @@ namespace MiejskiDomKultury.ViewModel
                 Messages.Add(userMessage);
 
                 string response = await _aiService.GetAssistantResponse(UserInput);
-                Messages.Add(new ChatMessage("HAL 9000", response));
+
+                var botMessage = new ChatMessage("HAL 9000", "");
+                Messages.Add(botMessage);
+
+                
+                for (int i = 0; i < response.Length; i++)
+                {
+                    botMessage.Message += response[i];
+                    OnPropertyChanged(nameof(Messages));  
+                    await Task.Delay(30);  
+                }
 
                 UserInput = string.Empty;
             }
@@ -54,6 +64,7 @@ namespace MiejskiDomKultury.ViewModel
                 Messages.Add(new ChatMessage("HAL 9000", "Wystąpił błąd: " + ex.Message));
             }
         }
+
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propertyName) =>

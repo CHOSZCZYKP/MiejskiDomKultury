@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:MiejskiDomKultury"
       mc:Ignorable="d" 
+      
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Movie Details">
     <Grid Margin="20">
@@ -13,16 +14,16 @@
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
 
-        <!-- Informacje o filmie -->
+        <!-- Movie Details -->
         <StackPanel Grid.Column="0" Margin="0 0 20 0">
-            <TextBlock Text="{Binding Tytul}" FontSize="28" FontWeight="Bold" Margin="0 0 0 20" />
-            <TextBlock Text="{Binding Opis}" FontSize="16" Margin="0 0 0 20" TextWrapping="Wrap" />
+            <TextBlock Text="{Binding Film.Tytul}" FontSize="28" FontWeight="Bold" Margin="0 0 0 20" />
+            <TextBlock Text="{Binding Film.Opis}" FontSize="16" Margin="0 0 0 20" TextWrapping="Wrap" />
 
             <TextBlock Text="Rok:" FontWeight="Bold" FontSize="18" />
-            <TextBlock Text="{Binding Rok}" FontSize="16" Margin="0 0 0 20" />
+            <TextBlock Text="{Binding Film.Rok}" FontSize="16" Margin="0 0 0 20" />
 
             <TextBlock Text="W rolach głównych:" FontWeight="Bold" FontSize="18" />
-            <ItemsControl ItemsSource="{Binding Aktorzy}" Margin="0 0 0 20">
+            <ItemsControl ItemsSource="{Binding Film.Aktorzy}" Margin="0 0 0 20">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding}" FontSize="16" />
@@ -31,7 +32,7 @@
             </ItemsControl>
 
             <TextBlock Text="Gatunek:" FontWeight="Bold" FontSize="18" />
-            <ItemsControl ItemsSource="{Binding Gatunki}" Margin="0 0 0 20">
+            <ItemsControl ItemsSource="{Binding Film.Gatunki}" Margin="0 0 0 20">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding}" FontSize="16" />
@@ -49,24 +50,19 @@
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <Button Content="{Binding}" 
-                    Tag="{Binding}" 
-                    Width="150" 
-                    FontSize="16" 
-                    Margin="0 0 5 5"
-                    Click="ShowDateButton_Click" />
+                                Command="{Binding DataContext.NavigateToSeatsCommand, RelativeSource={RelativeSource AncestorType=Page}}"
+                                CommandParameter="{Binding}" 
+                                Width="150" 
+                                FontSize="16" 
+                                Margin="0 0 5 5" />
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
-
         </StackPanel>
 
-        <!-- Plakat po prawej stronie -->
         <Grid Grid.Column="1">
-            <Image x:Name="PosterImage" 
-                   Stretch="Uniform" 
-                   Margin="0,0,0,10" 
-                   VerticalAlignment="Center" 
-                   HorizontalAlignment="Center" />
+            <Image x:Name="PosterImage" Stretch="Uniform" Margin="0,0,0,10" VerticalAlignment="Center" HorizontalAlignment="Center" Opacity="0" />
+
         </Grid>
     </Grid>
 </Page>

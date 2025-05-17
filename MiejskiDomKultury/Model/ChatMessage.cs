@@ -1,18 +1,32 @@
-﻿namespace MiejskiDomKultury.Models
+﻿using System.ComponentModel;
+
+public class ChatMessage : INotifyPropertyChanged
 {
-    public class ChatMessage
+    public string Sender { get; }
+    private string _message;
+    public bool IsUser { get; }
+
+    public string Message
     {
-        public string Sender { get; set; }
-        public string Message { get; set; }
-        public bool IsUser { get; set; }
-
-        public ChatMessage(string sender, string message, bool isUser = false)
+        get => _message;
+        set
         {
-            Sender = sender;
-            Message = message;
-            IsUser = isUser;
+            if (_message != value)
+            {
+                _message = value;
+                OnPropertyChanged(nameof(Message));
+            }
         }
-
-        public override string ToString() => $"[{Sender}]: {Message}";
     }
+
+    public ChatMessage(string sender, string message, bool isUser = false)
+    {
+        Sender = sender;
+        Message = message;
+        IsUser = isUser;
+    }
+
+    public event PropertyChangedEventHandler PropertyChanged;
+    protected void OnPropertyChanged(string propertyName) =>
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 }

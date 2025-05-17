@@ -9,11 +9,22 @@
 
     <Grid Margin="10">
         <Grid.RowDefinitions>
-            <RowDefinition Height="*" />ro
+            <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <ListBox ItemsSource="{Binding Messages}" Grid.Row="0" Margin="0,0,0,10" />
+        <ListBox ItemsSource="{Binding Messages}" Grid.Row="0" Margin="0,0,0,10">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Margin="0,5">
+                        <TextBlock FontWeight="Bold" Foreground="Gray" Text="{Binding Sender}" />
+                        <TextBlock Text="{Binding Message}" TextWrapping="Wrap" Margin="10,0,0,0" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+
 
         <StackPanel Grid.Row="1" Orientation="Horizontal">
             <TextBox Text="{Binding UserInput, UpdateSourceTrigger=PropertyChanged}" Width="300" />

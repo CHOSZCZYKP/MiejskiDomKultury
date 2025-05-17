@@ -1,20 +1,14 @@
 ﻿
-using System;
 using System.ClientModel;
-using System.Collections.Generic;
+
 using System.IO;
-using System.Linq;
-using System.Reflection.Metadata;
-using System.Text;
+
 using System.Text.Json;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore.Metadata;
-using MiejskiDomKultury.Model;
-using MiejskiDomKultury.Views.Administrator;
+
 using OpenAI;
 using OpenAI.Assistants;
-using OpenAI.Audio;
+
 using OpenAI.Chat;
 using OpenAI.Files;
 
@@ -27,7 +21,7 @@ namespace MiejskiDomKultury.Services
         {
             ChatClient client = new("gpt-4o-mini", apiKey: Environment.GetEnvironmentVariable("OPEN_AI_API_KEY"));
 
-            List<ChatMessage> messages = new()
+            List<OpenAI.Chat.ChatMessage> messages = new()
     {
         new UserChatMessage($"Wygeneruj newsa związanego z miastem Ostrołęka, obecna data "+DateTime.Now)
     };
@@ -189,7 +183,7 @@ namespace MiejskiDomKultury.Services
 
                 while (!run.Status.IsTerminal)
                 {
-                    Thread.Sleep(TimeSpan.FromSeconds(1));
+                    //Thread.Sleep(TimeSpan.FromSeconds(1));
                     run =await client.GetRunAsync(run.ThreadId, run.Id);
 
 

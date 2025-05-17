@@ -4,19 +4,23 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:MiejskiDomKultury"
+      xmlns:vm="clr-namespace:MiejskiDomKultury.ViewModels"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="AvailableMovies">
 
+    <Page.DataContext>
+        <vm:AvailableMoviesViewModel />
+    </Page.DataContext>
+
     <Grid Margin="10">
         <StackPanel>
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10"  >
-                <Label VerticalAlignment="Center" >Wyszukaj po nazwie</Label>
-                <TextBox Name="FilterTextBox" Width="300" TextChanged="FilterTextBox_TextChanged" FontSize="20"/>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10">
+                <Label VerticalAlignment="Center">Wyszukaj po nazwie</Label>
+                <TextBox Width="300" FontSize="20" 
+                         Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
             </StackPanel>
-          
-     
-            
+
             <ListBox ItemsSource="{Binding FilteredMovies}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
@@ -24,8 +28,8 @@
                             <TextBlock Text="{Binding Tytul}" Width="200" VerticalAlignment="Center"/>
                             <Button Content="Do szczegółów" 
                                     Margin="10 0 0 0"
-                                    Click="MovieDetailsButton_Click"
-                                    Tag="{Binding}" />
+                                    Tag="{Binding}"
+                                    Click="MovieDetailsButton_Click" />
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

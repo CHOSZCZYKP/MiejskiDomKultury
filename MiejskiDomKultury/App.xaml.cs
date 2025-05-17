@@ -18,6 +18,8 @@ namespace MiejskiDomKultury
         public App()
         {
             Env.Load("SecretFile.env");
+
+
         }
         public static IServiceProvider ServiceProvider { get; private set; }
 
