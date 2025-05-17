@@ -104,9 +104,10 @@ namespace MiejskiDomKultury.ViewModel
         private bool CzyDodac()
         {
             if (!string.IsNullOrEmpty(Nazwa)
+                && !string.IsNullOrEmpty(Stan)
                 && !string.IsNullOrEmpty(Typ)
                 && !string.IsNullOrEmpty(WybranaWaluta)
-                && !string.IsNullOrEmpty(Stan))
+                && Cena_Wartosc > 0)
             {
                 return true;
             }

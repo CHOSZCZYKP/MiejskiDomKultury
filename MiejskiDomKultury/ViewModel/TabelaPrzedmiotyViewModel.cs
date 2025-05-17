@@ -116,6 +116,19 @@ namespace MiejskiDomKultury.ViewModel
                 }
             }
         }
+        private bool _dostepnosc;
+        public bool Dostepnosc
+        {
+            get => _dostepnosc;
+            set
+            {
+                if (_dostepnosc != value)
+                {
+                    _dostepnosc = value;
+                    OnPropertyChanged(nameof(Dostepnosc));
+                }
+            }
+        }
         #endregion
 
         public TabelaPrzedmiotyViewModel()

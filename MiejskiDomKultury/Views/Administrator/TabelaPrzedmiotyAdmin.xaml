@@ -59,7 +59,7 @@
                 <DataGridTextColumn Header="Waluta"
                                     Binding="{Binding CenaZaDobe_Waluta}"
                                     Width="*" />
-                <DataGridTextColumn Header="Dostepność"
+                <DataGridCheckBoxColumn Header="Dostepność"
                         Binding="{Binding Dostepnosc}"
                         Width="*" />
             </DataGrid.Columns>
