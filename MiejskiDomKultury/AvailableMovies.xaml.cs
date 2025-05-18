@@ -15,14 +15,6 @@ namespace MiejskiDomKultury
             DataContext = _viewModel;
         }
 
-        private void MovieDetailsButton_Click(object sender, RoutedEventArgs e)
-        {
-            var button = sender as Button;
-            var selectedMovie = button.Tag as Model.Film;
-            if (selectedMovie != null)
-            {
-                NavigationService.Navigate(new MovieDetails(selectedMovie));
-            }
-        }
+        
     }
 }

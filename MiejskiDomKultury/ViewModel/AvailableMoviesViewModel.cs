@@ -3,6 +3,8 @@ using System.Linq;
 using MiejskiDomKultury.Model;
 using MiejskiDomKultury.Services;
 using System.ComponentModel;
+using System.Windows;
+using MiejskiDomKultury.ViewModel;
 
 namespace MiejskiDomKultury.ViewModels
 {
@@ -10,13 +12,14 @@ namespace MiejskiDomKultury.ViewModels
     {
         private MovieRepositoryService _moviesRepositoryService;
         private string _searchText;
-
+        public RelayCommand<Film> NavigateToDetailsCommand { get; }
         public ObservableCollection<Film> FilteredMovies { get; set; }
 
         public AvailableMoviesViewModel()
         {
             _moviesRepositoryService = new MovieRepositoryService();
             FilteredMovies = new ObservableCollection<Film>(_moviesRepositoryService.GetAvailableMovies());
+            NavigateToDetailsCommand = new RelayCommand<Film>(OnNavigateToDetails);
         }
 
         public string SearchText
@@ -31,6 +34,14 @@ namespace MiejskiDomKultury.ViewModels
                     FilterMovies();
                 }
             }
+        }
+
+        private void OnNavigateToDetails(Film film)
+        {
+            // Ensure the showDate is parsed if necessary (if SeatsReservation expects DateTime)
+            var detailsPage = new MovieDetails(film);
+            var mainWindow = Application.Current.MainWindow as MainWindow;
+            mainWindow?.Main.Navigate(detailsPage);
         }
 
         private void FilterMovies()

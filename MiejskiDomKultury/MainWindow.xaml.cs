@@ -10,19 +10,12 @@ namespace MiejskiDomKultury
 {
     public partial class MainWindow : Window
     {
-        //public VoiceCommandBot voiceBot;
-        //private CancellationTokenSource cts;
+        
         
         public MainWindow()
         {
             InitializeComponent();
-            /*voiceBot = new VoiceCommandBot(Main);
-            cts = new CancellationTokenSource();
-
-            Task.Run(() =>
-            {
-                voiceBot.StartListening(cts.Token);
-            });*/
+           
 
             Main.Content = App.ServiceProvider.GetRequiredService<Home>();
         }

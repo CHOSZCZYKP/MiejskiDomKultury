@@ -27,9 +27,9 @@
                         <StackPanel Orientation="Horizontal" Margin="0 5">
                             <TextBlock Text="{Binding Tytul}" Width="200" VerticalAlignment="Center"/>
                             <Button Content="Do szczegółów" 
-                                    Margin="10 0 0 0"
-                                    Tag="{Binding}"
-                                    Click="MovieDetailsButton_Click" />
+        Margin="10 0 0 0"
+        Command="{Binding DataContext.NavigateToDetailsCommand, RelativeSource={RelativeSource AncestorType=ListBox}}"
+        CommandParameter="{Binding}" />
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

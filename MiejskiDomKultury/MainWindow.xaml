@@ -60,8 +60,6 @@
                 </StackPanel>
             </Grid>
         </Border>
-        <Frame x:Name="Main" 
-           Grid.Row="1" 
-           NavigationUIVisibility="Hidden" />
+        <Frame x:Name="Main"  Grid.Row="1" NavigationUIVisibility="Hidden" />
     </Grid>
 </Window>

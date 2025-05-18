@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Windows;
 using System.Windows.Input;
 using MiejskiDomKultury.Model;
 using MiejskiDomKultury.Services;
@@ -42,9 +43,10 @@ namespace MiejskiDomKultury.ViewModel
 
         private void OnNavigateToSeats(string showDate)
         {
-            
+            // Ensure the showDate is parsed if necessary (if SeatsReservation expects DateTime)
             var seatsPage = new SeatsReservation(showDate, Film);
-            App.Current.MainWindow.Content = seatsPage;
+            var mainWindow = Application.Current.MainWindow as MainWindow;
+            mainWindow?.Main.Navigate(seatsPage);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
