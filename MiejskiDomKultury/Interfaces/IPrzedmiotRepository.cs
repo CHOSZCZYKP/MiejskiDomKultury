@@ -11,7 +11,7 @@ namespace MiejskiDomKultury.Interfaces
     {
         Task AddNewPrzedmiot(Przedmiot przedmiot);
         Task RemovePrzedmiot(Przedmiot przedmiot);
-        Task<IEnumerable<Przedmiot>> GetAllPrzedmioty();
+        IEnumerable<Przedmiot> GetAllPrzedmioty();
         Task EditPrzedmiot(Przedmiot przedmiot);
         Task Commit();
     }

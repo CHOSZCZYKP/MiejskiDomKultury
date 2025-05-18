@@ -12,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Data;
 using System.Windows.Input;
 
 namespace MiejskiDomKultury.ViewModel
@@ -47,6 +48,29 @@ namespace MiejskiDomKultury.ViewModel
                 _wybranyPrzedmiot = value;
                 OnPropertyChanged(nameof(WybranyPrzedmiot));
                 _usunPrzdmiotCommand.RaiseCanExecuteChanged();
+            }
+        }
+
+        private ICollectionView _przedmiotCollectionView;
+        public ICollectionView PrzedmiotCollectionView
+        {
+            get => _przedmiotCollectionView;
+            set
+            {
+                _przedmiotCollectionView = value;
+                OnPropertyChanged(nameof(PrzedmiotCollectionView));
+            }
+        }
+
+        private string _wyszukiwanaFraza;
+        public string WyszukiwanaFraza
+        {
+            get => _wyszukiwanaFraza;
+            set
+            {
+                _wyszukiwanaFraza = value;
+                OnPropertyChanged(nameof(WyszukiwanaFraza));
+                PrzedmiotCollectionView.Refresh();
             }
         }
 
@@ -138,8 +162,11 @@ namespace MiejskiDomKultury.ViewModel
             DodajPrzedmiotCommand = new PrzekaznikCommand(async () => await DodajPrzedmiot());
             _usunPrzdmiotCommand = new PrzekaznikCommand(async () => await UsunPrzedmiot(),() => WybranyPrzedmiot != null);
             ZapiszZmianyCommand = new PrzekaznikCommand(async () => await EdytowanieKomorek(), () => WybranyPrzedmiot != null);
-            _ = Init();
-
+           
+            var przedmioty = _przedmiotRepository.GetAllPrzedmioty();
+            PrzemiotyCollection = new ObservableCollection<Przedmiot>(przedmioty);
+            PrzedmiotCollectionView = CollectionViewSource.GetDefaultView(PrzemiotyCollection);
+            PrzedmiotCollectionView.Filter = FilterPrzedmiot;
         }
 
         private async Task DodajPrzedmiot()
@@ -149,21 +176,10 @@ namespace MiejskiDomKultury.ViewModel
                 bool wynik = await WywolajOknoDodajNowyPrzedmiot.Invoke();
                 if (wynik)
                 {
-                    await Refresh();
+                    var przedmioty = _przedmiotRepository.GetAllPrzedmioty();
+                    PrzemiotyCollection = new ObservableCollection<Przedmiot>(przedmioty);
                 }
             }
-        }
-
-        private async Task Init()
-        {
-            var przedmioty = await _przedmiotRepository.GetAllPrzedmioty();
-            PrzemiotyCollection = new ObservableCollection<Przedmiot>(przedmioty);
-        }
-
-        public async Task Refresh()
-        {
-            var przedmioty = await _przedmiotRepository.GetAllPrzedmioty();
-            PrzemiotyCollection = new ObservableCollection<Przedmiot>(przedmioty);
         }
 
         private async Task UsunPrzedmiot()
@@ -180,6 +196,30 @@ namespace MiejskiDomKultury.ViewModel
             if (WybranyPrzedmiot != null)
             {
                 await _przedmiotRepository.EditPrzedmiot(WybranyPrzedmiot);
+            }
+        }
+
+        private bool FilterPrzedmiot(object obj)
+        {
+            if (obj is Przedmiot przedmiot)
+            {
+                if (string.IsNullOrWhiteSpace(WyszukiwanaFraza))
+                {
+                    return true;
+                }
+                else
+                {
+                    return przedmiot.Nazwa.Contains(WyszukiwanaFraza, StringComparison.OrdinalIgnoreCase)
+                        || przedmiot.Stan.Contains(WyszukiwanaFraza, StringComparison.OrdinalIgnoreCase)
+                        || przedmiot.Typ.Contains(WyszukiwanaFraza, StringComparison.OrdinalIgnoreCase)
+                        || przedmiot.CenaZaDobe_Waluta.Contains(WyszukiwanaFraza, StringComparison.OrdinalIgnoreCase)
+                        || przedmiot.CenaZaDobe_Wartosc.ToString().Contains(WyszukiwanaFraza, StringComparison.OrdinalIgnoreCase)
+                        ||przedmiot.Dostepnosc.ToString().Contains(WyszukiwanaFraza, StringComparison.OrdinalIgnoreCase);
+                }
+            }
+            else
+            {
+                return false;
             }
         }
 

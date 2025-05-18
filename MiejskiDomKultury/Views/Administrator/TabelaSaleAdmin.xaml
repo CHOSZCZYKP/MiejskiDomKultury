@@ -4,27 +4,50 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:MiejskiDomKultury.Views.Administrator"
+      xmlns:core="clr-namespace:MiejskiDomKultury"
+      xmlns:viewmodel="clr-namespace:MiejskiDomKultury.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:TabelaSaleAdminViewModel}"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="TabelaSaleAdmin">
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <core:PlaceholderTextBox x:Name="WyszukajSale"
+                                 Placeholder="Wyszukaj salę..."
+                                 Width="300"
+                                 VerticalAlignment="Center"
+                                 HorizontalAlignment="Center"
+                                 Margin="10"
+                                 Padding="10"
+                                 Text="{Binding WyszukiwanaFraza, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+        
         <DataGrid x:Name="DataGridSaleAdmin"
-          Width="auto"
-          Margin="10">
+                  Grid.Row="1"
+                  Width="auto"
+                  Margin="10"
+                  ItemsSource="{Binding SaleCollectionView, Mode=TwoWay}"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  CanUserAddRows="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nazwa sali"
-                            Binding="{Binding Nazwa}"
-                            Width="*" />
+                                    Binding="{Binding Nazwa}"
+                                    Width="*" />
                 <DataGridTextColumn Header="Ilość miejsc"
-                            Binding="{Binding IloscMiejsc}"
-                            Width="0.5*" />
+                                    Binding="{Binding IloscMiejsc}"
+                                    Width="0.5*" />
                 <DataGridTextColumn Header="Typ"
-                            Binding="{Binding Typ}"
-                            Width="*" />
+                                    Binding="{Binding Typ}"
+                                    Width="*" />
                 <DataGridTextColumn Header="Cena za godzine"
-                            Binding="{Binding CenaZaGodz_Wartosc}"
-                            Width="*" />
+                                    Binding="{Binding CenaZaGodz_Wartosc}"
+                                    Width="*" />
+                <DataGridTextColumn Header="Waluta"
+                                    Binding="{Binding CenaZaGodz_Waluta}"
+                                    Width="*" />
 
             </DataGrid.Columns>
         </DataGrid>

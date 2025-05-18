@@ -44,8 +44,8 @@ namespace MiejskiDomKultury.Repositories
             }
         }
 
-        public async Task<IEnumerable<Przedmiot>> GetAllPrzedmioty()
-            => await _dbContextDomKultury.Przedmioty.ToListAsync();
+        public IEnumerable<Przedmiot> GetAllPrzedmioty()
+            => _dbContextDomKultury.Przedmioty.ToList();
 
         public async Task RemovePrzedmiot(Przedmiot przedmiot)
         {
