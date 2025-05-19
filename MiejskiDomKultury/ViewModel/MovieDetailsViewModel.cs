@@ -43,7 +43,7 @@ namespace MiejskiDomKultury.ViewModel
 
         private void OnNavigateToSeats(string showDate)
         {
-            // Ensure the showDate is parsed if necessary (if SeatsReservation expects DateTime)
+           
             var seatsPage = new SeatsReservation(showDate, Film);
             var mainWindow = Application.Current.MainWindow as MainWindow;
             mainWindow?.Main.Navigate(seatsPage);

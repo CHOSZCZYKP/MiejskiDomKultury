@@ -85,6 +85,8 @@ namespace MiejskiDomKultury.Data
                     .WithMany(s => s.Rezerwacje)
                     .HasForeignKey(r => r.IdSali);
             });
+
+         
         }
     }
 }

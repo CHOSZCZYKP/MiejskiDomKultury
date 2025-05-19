@@ -8,9 +8,10 @@ namespace MiejskiDomKultury.Model
 {
     public class Ogloszenie
     {
-        public int Id { get;set; }
+        public int Id { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime CreatedAt { get; set; }
+        public byte[] ImageData { get; set; } // Nowe pole na dane obrazu
     }
 }

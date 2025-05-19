@@ -14,8 +14,14 @@ namespace MiejskiDomKultury
         {
             InitializeComponent();
             DataContext = new MovieDetailsViewModel(film);
-            PosterImage.Source = new BitmapImage(new Uri(film.PlakatURL));
-
+            try
+            {
+                PosterImage.Source = new BitmapImage(new Uri(film.PlakatURL));
+            }
+            catch
+            {
+                PosterImage.Source = new BitmapImage(new Uri("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoWcWg0E8pSjBNi0TtiZsqu8uD2PAr_K11DA&s"));
+            }
            
             DoubleAnimation fadeIn = new DoubleAnimation(0, 1, TimeSpan.FromSeconds(1));
             PosterImage.BeginAnimation(UIElement.OpacityProperty, fadeIn);

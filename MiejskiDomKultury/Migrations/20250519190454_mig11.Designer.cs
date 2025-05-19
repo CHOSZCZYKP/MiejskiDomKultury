@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MiejskiDomKultury.Data;
 
@@ -11,9 +12,11 @@ using MiejskiDomKultury.Data;
 namespace MiejskiDomKultury.Migrations
 {
     [DbContext(typeof(DbContextDomKultury))]
-    partial class DbContextDomKulturyModelSnapshot : ModelSnapshot
+    [Migration("20250519190454_mig11")]
+    partial class mig11
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -101,9 +104,8 @@ namespace MiejskiDomKultury.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<byte[]>("ImageData")
-                        .IsRequired()
-                        .HasColumnType("varbinary(max)");
+                    b.Property<string>("FileName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -112,6 +114,40 @@ namespace MiejskiDomKultury.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Ogloszenia");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Content = "Astrolodzy przewidują opad meteorytów dzisiaj o 21:00!",
+                            CreatedAt = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FileName = "Assets/news1.webp",
+                            Title = "Astrolodzy przewidują opad meteorytów!"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Content = "Kobieta poszukiwana za zdemolowanie sali tanecznej!",
+                            CreatedAt = new DateTime(2024, 1, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FileName = "Assets/news2.webp",
+                            Title = "Zdemolowanie sali tanecznej"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Content = "stereotyp o podłożu antysemickim wynikający ze spiskowej teorii dziejów, przypisujący Żydom główną rolę w stworzeniu i spopularyzowaniu ideologii komunizmu, który „miał otworzyć im drogę do zdobycia władzy nad światem”",
+                            CreatedAt = new DateTime(2024, 1, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FileName = "Assets/news3.webp",
+                            Title = "Ostrołęka pogrążona w żałobie. Zmarł Bóbr Bartek"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Content = "Joanna Senyszyn opisała także, że jest jedyną przedstawicielką lewicy w tych wyborach, bo Adrian Zandberg to \"skrajna lewica\". — Magdalena Biejat to z kolei żadna lewica.",
+                            CreatedAt = new DateTime(2024, 1, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FileName = "Assets/news4.webp",
+                            Title = "Parada Imperatora w Ostrołęce - zdjęcia"
+                        });
                 });
 
             modelBuilder.Entity("MiejskiDomKultury.Model.Przedmiot", b =>
