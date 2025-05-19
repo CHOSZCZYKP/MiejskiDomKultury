@@ -26,6 +26,9 @@ namespace MiejskiDomKultury.Services
            return _context.Uzytkownicy.Any(x=>x.Email == email);
         }
 
+        public IEnumerable<Uzytkownik> GetAllUsers()
+            => _context.Uzytkownicy.ToList();
+
         public Uzytkownik GetUserByEmail(string email)
         {
             return _context.Uzytkownicy.FirstOrDefault(x=>x.Email == email);

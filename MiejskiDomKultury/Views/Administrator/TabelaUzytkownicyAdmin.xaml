@@ -4,14 +4,34 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:MiejskiDomKultury.Views.Administrator"
+      xmlns:core="clr-namespace:MiejskiDomKultury" 
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="TabelaUzytkownicyAdmin">
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        
+        <core:PlaceholderTextBox x:Name="WyszukajUzytkownika"
+                                 Placeholder="Wyszukaj salę..."
+                                 Width="300"
+                                 VerticalAlignment="Center"
+                                 HorizontalAlignment="Center"
+                                 Margin="10"
+                                 Padding="10"
+                                 Text="{Binding WyszukiwanaFraza, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                 
         <DataGrid x:Name="DataGridUzytkownicy"
+                  Grid.Row="1"
                   Width="auto"
-                  Margin="10">
+                  Margin="10"
+                  CanUserAddRows="False"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  ItemsSource="{Binding UzytkownikCollectionView, Mode=TwoWay}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Imię"
                                     Binding="{Binding Imie}"
@@ -25,9 +45,9 @@
                 <DataGridTextColumn Header="Nazwa użytkownika"
                                     Binding="{Binding NazwaUzytkownika}"
                                     Width="*" />
-                <DataGridTextColumn Header="Czy ma bana"
-                                    Binding="{Binding CzyMaBana}"
-                                    Width="0.5*" />
+                <DataGridCheckBoxColumn Header="Czy ma bana"
+                                        Binding="{Binding CzyMaBana}"
+                                        Width="0.5*" />
                 
             </DataGrid.Columns>
         </DataGrid>
