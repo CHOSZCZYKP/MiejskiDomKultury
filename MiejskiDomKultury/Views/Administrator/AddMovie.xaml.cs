@@ -26,8 +26,15 @@ namespace MiejskiDomKultury
             string title = SearchBox.Text.Trim();
             if (!string.IsNullOrWhiteSpace(title))
             {
-                var movies = GetMoviesByTitle(title);
-                MovieList.ItemsSource =await movies;
+                try
+                {
+                    var movies = GetMoviesByTitle(title);
+                    MovieList.ItemsSource = await movies;
+                }
+                catch
+                {
+                    MessageBox.Show("Film o takim tytule nie istnieje!");
+                }
             }
         }
 

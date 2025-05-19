@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using MiejskiDomKultury.Data;
 using MiejskiDomKultury.Interfaces;
 using MiejskiDomKultury.Model;
+using MiejskiDomKultury.Repositories;
 using MiejskiDomKultury.Seeders;
 using MiejskiDomKultury.Services;
 using MiejskiDomKultury.Views.Administrator;
@@ -65,8 +66,8 @@ namespace MiejskiDomKultury
             services.AddTransient<AddMovie>();
             services.AddTransient<News>();
             services.AddTransient<AIService>();
-         
-            
+            services.AddTransient< NewsService>();
+            services.AddTransient<DbContextDomKultury>();
             services.AddDbContext<DbContextDomKultury>(options =>
             {
                 options.UseSqlServer(Environment.GetEnvironmentVariable("Database_KEY"));

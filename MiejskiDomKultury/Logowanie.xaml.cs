@@ -48,8 +48,8 @@ namespace MiejskiDomKultury
         }
 
         Session.User = user;
-        NavigationService.Navigate(new Home()); 
-    }
+            NavigationService.Navigate(new Home());
+        }
 }
 
 }
