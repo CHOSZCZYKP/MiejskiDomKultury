@@ -10,6 +10,11 @@
 
   <ItemGroup>
     <None Remove="Assets\david.png" />
+    <None Remove="Assets\news1.webp" />
+    <None Remove="Assets\news2.webp" />
+    <None Remove="Assets\news3.webp" />
+    <None Remove="Assets\news4.webp" />
+    <None Remove="Assets\news5.webp" />
     <None Remove="Assets\settings.png" />
   </ItemGroup>
 
@@ -33,6 +38,21 @@
 
   <ItemGroup>
     <Resource Include="Assets\david.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\news1.webp">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\news2.webp">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\news3.webp">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\news4.webp">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\news5.webp">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Assets\settings.png">

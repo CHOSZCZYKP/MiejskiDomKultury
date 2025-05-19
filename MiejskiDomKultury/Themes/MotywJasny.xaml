@@ -4,7 +4,12 @@
     <SolidColorBrush Color="#ffe1b0" x:Key="BackgroundColor"/>
     <SolidColorBrush Color="#000000" x:Key="TextColor"/>
 
-    
+    <SolidColorBrush x:Key="ControlBackgroundBrush" Color="White"/>
+    <SolidColorBrush x:Key="ControlBorderBrush" Color="Gray"/>
+    <SolidColorBrush x:Key="TextBrush" Color="Black"/>
+
+
+
     <LinearGradientBrush x:Key="DataGridColor" StartPoint="0,0" EndPoint="0,1">
         <GradientStop Color="#FFFFFF" Offset="0.0"/>
         <GradientStop Color="#DDDDDD" Offset="1.0"/>

@@ -19,9 +19,35 @@
             <Button x:Name="Chat" Content="Chat" Width="150" Height="30" Margin="10" Click="Chat_Click"/>
             <Button x:Name="Filmy" Content="Kino Fidelio" Width="150" Height="30" Margin="10" Click="Film_Click"/>
         </StackPanel>
-        <Border BorderThickness="2" BorderBrush="Red" Grid.Row="1" Margin="10">
-
-            <TextBlock Text="Komunikaty i inne bajery" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="36"/>
+        <Border BorderThickness="2" BorderBrush="Red" Grid.Row="1" Margin="10" Padding="10">
+            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                <ItemsControl x:Name="NewsList" Margin="10">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderThickness="1"
+                            CornerRadius="10"
+                            Margin="10"
+                            Padding="10"
+                            Width="250"
+                            Background="{DynamicResource ControlBackgroundBrush}"
+                            BorderBrush="{DynamicResource ControlBorderBrush}">
+                                <StackPanel>
+                                    <Image Source="{Binding ImagePath}" Stretch="UniformToFill" Margin="0,0,0,10"/>
+                                    <TextBlock Text="{Binding Text}"
+                                       TextWrapping="Wrap"
+                                       FontSize="14"
+                                       Foreground="{DynamicResource TextBrush}"/>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
         </Border>
     </Grid>
 </Page>
