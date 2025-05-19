@@ -361,3 +361,5 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/MiejskiDomKultury/Migrations/20250508113701_MiejskiDomKultury.cs
+/MiejskiDomKultury/Migrations/20250508113701_MiejskiDomKultury.Designer.cs
