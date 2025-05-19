@@ -6,7 +6,12 @@
              StartupUri="MainWindow.xaml">
 
     <Application.Resources>
-        <ResourceDictionary Source="/Themes/MotywJasny.xaml"/>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Themes/MotywJasny.xaml"/>
+                <ResourceDictionary Source="/Themes/Shared.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
     
 </Application> 

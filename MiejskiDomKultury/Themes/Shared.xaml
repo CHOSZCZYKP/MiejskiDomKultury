@@ -1,9 +1,12 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    
+
+    <!-- Czcionka -->
+    <FontFamily x:Key="AplicationFont">Times New Roman</FontFamily>
+
     <!-- Tekst -->
     <Style TargetType="TextBlock">
-        <Setter Property="FontFamily" Value="Times New Roman"/>
+        <Setter Property="FontFamily" Value="{DynamicResource AplicationFont}"/>
         <Setter Property="Foreground" Value="{DynamicResource TextColor}"/>
         <Setter Property="FontSize" Value="14"/>
     </Style>
@@ -11,15 +14,35 @@
     <!-- Tło -->
     <Style TargetType="Window">
         <Setter Property="Background" Value="{DynamicResource BackgroundColor}"/>
-        <Setter Property="FontFamily" Value="Times New Roman"/>
+        <Setter Property="FontFamily" Value="{DynamicResource AplicationFont}"/>
     </Style>
     <Style TargetType="Grid">
         <Setter Property="Background" Value="{DynamicResource BackgroundColor}"/>
     </Style>
 
+    <!-- Datagrid -->
+    <Style TargetType="DataGrid">
+        <Setter Property="FontFamily" Value="{DynamicResource AplicationFont}" />
+        <Setter Property="Foreground" Value="{DynamicResource TextColor}" />
+        <Setter Property="Background" Value="{DynamicResource DataGridColor}" />
+        <Setter Property="GridLinesVisibility" Value="Horizontal" />
+        <Setter Property="HeadersVisibility" Value="All" />
+        <Setter Property="RowBackground" Value="{DynamicResource RowColor}" />
+        <Setter Property="AlternatingRowBackground" Value="{DynamicResource AltRowColor}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderBrush" Value="{DynamicResource TextColor}" />
+    </Style>
+
+    <Style TargetType="DataGridColumnHeader">
+        <Setter Property="Background" Value="{DynamicResource DataGridColor}" />
+        <Setter Property="Foreground" Value="{DynamicResource TextColor}" />
+        <Setter Property="FontFamily" Value="{DynamicResource AplicationFont}" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+    </Style>
+
     <!-- Przyciski -->
     <Style TargetType="Button">
-        <Setter Property="FontFamily" Value="Times New Roman"/>
+        <Setter Property="FontFamily" Value="{DynamicResource AplicationFont}"/>
         <Setter Property="Foreground" Value="{DynamicResource TextColor}"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -45,6 +68,48 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style TargetType="ToggleButton">
+        <Setter Property="FontFamily" Value="{DynamicResource AplicationFont}"/>
+        <Setter Property="Foreground" Value="{DynamicResource TextColor}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <Border x:Name="border"
+                        Background="{DynamicResource ButtonColor}"
+                        BorderBrush="Black"
+                        Padding="5"
+                        BorderThickness="0"
+                        CornerRadius="10">
+                        <ContentPresenter HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="{DynamicResource ButtonHoverColor}" />
+                        </Trigger>
+
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="{DynamicResource ButtonClickColor}" />
+                        </Trigger>
+
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="{DynamicResource ButtonClickColor}" />
+                        </Trigger>
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsChecked" Value="True"/>
+                                <Condition Property="IsMouseOver" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="border" Property="Background" Value="{DynamicResource ButtonHoverColor}" />
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 
     <Style x:Key="TakenSeatButtonStyle" TargetType="Button">
         <Setter Property="Background" Value="Gray"/>

@@ -12,9 +12,11 @@ namespace MiejskiDomKultury
         public static void ZmianaMotywu(Uri motywUri)
         {
             ResourceDictionary Motyw = new ResourceDictionary() { Source = motywUri };
+            ResourceDictionary MotywShared = new ResourceDictionary() { Source = new Uri("/Themes/Shared.xaml", UriKind.Relative) };
 
             App.Current.Resources.Clear();
             App.Current.Resources.MergedDictionaries.Add(Motyw);
+            App.Current.Resources.MergedDictionaries.Add(MotywShared);
         }
     }
 }
