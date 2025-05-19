@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using MiejskiDomKultury.Data;
 using MiejskiDomKultury.Interfaces;
+using MiejskiDomKultury.Model;
 using MiejskiDomKultury.Seeders;
 using MiejskiDomKultury.Services;
 using MiejskiDomKultury.Views.Administrator;
@@ -33,6 +34,7 @@ namespace MiejskiDomKultury
             
 
             base.OnStartup(e);
+            Motywy.ZaladujMotywStartowy();
 
             using var context = ServiceProvider.GetRequiredService<DbContextDomKultury>();
             var seeder = new MiejskiDomKulturySeeder(context);

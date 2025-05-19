@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MiejskiDomKultury.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,8 +23,22 @@ namespace MiejskiDomKultury
         public Ustawienia()
         {
             InitializeComponent();
-            MotywToggleButton.Content = "Motyw Jasny";
+            UstawStanPrzycisku();
         }
+        private void UstawStanPrzycisku()
+        {
+            if (Motywy.CzyCiemny)
+            {
+                MotywToggleButton.IsChecked = true;
+                MotywToggleButton.Content = "Motyw Ciemny";
+            }
+            else
+            {
+                MotywToggleButton.IsChecked = false;
+                MotywToggleButton.Content = "Motyw Jasny";
+            }
+        }
+
 
         private void MotywToggleButton_Checked(object sender, RoutedEventArgs e)
         {
