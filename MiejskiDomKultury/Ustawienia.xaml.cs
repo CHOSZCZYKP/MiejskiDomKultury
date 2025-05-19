@@ -27,11 +27,13 @@ namespace MiejskiDomKultury
 
         private void MotywToggleButton_Checked(object sender, RoutedEventArgs e)
         {
+            Motywy.ZmianaMotywu(new Uri("/Themes/MotywCiemny.xaml", UriKind.Relative));
             MotywToggleButton.Content = "Motyw Ciemny";
         }
 
         private void MotywToggleButton_Unchecked(object sender, RoutedEventArgs e)
         {
+            Motywy.ZmianaMotywu(new Uri("/Themes/MotywJasny.xaml", UriKind.Relative));
             MotywToggleButton.Content = "Motyw Jasny";
         }
     }

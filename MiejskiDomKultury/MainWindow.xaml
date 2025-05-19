@@ -14,7 +14,7 @@
 
         <Border BorderThickness="0,0,0,0" BorderBrush="Black">
             <Grid Grid.Row="0"
-                  Background="{StaticResource NavGradient}">
+                  Background="{DynamicResource NavbarColor}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
