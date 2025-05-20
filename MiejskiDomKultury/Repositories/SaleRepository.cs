@@ -23,5 +23,13 @@ namespace MiejskiDomKultury.Repositories
         public IEnumerable<Sala> GetAllSale()
             => _dbContextDom.Sale.ToList();
 
+        //zwraca sale ktore nie są zarezerwowane w danym dniu
+        public IEnumerable<Sala> GetAvailableAtDay(DateOnly date)
+        {
+          return  _dbContextDom.Rezerwacje
+       .Where(a => DateOnly.FromDateTime(a.OdKiedy) != date || DateOnly.FromDateTime(a.DoKiedy) != date)
+       .Select(s => s.Sala)
+       .ToList();
+        }
     }
 }

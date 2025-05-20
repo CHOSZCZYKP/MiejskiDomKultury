@@ -18,6 +18,10 @@ namespace MiejskiDomKultury.ViewModel
 
         public MovieDetailsViewModel(Film film)
         {
+            if (true)
+            {
+                film.Opis = film.OpisPL;
+            }
             Film = film;
             ShowDates = new ObservableCollection<string>();
 

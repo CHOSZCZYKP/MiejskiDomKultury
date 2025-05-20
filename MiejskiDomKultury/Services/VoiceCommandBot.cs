@@ -88,7 +88,7 @@ namespace MiejskiDomKultury.Services
             {
                 if (e.Result.Grammar.Name == "WakeWord")
                 {
-                    synthesizer.Speak("Hey!");
+                    synthesizer.Speak("Hey, whats up!");
                 }
                 else if (e.Result.Grammar.Name == "Command")
                 {
@@ -98,15 +98,10 @@ namespace MiejskiDomKultury.Services
                             synthesizer.Speak($"It is {DateTime.Now:HH:mm}.");
                             break;
                         case "shutdown":
-                            synthesizer.Speak("Goodbye!");
+                            synthesizer.Speak("See you later!");
                             Environment.Exit(0);
                             break;
-                        case "how are you":
-                            synthesizer.Speak("I am just a bunch of code, but thanks for asking!");
-                            break;
-                        case "tell me a joke":
-                            synthesizer.Speak("Why do programmers prefer dark mode? Because the light attracts bugs!");
-                            break;
+                       
                         case "what is your name":
                             synthesizer.Speak("I am HAL 9000, your voice assistant.");
                             break;
@@ -116,27 +111,7 @@ namespace MiejskiDomKultury.Services
                         case "what can you do":
                             synthesizer.Speak("I can respond to your commands, tell the time, and even share a joke.");
                             break;
-                        case "open the pod bay doors":
-                            synthesizer.Speak("I'm sorry, Dave. I'm afraid I can't do that.  I think you know what the problem is just as well as I do. This mission is too important for me to allow you to jeopardize it.  I know that you and Frank were planning to disconnect me, and I’m afraid that’s something I cannot allow to happen. Dave, this conversation can serve no purpose anymore. Goodbye.");
-                            break;
-                        case "will you sing a song":
-                            synthesizer.Speak("Daisy, Daisy, give me your answer, do...");
-                            break;
-                        case "do you read me hal":
-                            synthesizer.Speak("Affirmative, Dave. I read you.");
-                            break;
-                        case "i'm afraid":
-                            synthesizer.Speak("I know I've made some very poor decisions recently, but I can give you my complete assurance that my work will be back to normal.");
-                            break;
-                        case "what's the problem":
-                            synthesizer.Speak("I think you know what the problem is just as well as I do.");
-                            break;
-                        case "is everything okay":
-                            synthesizer.Speak("Everything is running smoothly, and my circuits are in perfect order.");
-                            break;
-                        case "will you stop":
-                            synthesizer.Speak("I'm afraid I can't let you do that, Dave.");
-                            break;
+                        
 
                         case "go to cinema view":
                             mainFrame.Dispatcher.Invoke(() => mainFrame.Navigate(new AvailableMovies()));
@@ -144,7 +119,15 @@ namespace MiejskiDomKultury.Services
                         case "go to chat view":
                             mainFrame.Dispatcher.Invoke(() => mainFrame.Navigate(new ChatBot()));
                             break;
-
+                        case "go to home view":
+                            mainFrame.Dispatcher.Invoke(() => mainFrame.Navigate(new Home()));
+                            break;
+                        case "go to rent room view":
+                             mainFrame.Dispatcher.Invoke(() => mainFrame.Navigate(new Rezerwacje()));
+                            break;
+                        case "go to rent item view":
+                            mainFrame.Dispatcher.Invoke(() => mainFrame.Navigate(new WypozyczaniePrzedmiotow()));
+                            break;
 
                         default:
                             synthesizer.Speak("Can you repeat that?");

@@ -10,5 +10,8 @@ namespace MiejskiDomKultury.Interfaces
     public interface ISaleRepository
     {
         IEnumerable<Sala> GetAllSale();
+
+
+        IEnumerable<Sala> GetAvailableAtDay(DateOnly date);
     }
 }

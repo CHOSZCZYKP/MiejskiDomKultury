@@ -2,10 +2,10 @@
 using System.ClientModel;
 
 using System.IO;
-
 using System.Text.Json;
 using System.Text.RegularExpressions;
-
+using MiejskiDomKultury.Interfaces;
+using MiejskiDomKultury.Repositories;
 using OpenAI;
 using OpenAI.Assistants;
 
@@ -17,6 +17,12 @@ namespace MiejskiDomKultury.Services
     public class AIService
     {
 
+        ISaleRepository _saleRepository;
+        IMovieRepository _movieRepository;
+       public AIService()
+        {
+          
+        }
 
         public async Task<string>  Translate(string text)
         {
@@ -100,9 +106,20 @@ namespace MiejskiDomKultury.Services
 
 
 
+            string CheckAllAvailableRooms(DateOnly date)
+            {
+                return _saleRepository.GetAvailableAtDay(date).ToString();
+            }
 
+            string GetAllRooms()
+            {
+                return _saleRepository.GetAllSale().ToString();            
+            }
 
-
+            string GetAvailableMovies()
+            {
+                return _movieRepository.GetAvailableMovies().ToString();
+            }
 
             string filePath = "plik.txt";
 

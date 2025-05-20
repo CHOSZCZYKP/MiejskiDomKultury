@@ -24,8 +24,8 @@ namespace MiejskiDomKultury
             Task.Run(() =>
             {
                 voiceBot.StartListening(cts.Token);
-            });
-            Main.Content = App.ServiceProvider.GetRequiredService<Home>();*/
+            });*/
+            Main.Content = App.ServiceProvider.GetRequiredService<Home>();
         }
 
      
