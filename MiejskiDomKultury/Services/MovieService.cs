@@ -7,6 +7,8 @@ using Newtonsoft.Json.Linq;
 
 
 using MiejskiDomKultury.Model;
+using MiejskiDomKultury.Interfaces;
+using Stripe;
 
 namespace MiejskiDomKultury.Services
 {
@@ -16,8 +18,14 @@ namespace MiejskiDomKultury.Services
     /// </summary>
     internal class MovieService
     {
+        IMovieRepository repository;
         private readonly string api_key = Environment.GetEnvironmentVariable("OMDb_API_KEY");
 
+
+        public MovieService()
+        {
+            repository=new MovieRepositoryService();
+        }
         /// <summary>
         /// Pobiera pełne informacje o filmie z API OMDb na podstawie tytułu
         /// </summary>
@@ -44,8 +52,8 @@ namespace MiejskiDomKultury.Services
                  
                     if (json["Response"]?.ToString() != "True")
                         throw new Exception("Nie znaleziono filmu");
+                    string runtimeString = json["Runtime"]?.ToString().Replace(" min", "").Trim();
 
-                    
                     if (json["Search"] != null)
                     {
                 
@@ -55,7 +63,7 @@ namespace MiejskiDomKultury.Services
                               Tytul = item["Title"]?.ToString(),
                               Rok = int.TryParse(item["Year"]?.ToString(), out int singleYear) ? singleYear : 0,
                               PlakatURL = item["Poster"]?.ToString(),
-       
+                              Czas = int.TryParse(runtimeString, out int time) ? time : 210,
                           })
                           .ToList();
 
@@ -77,7 +85,8 @@ namespace MiejskiDomKultury.Services
                         Aktorzy = json["Actors"]?.ToString()
                                     ?.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
                                     ?.Select(a => a.Trim())
-                                    ?.ToList() ?? new List<string>()
+                                    ?.ToList() ?? new List<string>(),
+                        Czas = int.TryParse(runtimeString, out int time) ? time : 210,
                     };
 
                     return new List<Film> { singleMovie };
@@ -97,6 +106,20 @@ namespace MiejskiDomKultury.Services
             }
         }
 
+        public bool CanBeFilmAdd(int? time, DateTime date)
+        {
+            var seanse = repository.GetAllSeansByDate(date);
+
+            foreach (var seans in seanse) { 
+            if(seans.DataStart.AddMinutes((double)seans.Film.Czas) > date || date.AddMinutes((double)time) <seans.DataStart.AddMinutes((double)seans.Film.Czas))
+                {
+                    return false;
+                }
+
+            }
+
+            return true;
+        }
 
         public async Task<Film> GetMovieDetails(string title, int year)
         {
@@ -119,9 +142,9 @@ namespace MiejskiDomKultury.Services
                     if (json["Response"]?.ToString() != "True")
                         throw new Exception("Nie znaleziono filmu");
 
-                 
+                    string runtimeString = json["Runtime"]?.ToString().Replace(" min", "").Trim();
 
-                    
+
                     var singleMovie = new Film
                     {
                         Tytul = json["Title"]?.ToString(),
@@ -135,7 +158,8 @@ namespace MiejskiDomKultury.Services
                         Aktorzy = json["Actors"]?.ToString()
                                     ?.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
                                     ?.Select(a => a.Trim())
-                                    ?.ToList() ?? new List<string>()
+                                    ?.ToList() ?? new List<string>(),
+                        Czas = int.TryParse(runtimeString, out int time) ? time : 210
                     };
 
                     return singleMovie ;
@@ -154,6 +178,14 @@ namespace MiejskiDomKultury.Services
                 }
             }
         }
+        public async Task<Film> GetMovieDetailsFromApi(string title, int year)
+        {
+            return await GetMovieDetails(title, year);
+        }
 
+        public async Task<List<Film>> GetMoviesByTitleFromApi(string title)
+        {
+            return await GetMoviesFromApi(title);
+        }
     }
 }

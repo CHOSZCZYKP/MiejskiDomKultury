@@ -18,7 +18,8 @@ namespace MiejskiDomKultury.ViewModel
 
         public MovieDetailsViewModel(Film film)
         {
-            if (true)
+            // jesli CzyLangAngielski to false
+            if (!Settings.Default.CzyLangAngielski)
             {
                 film.Opis = film.OpisPL;
             }

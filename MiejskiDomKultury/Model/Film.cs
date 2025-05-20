@@ -16,7 +16,7 @@ namespace MiejskiDomKultury.Model
         public string Opis { get; set; }
         public string? OpisPL { get; set; }
         public List<string> Gatunki { get; set; }
-
+        public int? Czas { get; set; }
         public string PlakatURL { get; set; }
 
         

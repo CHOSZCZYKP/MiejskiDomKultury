@@ -16,7 +16,7 @@ namespace MiejskiDomKultury.Model
 
         public DateTime DataStart { get; set; }
 
-        public int Czas { get; set; }
+        
 
         public ICollection<Uzytkownik> Widzowie { get; set; } = new List<Uzytkownik>();
     }

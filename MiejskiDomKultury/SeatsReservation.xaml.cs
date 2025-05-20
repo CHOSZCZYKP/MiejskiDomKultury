@@ -20,6 +20,7 @@ namespace MiejskiDomKultury
 
             var repo = new MovieRepositoryService();
             var seans = repo.GetSeans(DateTime.Parse(date), movie.Id);
+            
             freeSeats = repo.GetFreeSeats(seans.Id);
 
             GenerateSeatGrid();
@@ -68,6 +69,7 @@ namespace MiejskiDomKultury
 
         public void ConfirmButtonClick(object sender, RoutedEventArgs e)
         {
+            
             if (selectedSeats.Count == 0)
             {
                 MessageBox.Show("Musisz wybrać miejsce");

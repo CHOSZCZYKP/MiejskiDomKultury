@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using MiejskiDomKultury.Data;
 using MiejskiDomKultury.Interfaces;
 using MiejskiDomKultury.Model;
@@ -13,10 +14,10 @@ namespace MiejskiDomKultury.Services
     {
 
         private readonly DbContextDomKultury _context;
-        private MovieService _service;
+      
         public MovieRepositoryService()
         {
-            _service = new MovieService();
+       
             _context = new DbContextDomKultury();
         }
 
@@ -32,6 +33,12 @@ namespace MiejskiDomKultury.Services
         {
             _context.Seanse.Add(seans);
             _context.SaveChanges();
+        }
+
+        public List<Seans> GetAllSeansByDate(DateTime date)
+        {
+          return _context.Seanse.Include(p=>p.Film).Where(p=>p.DataStart.Date == date.Date).ToList();
+        
         }
 
         public List<Film> GetAvailableMovies()
@@ -59,15 +66,7 @@ namespace MiejskiDomKultury.Services
             return freeSeats;
         }
 
-        public async Task<Film> GetMovieDetailsFromApi(string title, int year)
-        {
-           return await _service.GetMovieDetails(title, year);
-        }
-
-        public async Task<List<Film>> GetMoviesByTitleFromApi(string title)
-        {
-           return await _service.GetMoviesFromApi(title);
-        }
+       
 
         public List<DateTime> GetMovieShowDates(int movieId)
         {
@@ -77,7 +76,7 @@ namespace MiejskiDomKultury.Services
 
         public Seans GetSeans(DateTime date, int movieId)
         {
-             return _context.Seanse.FirstOrDefault(p=>p.DataStart == date && p.FilmId==movieId);
+             return _context.Seanse.Include(a=>a.Film).FirstOrDefault(p=>p.DataStart == date && p.FilmId==movieId);
            
         }
 

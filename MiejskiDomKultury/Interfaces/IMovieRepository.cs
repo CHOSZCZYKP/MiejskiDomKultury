@@ -21,11 +21,10 @@ namespace MiejskiDomKultury.Interfaces
 
         void AddFilm(Film film);
 
-        Task<Film> GetMovieDetailsFromApi(string title, int year);
-
-        Task<List<Film>> GetMoviesByTitleFromApi(string title);
+     
 
         void AddSeans(Seans seans);
 
+        List<Seans> GetAllSeansByDate(DateTime date);
     }
 }

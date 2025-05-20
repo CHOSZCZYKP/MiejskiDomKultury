@@ -15,8 +15,10 @@ namespace MiejskiDomKultury
         private List<DateTime> _screeningTimes = new List<DateTime>();
         private MovieRepositoryService _repositoryService;
         private AIService _ai;
+        private MovieService _movieService;
         public AddMovie()
         {
+            _movieService = new MovieService();
             _ai = new AIService();
             _repositoryService = new MovieRepositoryService();
             InitializeComponent();
@@ -69,6 +71,11 @@ namespace MiejskiDomKultury
                     MessageBox.Show("Termin musi być z przyszłości");
                     return;
                 }
+                if (!_movieService.CanBeFilmAdd(_selectedFilm.Czas, fullDateTime))
+                {
+                    MessageBox.Show("Data filmu koliduje z innym!");
+                    return;
+                }
                 _screeningTimes.Add(fullDateTime);
                 ScreeningTimesList.ItemsSource = null;
                 ScreeningTimesList.ItemsSource = _screeningTimes;
@@ -106,25 +113,25 @@ namespace MiejskiDomKultury
 
             foreach (DateTime date in _screeningTimes)
             {
-                Seans s = new Seans { DataStart=date, Film = _selectedFilm, Czas=180, };
+                Seans s = new Seans { DataStart=date, Film = _selectedFilm };
                 _repositoryService.AddSeans(s);
             }
           
             MessageBox.Show("Film został dodany pomyślnie!");
+            ClearForm();
         }
 
         private async void DisplayMovieDetails(Film film)
         {
 
-            film = await _repositoryService.GetMovieDetailsFromApi(film.Tytul, film.Rok);
+            film = await _movieService.GetMovieDetailsFromApi(film.Tytul, film.Rok);
             _selectedFilm = film;
             TitleText.Text = film.Tytul;
             YearText.Text = $"Rok: {film.Rok}";
             film.OpisPL= await _ai.Translate(film.Opis); 
+           
 
-
-            //jesli false to oznacza ze ustawiony jest angielski, jesli true to polski
-            if (false)
+            if (Settings.Default.CzyLangAngielski)
             {
                 DescriptionText.Text = film.Opis;
             }
@@ -137,7 +144,38 @@ namespace MiejskiDomKultury
         public async Task<List<Film>> GetMoviesByTitle(string title)
         {
            
-            return await _repositoryService.GetMoviesByTitleFromApi(title);
+            return await _movieService.GetMoviesByTitleFromApi(title);
+        }
+
+        private void ClearForm()
+        {
+            // Wyczyszczenie wyszukiwania i listy filmów
+            SearchBox.Text = string.Empty;
+            MovieList.ItemsSource = null;
+            MovieList.SelectedItem = null;
+
+            // Resetowanie wybranego filmu
+            _selectedFilm = null;
+
+            // Wyczyszczenie szczegółów filmu
+            TitleText.Text = string.Empty;
+            YearText.Text = string.Empty;
+            DescriptionText.Text = string.Empty;
+
+            // Wyczyszczenie seansów
+            _screeningTimes.Clear();
+            ScreeningTimesList.ItemsSource = null; // Przypisz ponownie, jeśli potrzebne
+            ScreeningTimesList.ItemsSource = _screeningTimes;
+
+            // Resetowanie kontrolek formularza seansów
+            ScreeningDate.SelectedDate = null;
+            ScreeningTime.Text = string.Empty;
+
+            // Ukryj formularz seansów
+            ScreeningForm.Visibility = Visibility.Collapsed;
+
+            // Ukryj ewentualne komunikaty błędów
+            ErrorMessage.Visibility = Visibility.Collapsed;
         }
     }
 }

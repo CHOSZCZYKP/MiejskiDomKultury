@@ -3,7 +3,8 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+   
+      xmlns:core="clr-namespace:MiejskiDomKultury"
       xmlns:local="clr-namespace:MiejskiDomKultury"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
@@ -21,7 +22,7 @@
 
         <!-- Search Bar -->
         <StackPanel Orientation="Vertical">
-            <TextBox x:Name="SearchBox" Grid.Row="0" Grid.Column="0" Margin="0,0,10,10" FontSize="18" controls:TextBoxHelper.Watermark="Email" />
+            <core:PlaceholderTextBox Placeholder="Wprowadź tytuł..."  x:Name="SearchBox" Grid.Row="0" Grid.Column="0" Margin="0,0,10,10" FontSize="18"  />
         <Button Content="Wyszukaj" Grid.Row="0" Grid.Column="1" Width="150" FontSize="18" Click="SearchButton_Click" />
         </StackPanel>
         <!-- Movie List -->
@@ -47,7 +48,7 @@
         <StackPanel x:Name="ScreeningForm" Grid.Row="1" Grid.Column="1" Margin="10,150,0,0" Visibility="Collapsed">
             <TextBlock Text="Dodaj Termin Emisji" FontSize="20" FontWeight="Bold" Margin="0,20,0,10"  />
             <DatePicker x:Name="ScreeningDate" Margin="0,0,0,10" />
-            <TextBox x:Name="ScreeningTime"  Margin="0,0,0,10" FontSize="16"  />
+            <core:PlaceholderTextBox Placeholder="Wpisz godzinę hh:mm"  x:Name="ScreeningTime"  Margin="0,0,0,10" FontSize="16"  />
             <Button Content="Dodaj Termin" Click="AddScreeningButton_Click" Margin="0,0,0,10" Width="150" />
             <TextBlock x:Name="ErrorMessage" Foreground="Red" FontSize="14" Margin="0,0,0,10" Visibility="Collapsed" />
             <ListBox x:Name="ScreeningTimesList" FontSize="16" Height="150" Margin="0,0,0,10" />
