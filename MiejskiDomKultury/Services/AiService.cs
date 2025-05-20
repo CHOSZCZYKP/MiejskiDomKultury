@@ -17,6 +17,17 @@ namespace MiejskiDomKultury.Services
     public class AIService
     {
 
+
+        public async Task<string>  Translate(string text)
+        {
+            ChatClient client = new(model: "gpt-4o", apiKey: Environment.GetEnvironmentVariable("OPEN_AI_API_KEY"));
+
+            ChatCompletion completion =await client.CompleteChatAsync("Przetlumacz na polski: "+text);
+
+            
+            return completion.Content[0].Text;
+        }
+
         public async Task<NewsResponse> GenerateSubjects()
         {
             ChatClient client = new("gpt-4o-mini", apiKey: Environment.GetEnvironmentVariable("OPEN_AI_API_KEY"));

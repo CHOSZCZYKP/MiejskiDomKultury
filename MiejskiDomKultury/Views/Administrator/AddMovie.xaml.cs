@@ -14,9 +14,10 @@ namespace MiejskiDomKultury
         private Film _selectedFilm;
         private List<DateTime> _screeningTimes = new List<DateTime>();
         private MovieRepositoryService _repositoryService;
-
+        private AIService _ai;
         public AddMovie()
         {
+            _ai = new AIService();
             _repositoryService = new MovieRepositoryService();
             InitializeComponent();
         }
@@ -43,6 +44,7 @@ namespace MiejskiDomKultury
             if (MovieList.SelectedItem is Film selectedFilm)
             {
                 _selectedFilm = selectedFilm;
+                
                 DisplayMovieDetails(selectedFilm);
                 ScreeningForm.Visibility = Visibility.Visible;
                 ScreeningTimesList.ItemsSource = _screeningTimes;
@@ -113,14 +115,25 @@ namespace MiejskiDomKultury
 
         private async void DisplayMovieDetails(Film film)
         {
-            
+
             film = await _repositoryService.GetMovieDetailsFromApi(film.Tytul, film.Rok);
             _selectedFilm = film;
             TitleText.Text = film.Tytul;
             YearText.Text = $"Rok: {film.Rok}";
-            DescriptionText.Text = film.Opis;
-        }
+            film.OpisPL= await _ai.Translate(film.Opis); 
 
+
+            //jesli false to oznacza ze ustawiony jest angielski, jesli true to polski
+            if (false)
+            {
+                DescriptionText.Text = film.Opis;
+            }
+            else
+            {
+                DescriptionText.Text =film.OpisPL;
+            }
+            
+        }
         public async Task<List<Film>> GetMoviesByTitle(string title)
         {
            
