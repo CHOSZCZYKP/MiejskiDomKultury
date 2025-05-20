@@ -1,0 +1,30 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    
+    <!-- MainWindow.xaml -->
+    <sys:String x:Key="navTytul">Ostrołęcki Dom Kultury</sys:String>
+    <sys:String x:Key="navMenu">Menu</sys:String>
+    <sys:String x:Key="navAdmin">Panel Admina</sys:String>
+    <sys:String x:Key="navRejestracja">Rejestracja</sys:String>
+    <sys:String x:Key="navLogin">Login</sys:String>
+    
+    <!-- Ustawienia.xaml -->
+    <sys:String x:Key="ustTytul">Ustawienia</sys:String>
+    <sys:String x:Key="ustLang">Język:</sys:String>
+    <sys:String x:Key="ustStareHaslo">Stare Hasło:</sys:String>
+    <sys:String x:Key="ustNoweHaslo">Nowe Hasło:</sys:String>
+    <sys:String x:Key="ustPowtorzHaslo">Powtórz Nowe Hasło:</sys:String>
+    <sys:String x:Key="ustMotyw">Motyw:</sys:String>
+
+    <sys:String x:Key="ustStareHasloInput">Wpisz stare hasło...</sys:String>
+    <sys:String x:Key="ustNoweHasloInput">Wpisz nowe hasło...</sys:String>
+    <sys:String x:Key="ustPowtorzHasloInput">Powtórz nowe hasło...</sys:String>
+    
+    <!-- Home.xaml -->
+    <sys:String x:Key="menuRezerwacja">Rezerwacja</sys:String>
+    <sys:String x:Key="menuWypozyczalnia">Wypożyczalnia</sys:String>
+    <sys:String x:Key="menuChat">ChatBot</sys:String>
+    <sys:String x:Key="menuKino">Kino Fidelio</sys:String>
+
+</ResourceDictionary>

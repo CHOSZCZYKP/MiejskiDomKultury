@@ -20,7 +20,7 @@
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Text="Ostrołęcki Dom Kultury"
+                <TextBlock Text="{DynamicResource navTytul}"
                            FontSize="24"
                            FontWeight="Bold"
                            VerticalAlignment="Center"
@@ -38,22 +38,22 @@
                         <Image Source="Assets\settings.png"/>
                     </Button>
                     <Button x:Name="PanelMenu"
-                            Content="Menu"
+                            Content="{DynamicResource navMenu}"
                             Margin="5"
                             Padding="5"
                             Click="PanelMenu_Click" />
                     <Button x:Name="PanelAdmina"
-                            Content="Panel Administratora"
+                            Content="{DynamicResource navAdmin}"
                             Margin="5"
                             Padding="5"
                             Click="PanelAdmina_Click" />
                     <Button x:Name="Rejestracja" 
-                            Content="Rejestracja" 
+                            Content="{DynamicResource navRejestracja}" 
                             Margin="5" 
                             Padding="5" 
                             Click="Rejestracja_Click" />
                     <Button x:Name="Logowanie" 
-                            Content="Zaloguj" 
+                            Content="{DynamicResource navLogin}" 
                             Margin="5" 
                             Padding="5" 
                             Click="Logowanie_Click" />

@@ -10,6 +10,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Themes/MotywJasny.xaml"/>
                 <ResourceDictionary Source="/Themes/Shared.xaml"/>
+                <ResourceDictionary Source="/Lang/pl.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

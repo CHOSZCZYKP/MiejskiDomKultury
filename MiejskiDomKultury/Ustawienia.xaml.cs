@@ -37,6 +37,17 @@ namespace MiejskiDomKultury
                 MotywToggleButton.IsChecked = false;
                 MotywToggleButton.Content = "Motyw Jasny";
             }
+
+            if (Motywy.CzyAngielski)
+            {
+                LangToggleButton.IsChecked = true;
+                LangToggleButton.Content = "English";
+            }
+            else
+            {
+                LangToggleButton.IsChecked = false;
+                LangToggleButton.Content = "Polski";
+            }
         }
 
 
@@ -50,6 +61,18 @@ namespace MiejskiDomKultury
         {
             Motywy.ZmianaMotywu(new Uri("/Themes/MotywJasny.xaml", UriKind.Relative));
             MotywToggleButton.Content = "Motyw Jasny";
+        }
+
+        private void LangToggleButton_Checked(object sender, RoutedEventArgs e)
+        {
+            Motywy.ZmianaLang(new Uri("/Lang/en.xaml", UriKind.Relative));
+            LangToggleButton.Content = "English";
+        }
+
+        private void LangToggleButton_Unchecked(object sender, RoutedEventArgs e)
+        {
+            Motywy.ZmianaLang(new Uri("/Lang/pl.xaml", UriKind.Relative));
+            LangToggleButton.Content = "Polski";
         }
     }
 }

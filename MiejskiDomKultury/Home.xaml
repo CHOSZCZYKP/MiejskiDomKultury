@@ -19,10 +19,10 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <Button x:Name="Rezeracja" Content="Rezerwacja" Width="150" Height="30" Margin="10" Click="Rezeracja_Click"/>
-            <Button x:Name="Wypozyczalnia" Content="Wypożyczalnia" Width="150" Height="30" Margin="10" Click="Wypozyczalnia_Click"/>
-            <Button x:Name="Chat" Content="Chat" Width="150" Height="30" Margin="10" Click="Chat_Click"/>
-            <Button x:Name="Filmy" Content="Kino Fidelio" Width="150" Height="30" Margin="10" Click="Film_Click"/>
+            <Button x:Name="Rezeracja" Content="{DynamicResource menuRezerwacja}" Width="150" Height="30" Margin="10" Click="Rezeracja_Click"/>
+            <Button x:Name="Wypozyczalnia" Content="{DynamicResource menuWypozyczalnia}" Width="150" Height="30" Margin="10" Click="Wypozyczalnia_Click"/>
+            <Button x:Name="Chat" Content="{DynamicResource menuChat}" Width="150" Height="30" Margin="10" Click="Chat_Click"/>
+            <Button x:Name="Filmy" Content="{DynamicResource menuKino}" Width="150" Height="30" Margin="10" Click="Film_Click"/>
         </StackPanel>
         <Border BorderThickness="2" BorderBrush="Red" Grid.Row="1" Margin="10" Padding="10">
             <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">

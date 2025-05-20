@@ -1,0 +1,30 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <!-- MainWindow.xaml -->
+    <sys:String x:Key="navTytul">Ostrołęcka Community Center</sys:String>
+    <sys:String x:Key="navMenu">Menu</sys:String>
+    <sys:String x:Key="navAdmin">Admin Panel</sys:String>
+    <sys:String x:Key="navRejestracja">Register</sys:String>
+    <sys:String x:Key="navLogin">Login</sys:String>
+
+    <!-- Ustawienia.xaml -->
+    <sys:String x:Key="ustTytul">Settings</sys:String>
+    <sys:String x:Key="ustLang">Language:</sys:String>
+    <sys:String x:Key="ustStareHaslo">Old Password:</sys:String>
+    <sys:String x:Key="ustNoweHaslo">New Password:</sys:String>
+    <sys:String x:Key="ustPowtorzHaslo">Repeate New Password:</sys:String>
+    <sys:String x:Key="ustMotyw">Theme:</sys:String>
+
+    <sys:String x:Key="ustStareHasloInput">Enter old password...</sys:String>
+    <sys:String x:Key="ustNoweHasloInput">Enter new password...</sys:String>
+    <sys:String x:Key="ustPowtorzHasloInput">Repeat new password...</sys:String>
+
+    <!-- Home.xaml -->
+    <sys:String x:Key="menuRezerwacja">Room Reservation</sys:String>
+    <sys:String x:Key="menuWypozyczalnia">Equipment Rental</sys:String>
+    <sys:String x:Key="menuChat">AI Assistant</sys:String>
+    <sys:String x:Key="menuKino">Fidelio Cinema</sys:String>
+
+</ResourceDictionary>
