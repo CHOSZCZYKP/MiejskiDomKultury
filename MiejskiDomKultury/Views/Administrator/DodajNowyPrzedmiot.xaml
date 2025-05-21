@@ -17,6 +17,12 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -40,80 +46,101 @@
                    Padding="5"
                    VerticalAlignment="Center"
                    HorizontalAlignment="Right"/>
-        <core:PlaceholderTextBox x:Name="WprowadzNazwePrzedmiotu"
-                                 Text="{Binding Nazwa, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                 Grid.Row="1"
-                                 Grid.Column="1"
-                                 Placeholder="Wpisz nazwę..."
-                                 Margin="10"
-                                 Padding="5"
-                                 VerticalAlignment="Center"
-                                 HorizontalAlignment="Left"
-                                 Width="200"/>
+
+        <TextBox x:Name="WprowadzNazwePrzedmiotu"
+                 Text="{Binding Nazwa, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                 Grid.Column="1"
+                 Grid.Row="1"
+                 Margin="10"
+                 Padding="5"
+                 VerticalAlignment="Center"
+                 HorizontalAlignment="Left"
+                 Width="200"/>
+        <TextBlock Foreground="Red" 
+                   FontSize="12" 
+                   Margin="10,0,0,0"
+                   Grid.Column="1"
+                   Grid.Row="2"
+                   Text="{Binding ElementName=WprowadzNazwePrzedmiotu, Path=(Validation.Errors)[0].ErrorContent}" />
 
         <TextBlock x:Name="DodajPrzedmiotStan"
-                   Grid.Row="2"
+                   Grid.Row="3"
                    Text="Stan:"
                    Margin="10"
                    Padding="5"
                    VerticalAlignment="Center"
                    HorizontalAlignment="Right"/>
-        <core:PlaceholderTextBox x:Name="WprowadzStanPrzedmiotu"
-                                 Text="{Binding Stan, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                 Grid.Row="2"
-                                 Grid.Column="1"
-                                 Placeholder="Wpisz stan..."
-                                 Margin="10"
-                                 Padding="5"
-                                 VerticalAlignment="Center"
-                                 HorizontalAlignment="Left"
-                                 Width="200"/>
+        <TextBox x:Name="WprowadzStanPrzedmiotu"
+                 Text="{Binding Stan, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                 Grid.Row="3"
+                 Grid.Column="1"
+                 Margin="10"
+                 Padding="5"
+                 VerticalAlignment="Center"
+                 HorizontalAlignment="Left"
+                 Width="200"/>
+        <TextBlock Foreground="Red" 
+                   FontSize="12" 
+                   Margin="10,0,0,0"
+                   Grid.Column="1"
+                   Grid.Row="4"
+                   Text="{Binding ElementName=WprowadzStanPrzedmiotu, Path=(Validation.Errors)[0].ErrorContent}" />
 
         <TextBlock x:Name="DodajPrzedmiotTyp"
-                   Grid.Row="3"
+                   Grid.Row="5"
                    Text="Typ:"
                    Margin="10"
                    Padding="5"
                    VerticalAlignment="Center"
                    HorizontalAlignment="Right"/>
-        <core:PlaceholderTextBox x:Name="WprowadzTypPrzedmiotu"
-                                 Text="{Binding Typ, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                 Grid.Row="3"
-                                 Grid.Column="1"
-                                 Placeholder="Wpisz typ..."
-                                 Margin="10"
-                                 Padding="5"
-                                 VerticalAlignment="Center"
-                                 HorizontalAlignment="Left"
-                                 Width="200"/>
-        
+        <TextBox x:Name="WprowadzTypPrzedmiotu"
+                 Text="{Binding Typ, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                 Grid.Row="5"
+                 Grid.Column="1"
+                 Margin="10"
+                 Padding="5"
+                 VerticalAlignment="Center"
+                 HorizontalAlignment="Left"
+                 Width="200" />
+        <TextBlock Foreground="Red" 
+                   FontSize="12" 
+                   Margin="10,0,0,0"
+                   Grid.Column="1"
+                   Grid.Row="6"
+                   Text="{Binding ElementName=WprowadzTypPrzedmiotu, Path=(Validation.Errors)[0].ErrorContent}" />
+
         <TextBlock x:Name="DodajPrzedmiotCenaZaDobe"
-                   Grid.Row="4"
+                   Grid.Row="7"
                    Text="Cena za dobe:"
                    Margin="10"
                    Padding="5"
                    VerticalAlignment="Center"
                    HorizontalAlignment="Right"/>
-        <core:PlaceholderTextBox x:Name="WprowadzCenaZaDobePrzedmiotu"
-                                 Text="{Binding Cena_Wartosc, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                 Grid.Row="4"
-                                 Grid.Column="1"
-                                 Placeholder="Wpisz nazwę..."
-                                 Margin="10"
-                                 Padding="5"
-                                 VerticalAlignment="Center"
-                                 HorizontalAlignment="Left"
-                                 Width="200"/>
+        <TextBox x:Name="WprowadzCenaZaDobePrzedmiotu"
+                 Text="{Binding Cena_Wartosc, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                 Grid.Row="7"
+                 Grid.Column="1"
+                 Margin="10"
+                 Padding="5"
+                 VerticalAlignment="Center"
+                 HorizontalAlignment="Left"
+                 Width="200"/>
+        <TextBlock Foreground="Red" 
+                   FontSize="12" 
+                   Margin="10,0,0,0"
+                   Grid.Column="1"
+                   Grid.Row="9"
+                   Text="{Binding ElementName=WprowadzCenaZaDobePrzedmiotu, Path=(Validation.Errors)[0].ErrorContent}" />
 
         <TextBlock x:Name="DodajPrzedmiotCenaZaDobeWaluta"
-                   Grid.Row="5"
+                   Grid.Row="10"
                    Text="Waluta:"
                    Margin="10"
                    Padding="5"
                    VerticalAlignment="Center"
                    HorizontalAlignment="Right"/>
         <ComboBox x:Name="WalutaComboBox"
-                  Grid.Row="5"
+                  Grid.Row="10"
                   Grid.Column="1"
                   Margin="15,10,10,10"
                   Padding="5"
@@ -124,7 +151,7 @@
                   SelectedValue="{Binding WybranaWaluta, Mode=TwoWay}"/>
 
         <StackPanel Orientation="Horizontal"
-                    Grid.Row="6"
+                    Grid.Row="12"
                     Grid.Column="1"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Right">

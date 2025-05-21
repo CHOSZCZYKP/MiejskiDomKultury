@@ -24,8 +24,8 @@
                     Padding="10"
                     Width="auto"
                     Click="TabelaUzytkownicy_Click" />
-            <Button x:Name="TabelaBany"
-                    Content="Bany"
+            <Button x:Name="TabelaCzarnaLista"
+                    Content="Czarna lista"
                     Margin="10"
                     Padding="10"
                     Width="auto"

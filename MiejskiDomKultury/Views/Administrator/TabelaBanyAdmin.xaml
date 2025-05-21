@@ -4,14 +4,33 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:MiejskiDomKultury.Views.Administrator"
+      xmlns:core="clr-namespace:MiejskiDomKultury"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="TabelaBanyAdmin">
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <core:PlaceholderTextBox x:Name="WyszukajBan"
+                                 Placeholder="Wyszukaj użytkownika..."
+                                 Width="300"
+                                 Margin="10"
+                                 Padding="10"
+                                 VerticalAlignment="Center"
+                                 HorizontalAlignment="Center"
+                                 Text="{Binding WyszukiwanaFraza, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
         <DataGrid x:Name="DataGridBanyAdmin"
-          Width="auto"
-          Margin="10">
+                  Width="auto"
+                  Grid.Row="1"
+                  Margin="10"
+                  IsReadOnly="True"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  ItemsSource="{Binding BanCollectionView, Mode=TwoWay}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Imię"
                                     Binding="{Binding Imie}"
@@ -25,8 +44,8 @@
                 <DataGridTextColumn Header="Nazwa użytkownika"
                                     Binding="{Binding NazwaUzytkownika}"
                                     Width="1.1*" />
-                <DataGridTextColumn Header="Data banu"
-                                    Binding="{Binding Data}"
+                <DataGridTextColumn Header="Data"
+                                    Binding="{Binding Data, StringFormat=dd.MM.yyyy HH:mm:ss}"
                                     Width="*" />
                 <DataGridTextColumn Header="Długość"
                                     Binding="{Binding Dlugosc}"

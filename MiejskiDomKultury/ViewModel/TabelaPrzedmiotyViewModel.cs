@@ -178,6 +178,7 @@ namespace MiejskiDomKultury.ViewModel
                 {
                     var przedmioty = _przedmiotRepository.GetAllPrzedmioty();
                     PrzemiotyCollection = new ObservableCollection<Przedmiot>(przedmioty);
+                    PrzedmiotCollectionView = CollectionViewSource.GetDefaultView(PrzemiotyCollection);
                 }
             }
         }

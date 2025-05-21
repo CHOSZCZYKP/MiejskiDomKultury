@@ -3,17 +3,19 @@ using MiejskiDomKultury.Helpers;
 using MiejskiDomKultury.Model;
 using MiejskiDomKultury.Repositories;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
 namespace MiejskiDomKultury.ViewModel
 {
-    public class DodajNowyPrzedmiotViewModel : INotifyPropertyChanged
+    public class DodajNowyPrzedmiotViewModel : INotifyPropertyChanged, INotifyDataErrorInfo
     {
         private PrzedmiotRepository _przedmiotRepository;
         private Window _window;
@@ -21,6 +23,8 @@ namespace MiejskiDomKultury.ViewModel
         public ICommand AnulujCommand => _anulujCommand;
         private PrzekaznikCommand _dodajCommand;
         public ICommand DodajCommand => _dodajCommand;
+
+        private readonly Dictionary<string, List<string>> _errors = new();
 
         #region Wlasciwosci
         private string _nazwa;
@@ -32,6 +36,7 @@ namespace MiejskiDomKultury.ViewModel
                 _nazwa = value;
                 OnPropertyChanged(nameof(Nazwa));
                 _dodajCommand.RaiseCanExecuteChanged();
+                ValidateProperty(nameof(Nazwa), value);
             }
         }
         private string _stan;
@@ -43,6 +48,7 @@ namespace MiejskiDomKultury.ViewModel
                 _stan = value;
                 OnPropertyChanged(nameof(Stan));
                 _dodajCommand.RaiseCanExecuteChanged();
+                ValidateProperty(nameof(Stan), value);
             }
         }
         private string _typ;
@@ -54,10 +60,11 @@ namespace MiejskiDomKultury.ViewModel
                 _typ = value;
                 OnPropertyChanged(nameof(Typ));
                 _dodajCommand.RaiseCanExecuteChanged();
+                ValidateProperty(nameof(Typ), value);
             }
         }
-        private decimal _cena_wartosc;
-        public decimal Cena_Wartosc
+        private string _cena_wartosc;
+        public string Cena_Wartosc
         {
             get => _cena_wartosc;
             set
@@ -65,6 +72,7 @@ namespace MiejskiDomKultury.ViewModel
                 _cena_wartosc = value;
                 OnPropertyChanged(nameof(Cena_Wartosc));
                 _dodajCommand.RaiseCanExecuteChanged();
+                ValidateProperty(nameof(Cena_Wartosc), value);
             }
         }
         private string _wybranaWaluta;
@@ -107,7 +115,9 @@ namespace MiejskiDomKultury.ViewModel
                 && !string.IsNullOrEmpty(Stan)
                 && !string.IsNullOrEmpty(Typ)
                 && !string.IsNullOrEmpty(WybranaWaluta)
-                && Cena_Wartosc > 0)
+                && !string.IsNullOrEmpty(Cena_Wartosc)
+                && decimal.TryParse(Cena_Wartosc, out decimal wynik)
+                && wynik > 0)
             {
                 return true;
             }
@@ -123,7 +133,7 @@ namespace MiejskiDomKultury.ViewModel
                 Nazwa = Nazwa,
                 Typ = Typ,
                 Stan = Stan,
-                CenaZaDobe_Wartosc = Cena_Wartosc,
+                CenaZaDobe_Wartosc = decimal.Parse(Cena_Wartosc),
                 CenaZaDobe_Waluta = WybranaWaluta,
                 Dostepnosc = true
             };
@@ -134,5 +144,52 @@ namespace MiejskiDomKultury.ViewModel
 
         public event PropertyChangedEventHandler? PropertyChanged;
         protected void OnPropertyChanged(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+
+        private void ValidateProperty(string propertyName, string value)
+        {
+            if (_errors.ContainsKey(propertyName))
+                _errors.Remove(propertyName);
+
+            var errors = new List<string>();
+
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                var wyswietl = propertyName switch
+                {
+                    nameof(Nazwa) => "Nazwa",
+                    nameof(Stan) => "Stan",
+                    nameof(Typ) => "Typ",
+                    nameof(Cena_Wartosc) => "Cena za dobę",
+                    _ => propertyName
+                };
+
+                errors.Add($"Pole {wyswietl} jest wymagane.");
+            }
+            else if (!decimal.TryParse(Cena_Wartosc, out decimal wynik) && propertyName == nameof(Cena_Wartosc))
+            {
+                errors.Add("Wprowadź liczbę");
+            }
+            else if (wynik <= 0 && propertyName == nameof(Cena_Wartosc))    
+            {
+                errors.Add("Wprowadź liczbę większą od 0");
+            }
+
+            if (errors.Any())
+                _errors[propertyName] = errors;
+
+            ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
+        }
+
+        public bool HasErrors => _errors.Count > 0;
+
+        public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
+
+        public IEnumerable GetErrors(string propertyName)
+        {
+            if (_errors.ContainsKey(propertyName))
+                return _errors[propertyName];
+            return null;
+        }
+
     }
 }
