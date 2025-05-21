@@ -39,7 +39,7 @@ namespace MiejskiDomKultury.ViewModel
 
             SeriesColumn = new ISeries[]
             {
-                new RowSeries<int>
+                new ColumnSeries<int>
                 {
                     Values = new int[] {1, 2, 8, 19, 4}
                 }

@@ -26,5 +26,7 @@ namespace MiejskiDomKultury.Model
         [Required]
         public int IdUzytkownika { get; set; }
         public Uzytkownik Uzytkownik { get; set; } = default!;
+
+        public string Kwota_Pelna => $"{Kwota_Wartosc} {Kwota_Waluta}";
     }
 }
