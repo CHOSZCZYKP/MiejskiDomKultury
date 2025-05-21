@@ -95,30 +95,31 @@ namespace MiejskiDomKultury.Services
 #pragma warning disable OPENAI001
         public async Task<string> GetAssistantResponse(string prompt)
         {
-            // Mock up funckji 
-            string CheckRoomAvailability(string roomName, string date, string startTime, string endTime)
+            string CheckRoomAvailability(string roomName, string startTime, string endTime)
             {
-
-              
-
-                return $"Sala '{roomName}' jest wolna w dniu {date} w wybranym czasie.";
+                var isFree = _saleRepository.IsSalaFreeByHourToHour(
+                    DateTime.Parse(startTime),
+                    DateTime.Parse(endTime),
+                    roomName
+                );
+                return isFree ? $"Sala {roomName} jest wolna w podanym terminie"
+                             : $"Sala {roomName} jest zajęta w podanym terminie";
             }
 
-
-
-            string CheckAllAvailableRooms(DateOnly date)
+            string CheckAllAvailableRooms(string date)
             {
-                return _saleRepository.GetAvailableAtDay(date).ToString();
+                var rooms = _saleRepository.GetAvailableAtDay(DateOnly.Parse(date));
+                return string.Join(", ", rooms);
             }
 
             string GetAllRooms()
             {
-                return _saleRepository.GetAllSale().ToString();            
+                return string.Join(", ", _saleRepository.GetAllSale());
             }
 
             string GetAvailableMovies()
             {
-                return _movieRepository.GetAvailableMovies().ToString();
+                return string.Join(", ", _movieRepository.GetAvailableMovies());
             }
 
             string filePath = "plik.txt";
@@ -136,6 +137,9 @@ namespace MiejskiDomKultury.Services
         );
                 #region
                 
+
+
+
                 AssistantCreationOptions assistantOptions = new()
                 {
                     Name = "MDK Aystent",
@@ -161,37 +165,52 @@ namespace MiejskiDomKultury.Services
                 };
                 const string CheckRoomAvailabilityFunctionName = "check_room_availability";
 
-                FunctionToolDefinition checkRoomAvailabilityTool = new(CheckRoomAvailabilityFunctionName)
+                var tools = new List<FunctionToolDefinition>
+            {
+                new("check_room_availability")
                 {
-                    Description = "Sprawdza, czy dana sala jest wolna w wybranym dniu i czasie",
+                    Description = "Sprawdza dostępność konkretnej sali",
                     Parameters = BinaryData.FromString("""
-    {
-        "type": "object",
-        "properties": {
-            "roomName": {
-                "type": "string",
-                "description": "Nazwa sali, którą chcesz sprawdzić"
-            },
-            "date": {
-                "type": "string",
-                "description": "Data w formacie YYYY-MM-DD"
-            },
-            "startTime": {
-                "type": "string",
-                "description": "Czas rozpoczęcia w formacie HH:mm"
-            },
-            "endTime": {
-                "type": "string",
-                "description": "Czas zakończenia w formacie HH:mm"
-            }
-        },
-        "required": [ "roomName", "date", "startTime", "endTime" ]
-    }
-    """),
-                };
+                    {
+                        "type": "object",
+                        "properties": {
+                            "roomName": {"type": "string", "description": "Nazwa sali"},
+                            "startTime": {"type": "string", "format": "date-time", "description": "Czas rozpoczęcia"},
+                            "endTime": {"type": "string", "format": "date-time", "description": "Czas zakończenia"}
+                        },
+                        "required": ["roomName", "startTime", "endTime"]
+                    }
+                    """)
+                },
+                new("check_available_rooms")
+                {
+                    Description = "Pokazuje wszystkie dostępne sale w danym dniu",
+                    Parameters = BinaryData.FromString("""
+                    {
+                        "type": "object",
+                        "properties": {
+                            "date": {"type": "string", "format": "date", "description": "Data w formacie YYYY-MM-DD"}
+                        },
+                        "required": ["date"]
+                    }
+                    """)
+                },
+                new("get_all_rooms")
+                {
+                    Description = "Pokazuje listę wszystkich dostępnych sal",
+                    Parameters = BinaryData.FromString("{}")
+                },
+                new("get_available_movies")
+                {
+                    Description = "Pokazuje listę dostępnych filmów",
+                    Parameters = BinaryData.FromString("{}")
+                }
+            };
 
-                assistantOptions.Tools.Add(checkRoomAvailabilityTool);
-
+                foreach(var x in tools)
+                {
+                    assistantOptions.Tools.Add(x);
+                }
                 Assistant assistant =await client.CreateAssistantAsync("gpt-4-turbo", assistantOptions);
                 #endregion
 
@@ -211,7 +230,7 @@ namespace MiejskiDomKultury.Services
 
                 while (!run.Status.IsTerminal)
                 {
-                    //Thread.Sleep(TimeSpan.FromSeconds(1));
+                    
                     run =await client.GetRunAsync(run.ThreadId, run.Id);
 
 
@@ -219,32 +238,44 @@ namespace MiejskiDomKultury.Services
                     {
                         List<ToolOutput> toolOutputs = [];
 
-                        foreach (RequiredAction action in run.RequiredActions)
+                        foreach (var action in run.RequiredActions)
                         {
                             switch (action.FunctionName)
                             {
-
-
-
-
-                                case CheckRoomAvailabilityFunctionName:
+                                case "check_room_availability":
                                     {
-                                        using JsonDocument argumentsJson = JsonDocument.Parse(action.FunctionArguments);
-                                        string roomName = argumentsJson.RootElement.GetProperty("roomName").GetString();
-                                        string date = argumentsJson.RootElement.GetProperty("date").GetString();
-                                        string startTime = argumentsJson.RootElement.GetProperty("startTime").GetString();
-                                        string endTime = argumentsJson.RootElement.GetProperty("endTime").GetString();
-
-                                        string toolResult = CheckRoomAvailability(roomName, date, startTime, endTime);
-                                        toolOutputs.Add(new ToolOutput(action.ToolCallId, toolResult));
+                                        var args = JsonDocument.Parse(action.FunctionArguments);
+                                        var output = CheckRoomAvailability(
+                                            args.RootElement.GetProperty("roomName").GetString(),
+                                            args.RootElement.GetProperty("startTime").GetString(),
+                                            args.RootElement.GetProperty("endTime").GetString()
+                                        );
+                                        toolOutputs.Add(new(action.ToolCallId, output));
                                         break;
                                     }
 
-
-                                default:
+                                case "check_available_rooms":
                                     {
+                                        var args = JsonDocument.Parse(action.FunctionArguments);
+                                        var output = CheckAllAvailableRooms(
+                                            args.RootElement.GetProperty("date").GetString()
+                                        );
+                                        toolOutputs.Add(new(action.ToolCallId, output));
+                                        break;
+                                    }
 
-                                        throw new NotImplementedException();
+                                case "get_all_rooms":
+                                    {
+                                        var output = GetAllRooms();
+                                        toolOutputs.Add(new(action.ToolCallId, output));
+                                        break;
+                                    }
+
+                                case "get_available_movies":
+                                    {
+                                        var output = GetAvailableMovies();
+                                        toolOutputs.Add(new(action.ToolCallId, output));
+                                        break;
                                     }
                             }
                         }

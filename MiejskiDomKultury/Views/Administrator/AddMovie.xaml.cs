@@ -97,12 +97,11 @@ namespace MiejskiDomKultury
         }
 
 
-        private void Confirm_Click(object sender, RoutedEventArgs e)
+        private async void Confirm_Click(object sender, RoutedEventArgs e) // Changed from Task to void
         {
             ErrorMessage.Visibility = Visibility.Collapsed;
             string timeText = ScreeningTime.Text.Trim();
 
-            // Sprawdzenie czy wprowadzono datę
             if (!ScreeningDate.SelectedDate.HasValue)
             {
                 ErrorMessage.Text = "Proszę wybrać datę.";
@@ -110,16 +109,25 @@ namespace MiejskiDomKultury
                 return;
             }
 
-
-            foreach (DateTime date in _screeningTimes)
+            try
             {
-                Seans s = new Seans { DataStart=date, Film = _selectedFilm };
-                _repositoryService.AddSeans(s);
+                _selectedFilm.OpisPL = await _ai.Translate(_selectedFilm.Opis);
+                foreach (DateTime date in _screeningTimes)
+                {
+                    Seans s = new Seans { DataStart = date, Film = _selectedFilm };
+                    _repositoryService.AddSeans(s);
+                }
+
+                MessageBox.Show("Film został dodany pomyślnie!");
+                ClearForm();
             }
-          
-            MessageBox.Show("Film został dodany pomyślnie!");
-            ClearForm();
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Wystąpił błąd: {ex.Message}");
+            }
         }
+
+
 
         private async void DisplayMovieDetails(Film film)
         {
@@ -128,7 +136,7 @@ namespace MiejskiDomKultury
             _selectedFilm = film;
             TitleText.Text = film.Tytul;
             YearText.Text = $"Rok: {film.Rok}";
-            film.OpisPL= await _ai.Translate(film.Opis); 
+            
            
 
             if (Settings.Default.CzyLangAngielski)
@@ -137,6 +145,7 @@ namespace MiejskiDomKultury
             }
             else
             {
+                film.OpisPL = await _ai.Translate(film.Opis);
                 DescriptionText.Text =film.OpisPL;
             }
             

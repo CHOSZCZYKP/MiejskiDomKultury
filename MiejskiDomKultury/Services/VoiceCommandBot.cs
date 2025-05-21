@@ -51,7 +51,10 @@ namespace MiejskiDomKultury.Services
                 "is everything okay",
                 "will you stop",
                 "go to cinema view",
-                "go to chat view"
+                "go to chat view",
+                "go to home view",
+                "go to rent room view",
+                "go to rent item view"
             );
 
             GrammarBuilder gbCommand = new GrammarBuilder();
