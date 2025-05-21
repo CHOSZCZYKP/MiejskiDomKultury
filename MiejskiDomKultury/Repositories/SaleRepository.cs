@@ -31,5 +31,25 @@ namespace MiejskiDomKultury.Repositories
        .Select(s => s.Sala)
        .ToList();
         }
+
+        public bool IsSalaFreeByHourToHour(DateTime start, DateTime end,string name)
+        {
+            var rezerwacje = _dbContextDom.Sale
+            .Where(s => s.Nazwa == name)
+            .Select(s => s.Rezerwacje)
+            .FirstOrDefault();
+
+            foreach(var rez in rezerwacje)
+            {
+               if(rez.DoKiedy>start && rez.DoKiedy<end || (rez.OdKiedy >= start && rez.DoKiedy <=end) || (rez.OdKiedy>start && rez.OdKiedy<end))
+                {
+                    return false;
+                }
+            }
+
+
+
+            return true;
+        }
     }
 }

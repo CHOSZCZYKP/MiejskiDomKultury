@@ -13,5 +13,7 @@ namespace MiejskiDomKultury.Interfaces
 
 
         IEnumerable<Sala> GetAvailableAtDay(DateOnly date);
+
+        bool IsSalaFreeByHourToHour(DateTime start, DateTime end, string name);
     }
 }

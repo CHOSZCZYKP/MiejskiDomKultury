@@ -18,8 +18,16 @@ namespace MiejskiDomKultury.ViewModels
         public AvailableMoviesViewModel()
         {
             _moviesRepositoryService = new MovieRepositoryService();
-            FilteredMovies = new ObservableCollection<Film>(_moviesRepositoryService.GetAvailableMovies());
-            NavigateToDetailsCommand = new RelayCommand<Film>(OnNavigateToDetails);
+            try
+            {
+                FilteredMovies = new ObservableCollection<Film>(_moviesRepositoryService.GetAvailableMovies());
+            }
+            catch
+            {
+                FilteredMovies = null;
+            }
+                
+                NavigateToDetailsCommand = new RelayCommand<Film>(OnNavigateToDetails);
         }
 
         public string SearchText
