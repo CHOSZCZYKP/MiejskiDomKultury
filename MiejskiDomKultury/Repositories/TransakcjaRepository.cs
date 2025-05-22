@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using MiejskiDomKultury.Data;
 using MiejskiDomKultury.Dto;
 using MiejskiDomKultury.Interfaces;
@@ -33,5 +34,14 @@ namespace MiejskiDomKultury.Repositories
                 Typ = t.Typ,
                 Kwota_Pelna = t.Kwota_Pelna
             }).ToList();
+
+        public Dictionary<string, int> GetAllTransakcjeGroupTyp()
+            => _dbContextDomKultury.Transakcje
+            .GroupBy(t => t.Typ)
+            .Select(g => new
+            {
+                Typ = g.Key,
+                Liczba = g.Count()
+            }).ToDictionary(x => x.Typ, x => x.Liczba);
     }
 }

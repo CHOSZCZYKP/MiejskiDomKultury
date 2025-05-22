@@ -1,5 +1,9 @@
 ﻿using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
+using Microsoft.EntityFrameworkCore.Metadata.Conventions;
+using MiejskiDomKultury.Data;
+using MiejskiDomKultury.Interfaces;
+using MiejskiDomKultury.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +15,7 @@ namespace MiejskiDomKultury.ViewModel
     public class WykresViewModel
     {
         //przykładowe dane żeby pokazać mniej więcej jak to będzie wyglądać
-
+        private readonly ITranskacjaRepository _transkacjaRepository;
         public IEnumerable<ISeries> SeriesLine { get; set; }
         public Axis[] XAxis { get; set; }
 
@@ -21,21 +25,8 @@ namespace MiejskiDomKultury.ViewModel
 
         public WykresViewModel()
         {
-            SeriesLine = new ISeries[]
-            {
-                new LineSeries<int>
-                {
-                    Values = new int[] {1, 2, 8, 19, 4}
-                }
-            };
-            XAxis = new Axis[]
-            {
-                new Axis
-                {
-                    Labels = new[] {"Pn", "Wt", "Śr", "Cz", "Pt", "Sb", "Ndz"},
-                    Position = LiveChartsCore.Measure.AxisPosition.Start
-                }
-            };
+            var context = new DbContextDomKultury();
+            _transkacjaRepository = new TransakcjaRepository(context);
 
             SeriesColumn = new ISeries[]
             {
@@ -45,33 +36,15 @@ namespace MiejskiDomKultury.ViewModel
                 }
             };
 
-            SeriesRow = new ISeries[]
+            SeriesPie = _transkacjaRepository.GetAllTransakcjeGroupTyp().Select(x => new PieSeries<int>
             {
-                new RowSeries<int>
-                {
-                    Values = new int[] {1, 2, 8, 19, 4}
-                }
-            };
+                Name = x.Key,
+                Values = new int[] { x.Value },
+                DataLabelsPosition = LiveChartsCore.Measure.PolarLabelsPosition.Middle,
+                
+            }).ToArray();
+        
 
-            SeriesPie = new ISeries[]
-            {
-                new PieSeries<int>
-                {
-                    Values = new int[] { 1 },
-                    Name = "Wart1"
-                },
-                new PieSeries<int>
-                {
-                    Values = new int[] { 5,4 },
-                    Name = "Wart2"
-                },
-                new PieSeries<int>
-                {
-                    Values = new int[] { 3 },
-                    Name = "Wart3",
-                    
-                }
-            };
         }
     }
 }

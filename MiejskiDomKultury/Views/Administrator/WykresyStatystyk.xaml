@@ -9,28 +9,40 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="WykresyStatystyk">
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <lvc:CartesianChart Series="{Binding SeriesLine}"
-                            Margin="10"
-                            XAxes="{Binding XAxis}"/>
-        <lvc:CartesianChart Series="{Binding SeriesColumn}"
-                            Margin="10"
-                            Grid.Column="1"/>
-        <lvc:CartesianChart Series="{Binding SeriesRow}"
-                            Margin="10"
-                            Grid.Row="1"/>
-        <lvc:PieChart Series="{Binding SeriesPie}"
-                      Margin="10"
-                      Grid.Column="1"
-                      Grid.Row="1"
-                      LegendPosition="Right"/>
-    </Grid>
+    <ScrollViewer VerticalScrollBarVisibility="Visible">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <TextBlock x:Name="WykresKolowy"
+                       Grid.Row="0"
+                       Text="Wykres kołowy podział transakcji wg typu"
+                       FontSize="28"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       Margin="5" />
+
+            <lvc:PieChart Series="{Binding SeriesPie}"
+                          Margin="10"
+                          Grid.Row="1"
+                          LegendPosition="Bottom"
+                          Height="400"/>
+            <TextBlock x:Name="WykresKolumnowy"
+                       Grid.Row="3"
+                       Text="Wykres kolumnowy najbardziej oblegana sala"
+                       FontSize="28"
+                       FontWeight="Bold"
+                       HorizontalAlignment="Center"
+                       Margin="5"/>
+            <lvc:CartesianChart Series="{Binding SeriesColumn}"
+                                Margin="10"
+                                Grid.Row="4"
+                                Height="400"/>
+        </Grid>
+    </ScrollViewer>
 </Page>
