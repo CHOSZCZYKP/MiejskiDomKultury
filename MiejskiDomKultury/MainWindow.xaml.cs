@@ -21,16 +21,23 @@ namespace MiejskiDomKultury
         {
             InitializeComponent();
             //proszem nie usuwac
-           /* voiceBot = new VoiceCommandBot(Main);
-            cts = new CancellationTokenSource();
-
-            Task.Run(() =>
+            try
             {
-                voiceBot.StartListening(cts.Token);
-            });*/
+                voiceBot = new VoiceCommandBot(Main);
+                cts = new CancellationTokenSource();
+
+                Task.Run(() =>
+                {
+                    voiceBot.StartListening(cts.Token);
+                });
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Błąd z voice botem "+ex.Message);
+            }
             Main.Content = App.ServiceProvider.GetRequiredService<Home>();
             PlayBackgroundMusic();
-
+            
         }
 
         private void PlayBackgroundMusic()

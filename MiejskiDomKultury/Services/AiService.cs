@@ -4,6 +4,7 @@ using System.ClientModel;
 using System.IO;
 using System.Text.Json;
 using System.Text.RegularExpressions;
+using MiejskiDomKultury.Data;
 using MiejskiDomKultury.Interfaces;
 using MiejskiDomKultury.Repositories;
 using OpenAI;
@@ -21,7 +22,9 @@ namespace MiejskiDomKultury.Services
         IMovieRepository _movieRepository;
        public AIService()
         {
-          
+            var context = new DbContextDomKultury();
+            _saleRepository = new SaleRepository(context);
+            _movieRepository = new MovieRepositoryService();
         }
 
         public async Task<string>  Translate(string text)
@@ -119,7 +122,7 @@ namespace MiejskiDomKultury.Services
 
             string GetAvailableMovies()
             {
-                return string.Join(", ", _movieRepository.GetAvailableMovies());
+                return string.Join(", ", _movieRepository.GetAvailableMovies().Select(a=>a.Tytul));
             }
 
             string filePath = "plik.txt";
