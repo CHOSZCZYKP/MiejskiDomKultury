@@ -1,0 +1,7 @@
+﻿<Window x:Class="MiejskiDomKultury.VolumeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:MiejskiDomKultury"
+        Title="Dice Roller" Height="350" Width="580" MinHeight="1000" MinWidth="1000" >
+    <local:Slider x:Name="SliderControl"/>
+</Window>

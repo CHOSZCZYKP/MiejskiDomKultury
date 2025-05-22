@@ -25,7 +25,8 @@
             </Grid.ColumnDefinitions>
             <local:PlaceholderTextBox x:Name="PoleWyszukiwania" Grid.Column="0"
                   Placeholder="Wyszukaj sale..."
-                  Margin="10"/>
+                  Margin="10"
+                  Text="{Binding WyszukiwanaFraza, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"                    />
             <Button x:Name="ButtonSzukajSali" Grid.Column="1"
             Content="Szukaj"
             Margin="10"
@@ -35,6 +36,10 @@
         <DataGrid Grid.Row="1"
                   x:Name="DataGridSale"
                   Width="auto"
+                  ItemsSource="{Binding SaleCollectionView, Mode=TwoWay}"
+                  CanUserAddRows="False"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
                   Margin="10">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nazwa" 
@@ -78,19 +83,21 @@
                        VerticalAlignment="Center"
                        HorizontalAlignment="Right"/>
             <DatePicker x:Name="DataRezerwacji"
+                        SelectedDate="{Binding Data, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                         Grid.Column="1"
                         Margin="5"
                         Padding="5"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Left"/>
             <TextBlock x:Name="GodzinaOdTextBlock"
-                       Text="Godzina od:" 
+                       Text="Godzina od:"
                        Grid.Row="2"
                        Margin="5"
                        Padding="5"
                        VerticalAlignment="Center"
                        HorizontalAlignment="Right"/>
             <TextBox x:Name="GodzinaOdTextBox"
+                     Text="{Binding GodzinaOd, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                      Grid.Row="2"
                      Grid.Column="1" 
                      Margin="5"
@@ -106,6 +113,7 @@
                        VerticalAlignment="Center"
                        HorizontalAlignment="Right"/>
             <TextBox x:Name="GodzinaDoTextBox"
+                     Text="{Binding GodzinaDo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                      Grid.Row="3"
                      Grid.Column="1" 
                      Margin="5"

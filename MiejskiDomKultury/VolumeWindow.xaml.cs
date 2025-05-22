@@ -1,5 +1,4 @@
-﻿using MiejskiDomKultury.ViewModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,21 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace MiejskiDomKultury
 {
-    /// <summary>
-    /// Interaction logic for Rezerwacje.xaml
-    /// </summary>
-    public partial class Rezerwacje : Page
+    public partial class VolumeWindow : Window
     {
-        public Rezerwacje()
+        public VolumeWindow(Action<int> updateVolumeCallback)
         {
-      
             InitializeComponent();
-            DataContext = new RezerwacjaViewModel();
+            SliderControl.SetVolumeCallback(updateVolumeCallback);
         }
     }
 }

@@ -10,6 +10,13 @@
 
   <ItemGroup>
     <None Remove="Assets\david.png" />
+    <None Remove="Assets\despair.webp" />
+    <None Remove="Assets\die1.png" />
+    <None Remove="Assets\die2.png" />
+    <None Remove="Assets\die3.png" />
+    <None Remove="Assets\die4.png" />
+    <None Remove="Assets\die5.png" />
+    <None Remove="Assets\die6.png" />
     <None Remove="Assets\news1.webp" />
     <None Remove="Assets\news2.webp" />
     <None Remove="Assets\news3.webp" />
@@ -42,6 +49,27 @@
     <Resource Include="Assets\david.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Content Include="Assets\despair.webp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\die1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\die2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\die3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\die4.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\die5.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\die6.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Assets\news1.webp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -51,12 +79,12 @@
     <Content Include="Assets\news3.webp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Resource Include="Assets\news4.webp">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Assets\news5.webp">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
+    <Content Include="Assets\news4.webp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\news5.webp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Resource Include="Assets\settings.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
