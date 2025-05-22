@@ -45,7 +45,8 @@
                                     <Image Source="{Binding ImageData, Converter={StaticResource ByteArrayToImageConverter}}" 
            Stretch="UniformToFill" 
            Margin="0,0,0,10"
-           Height="150"/>
+                                           Height="250"
+           />
                                     
                                     <TextBlock Text="{Binding Title}" FontWeight="Bold"/>
                                     <TextBlock Text="{Binding Content}" 
