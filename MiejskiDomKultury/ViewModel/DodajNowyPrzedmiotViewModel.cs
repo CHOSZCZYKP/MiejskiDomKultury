@@ -102,6 +102,7 @@ namespace MiejskiDomKultury.ViewModel
             _window = window;
             _dodajCommand = new PrzekaznikCommand(async () => { await DodajPrzedmiot();}, CzyDodac);
             _anulujCommand = new PrzekaznikCommand(() => { ZamknijOkno(); });
+            WybranaWaluta = "PLN";
         }
 
         private void ZamknijOkno()

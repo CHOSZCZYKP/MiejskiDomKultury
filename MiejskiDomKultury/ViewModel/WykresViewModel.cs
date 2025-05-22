@@ -68,7 +68,8 @@ namespace MiejskiDomKultury.ViewModel
                 new PieSeries<int>
                 {
                     Values = new int[] { 3 },
-                    Name = "Wart3"
+                    Name = "Wart3",
+                    
                 }
             };
         }
