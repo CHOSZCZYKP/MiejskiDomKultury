@@ -55,101 +55,104 @@
                                     Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Grid Grid.Row="0" Grid.Column="1" Grid.RowSpan="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
+        <Grid Grid.Column="1"
+              Grid.Row="1">
             <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
-            <TextBlock x:Name="DataPoczatkowaTextBox"
-                       Text="Data początkowa:"
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock x:Name="DataRezerwacjiTextBlock"
+                       Text="Wybierz datę:" 
+                       Margin="5"
+                       Padding="5"
                        VerticalAlignment="Center"
-                       HorizontalAlignment="Center"
-                       Margin="10"/>
-            <DatePicker x:Name="DataPoczatkowa"
+                       HorizontalAlignment="Right"/>
+            <DatePicker x:Name="DataRezerwacji"
                         Grid.Column="1"
+                        Margin="5"
+                        Padding="5"
                         VerticalAlignment="Center"
-                        HorizontalAlignment="Center"
-                        Margin="10"/>
-            <TextBlock x:Name="GodzinaTextBox"
-                       Grid.Row="1"
-                       Text="Godzina:"
-                       VerticalAlignment="Center"
-                       HorizontalAlignment="Center"
-                       Margin="10"/>
-            <TextBlock x:Name="IloscGodzinTextBox"
+                        HorizontalAlignment="Left"/>
+            <TextBlock x:Name="GodzinaOdTextBlock"
+                       Text="Godzina od:" 
                        Grid.Row="2"
-                       Text="Ilość godzin:"
+                       Margin="5"
+                       Padding="5"
                        VerticalAlignment="Center"
-                       HorizontalAlignment="Center"
-                       Margin="10"/>
-            <CheckBox x:Name="CheckBoxCzyOkresowaRezerwacja"
-                      Grid.Row="3"
-                      Grid.ColumnSpan="2"
-                      Content="Czy chcesz zarezerwować okreswo?"
-                      VerticalAlignment="Center"
-                      HorizontalAlignment="Center"
-                      Margin="10"/>
-            <TextBlock x:Name="DataKoncowaTextBox"
+                       HorizontalAlignment="Right"/>
+            <TextBox x:Name="GodzinaOdTextBox"
+                     Grid.Row="2"
+                     Grid.Column="1" 
+                     Margin="5"
+                     Padding="5"
+                     VerticalAlignment="Center"
+                     HorizontalAlignment="Left"
+                     Width="100"/>
+            <TextBlock x:Name="GodzinaDoTextBlock"
+                       Text="Godzina do:" 
+                       Grid.Row="3"
+                       Margin="5"
+                       Padding="5"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Right"/>
+            <TextBox x:Name="GodzinaDoTextBox"
+                     Grid.Row="3"
+                     Grid.Column="1" 
+                     Margin="5"
+                     Padding="5"
+                     VerticalAlignment="Center"
+                     HorizontalAlignment="Left"
+                     Width="100"/>
+            <TextBlock x:Name="RezerwowanieOkresoweTextBlock"
+                       Text="Okres:" 
                        Grid.Row="4"
-                       Text="Data końcowa:"
+                       Margin="5"
+                       Padding="5"
                        VerticalAlignment="Center"
-                       HorizontalAlignment="Center"
-                       Margin="10"/>
-            <DatePicker x:Name="DataKoncowa"
-                        Grid.Row="4"
-                        Grid.Column="1"
-                        VerticalAlignment="Center"
-                        HorizontalAlignment="Center"
-                        Margin="10"/>
-            <TextBlock x:Name="DzienTygodniaTextBox"
-                       Grid.Row="5"
-                       Text="Dzień tygodnia:"
-                       VerticalAlignment="Center"
-                       HorizontalAlignment="Center"
-                       Margin="10"/>
-            <ComboBox x:Name="DniTygodniaCombobox"
-                      Grid.Row="5"
+                       HorizontalAlignment="Right"/>
+            <ComboBox x:Name="RezerwowanieOkresoweComboBox"
                       Grid.Column="1"
+                      Grid.Row="4" 
+                      Margin="5"
+                      Padding="5"
                       VerticalAlignment="Center"
-                      HorizontalAlignment="Center"
-                      Margin="10"/>
-            <TextBlock x:Name="InterwalTextBox"
-                       Grid.Row="6"
-                       Text="Interwal:"
+                      HorizontalAlignment="Left"
+                      Width="100"/>
+            <TextBlock x:Name="IloscCykliTextBlock"
+                       Text="Ilość cykli:" 
+                       Grid.Row="5"
+                       Margin="5"
+                       Padding="5"
                        VerticalAlignment="Center"
-                       HorizontalAlignment="Center"
-                       Margin="10"/>
-            <TextBlock x:Name="WyborNiecyklicznyTextBox"
-                       Grid.Row="7"
-                       Text="Wybór nie cykliczny:"
-                       VerticalAlignment="Center"
-                       HorizontalAlignment="Center"
-                       Margin="10"/>
-            <DatePicker x:Name="DatyNieCykliczne"
-                        Grid.Row="7"
-                        Grid.Column="1"
-                        VerticalAlignment="Center"
-                        HorizontalAlignment="Center"
-                        Margin="10"/>
-            <Button x:Name="ZarezerwujButton"
+                       HorizontalAlignment="Right"/>
+            <TextBox x:Name="IloscCykli"
+                     Grid.Row="5"
+                     Grid.Column="1" 
+                     Margin="5"
+                     Padding="5"
+                     VerticalAlignment="Center"
+                     HorizontalAlignment="Left"
+                     Width="100"/>
+            <Button x:Name="ZarezerwujSale"
                     Content="Zarezerwuj"
-                    Grid.Column="1"
-                    Grid.Row="8"
-                    VerticalAlignment="Center"
-                    HorizontalAlignment="Center"
-                    Margin="10"
-                    Padding="10"/>
+                    Width="100"
+                    Grid.Row="6"
+                    Grid.Column="1" 
+                    Margin="5"
+                    Padding="5"
+                    VerticalAlignment="Center" 
+                    HorizontalAlignment="Left"/>
+
         </Grid>
     </Grid>
 </Page>

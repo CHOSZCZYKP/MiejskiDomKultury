@@ -30,6 +30,7 @@
         <lvc:PieChart Series="{Binding SeriesPie}"
                       Margin="10"
                       Grid.Column="1"
-                      Grid.Row="1"/>
+                      Grid.Row="1"
+                      LegendPosition="Right"/>
     </Grid>
 </Page>
