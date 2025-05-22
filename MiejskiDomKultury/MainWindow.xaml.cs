@@ -16,6 +16,7 @@ namespace MiejskiDomKultury
         public bool Play = true;
        private CancellationTokenSource cts;
         private MediaPlayer _mediaPlayer = new MediaPlayer();
+        private VolumeWindow volumeWindow;
         public MainWindow()
         {
             InitializeComponent();
@@ -55,7 +56,7 @@ namespace MiejskiDomKultury
 
         private void VoiceOnOff(object sender, RoutedEventArgs e)
         {
-            if (Play)
+            /*if (Play)
             {
                 _mediaPlayer.Pause();
                 Play = false;
@@ -64,7 +65,21 @@ namespace MiejskiDomKultury
             {
                 _mediaPlayer.Play();
                 Play = true;
+            }*/
+            if (volumeWindow == null || !volumeWindow.IsVisible)
+            {
+                volumeWindow = new VolumeWindow(SetVolumeFromSlider);
+                volumeWindow.Show();
             }
+            else
+            {
+                volumeWindow.Focus();
+            }
+        }
+        private void SetVolumeFromSlider(int totalDiceValue)
+        {
+            double normalized = Math.Clamp(totalDiceValue / 90.0, 0.0, 1.0);
+            _mediaPlayer.Volume = normalized;
         }
 
         private void Logowanie_Click(object sender, RoutedEventArgs e)
