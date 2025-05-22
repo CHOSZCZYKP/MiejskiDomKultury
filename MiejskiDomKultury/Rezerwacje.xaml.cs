@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MiejskiDomKultury.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,7 +23,9 @@ namespace MiejskiDomKultury
     {
         public Rezerwacje()
         {
+      
             InitializeComponent();
+            DataContext = new RezerwacjaViewModel();
         }
     }
 }
