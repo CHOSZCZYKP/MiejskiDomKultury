@@ -62,7 +62,7 @@ namespace MiejskiDomKultury.Services
                 Title = "Bober zdech",
                 Content = "Ostrołęka pogrążona w żałobie. Zmarł Bóbr Bartek",
                 CreatedAt = DateTime.Now,
-                ImageData = LoadImageBytes("Assets/news4.webp")
+                ImageData = LoadImageBytes("Assets/news3.webp")
             };
 
             lista.Add(o1);
