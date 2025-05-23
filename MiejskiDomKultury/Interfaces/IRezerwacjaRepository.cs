@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace MiejskiDomKultury.Interfaces
 {
-    public interface IRezerwacja
+    public interface IRezerwacjaRepository
     {
-        bool CzySalaDostepna(int idSali, DateTime od, DateTime doKiedy);
+        /*bool CzySalaDostepna(int idSali, DateTime od, DateTime doKiedy);
         bool ZarezerwujSale(int idSali, int idUzytkownika, DateTime od, DateTime doKiedy, int okres, int cykle, out (DateTime start, DateTime end)? kolidujacyTermin);
         IEnumerable<Sala> PobierzDostepneSale(DateTime od, DateTime doKiedy);
-        IEnumerable<RezewacjeSaleDto> PobierzSaleRezerwacje();
-
+        IEnumerable<RezewacjeSaleDto> PobierzSaleRezerwacje();*/
+        IEnumerable<Rezerwacja> GetAllRezerwacje();
     }
 }
