@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Net.Mail;
 using MiejskiDomKultury.Model;
 using PdfSharp.Drawing;
 using PdfSharp.Pdf;
@@ -13,7 +14,7 @@ namespace MiejskiDomKultury.Services
 {
     public class PdfService
     {
-        public void GenerateTickets(List<SeansBilet> bilety)
+        public Attachment GenerateTickets(List<SeansBilet> bilety)
         {
             using (var document = new PdfDocument())
             {
@@ -44,9 +45,11 @@ namespace MiejskiDomKultury.Services
                         DrawQrCode(gfx, bilet.Id.ToString(), ref yPosition);
                     }
                 }
-
+                
                 string fileName = $"Bilety_{DateTime.Now:yyyyMMddHHmmss}.pdf";
+
                 document.Save(fileName);
+                return new Attachment(fileName);
             }
         }
 
