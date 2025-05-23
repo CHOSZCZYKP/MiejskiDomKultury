@@ -26,8 +26,8 @@ namespace MiejskiDomKultury.Views.Administrator
         public TabelaPrzedmiotyAdmin()
         {
             InitializeComponent();
-           // DataContext = new TabelaPrzedmiotyViewModel();
-           _viewModel = new TabelaPrzedmiotyViewModel();
+            // DataContext = new TabelaPrzedmiotyViewModel();
+            _viewModel = new TabelaPrzedmiotyViewModel();
             _viewModel.WywolajOknoDodajNowyPrzedmiot += WyswietlDodajNowyPrzedmiot;
             DataContext = _viewModel;
         }

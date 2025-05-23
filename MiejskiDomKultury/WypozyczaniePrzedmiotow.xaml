@@ -11,50 +11,36 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*" />
-            <ColumnDefinition Width="0.5*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <DataGrid x:Name="DataGridWypozyczeniePrzedmiotow"
-                  Width="auto"
-                  Margin="10">
+        <DataGrid x:Name="DataGridPrzedmioty"
+          ItemsSource="{Binding PrzedmiotCollectionView}"
+          SelectedItem="{Binding WybranyPrzedmiot, Mode=TwoWay}"
+          MouseDoubleClick="DataGridPrzedmioty_MouseDoubleClick"
+          Grid.Row="2"
+          Width="auto"
+          Margin="10"
+          AutoGenerateColumns="False"
+          CanUserAddRows="False"
+          IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nazwa"
-                                    Binding="{Binding Nazwa}"
-                                    Width="2*" />
+                    Binding="{Binding Nazwa}"
+                    Width="2*" />
                 <DataGridTextColumn Header="Stan"
-                                    Binding="{Binding Stan}"
-                                    Width="*" />
+                    Binding="{Binding Stan}"
+                    Width="*" />
                 <DataGridTextColumn Header="Typ"
-                                    Binding="{Binding Typ}"
-                                    Width="*" />
+                    Binding="{Binding Typ}"
+                    Width="*" />
                 <DataGridTextColumn Header="Cena za dobe"
-                                    Binding="{Binding CenaZaDobe_Wartość}"
-                                    Width="*" />
-                <DataGridTextColumn Header="Dostepność"
-                                    Binding="{Binding Dostepnosc}"
-                                    Width="*" />
+                    Binding="{Binding CenaZaDobe_Wartosc}"
+                    Width="*" />
             </DataGrid.Columns>
         </DataGrid>
 
-        <StackPanel Grid.Column="1"
-                    VerticalAlignment="Top">
-            <TextBlock x:Name="WypozyczeniaIlosc"
-                       Text="Ilość:"
-                       Margin="5,15,5,5" />
-
-            <local:PlaceholderTextBox x:Name="IloscWypozyczeniaTextBox"
-                                      Placeholder="Podaj ilość"
-                                      Padding="5" />
-
-            <Button x:Name="DodajDoZamowienia"
-                    Content="Dodaj"
-                    Margin="5"
-                    Padding="5"
-                    HorizontalAlignment="Right" />
-        </StackPanel>
-
-        <Grid Grid.Column="2">
+        <Grid Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="auto" />

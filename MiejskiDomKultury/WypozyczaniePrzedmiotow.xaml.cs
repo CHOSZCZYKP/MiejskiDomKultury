@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MiejskiDomKultury.Model;
+using MiejskiDomKultury.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +22,24 @@ namespace MiejskiDomKultury
     /// </summary>
     public partial class WypozyczaniePrzedmiotow : Page
     {
+        private TabelaPrzedmiotyViewModel _viewModel;
         public WypozyczaniePrzedmiotow()
         {
             InitializeComponent();
+            _viewModel = new TabelaPrzedmiotyViewModel();
+            DataContext = _viewModel;
+        }
+
+
+        public DateTime? StartDate { get; private set; }
+        public DateTime? EndDate { get; private set; }
+        private void DataGridPrzedmioty_MouseDoubleClick(object sender, RoutedEventArgs e)
+        {
+            var selectedItem = DataGridPrzedmioty.SelectedItem as Przedmiot;
+            if (selectedItem == null) return;
+
+            var wypDat = new WypozyczenieDaty(selectedItem);
+            bool? result = wypDat.ShowDialog();
         }
     }
 }

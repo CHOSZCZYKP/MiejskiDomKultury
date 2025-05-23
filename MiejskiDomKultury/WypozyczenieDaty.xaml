@@ -1,0 +1,23 @@
+﻿<Window x:Class="MiejskiDomKultury.WypozyczenieDaty"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MiejskiDomKultury"
+        mc:Ignorable="d"
+        Title="WypozyczenieDaty" Height="450" Width="800"
+        Loaded="Window_Loaded">
+    <Grid>
+        <StackPanel Margin="10">
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                <ComboBox x:Name="MonthComboBox" Width="100" Margin="0,0,10,0"
+                    SelectionChanged="MonthOrYearChanged" />
+                <ComboBox x:Name="YearComboBox" Width="100"
+                    SelectionChanged="MonthOrYearChanged" />
+            </StackPanel>
+
+            <WrapPanel x:Name="DaysPanel" />
+        </StackPanel>
+        
+    </Grid>
+</Window>

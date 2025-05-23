@@ -19,8 +19,8 @@ namespace MiejskiDomKultury.Data
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=MiejskiDomKultury;Trusted_Connection=True;");
-            optionsBuilder.UseSqlServer(Environment.GetEnvironmentVariable("Database_KEY"));
+            optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=MiejskiDomKultury;Trusted_Connection=True;");
+            //optionsBuilder.UseSqlServer(Environment.GetEnvironmentVariable("Database_KEY"));
         }
 
         public DbSet<Ban> Bany { get; set; }
