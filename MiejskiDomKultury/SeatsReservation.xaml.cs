@@ -13,13 +13,13 @@ namespace MiejskiDomKultury
     {
         private HashSet<int> selectedSeats = new HashSet<int>();
         private List<int> freeSeats;
-
+        Seans seans;
         public SeatsReservation(string date, Film movie)
         {
             InitializeComponent();
 
             var repo = new MovieRepositoryService();
-            var seans = repo.GetSeans(DateTime.Parse(date), movie.Id);
+             seans = repo.GetSeans(DateTime.Parse(date), movie.Id);
             
             freeSeats = repo.GetFreeSeats(seans.Id);
 
@@ -75,7 +75,7 @@ namespace MiejskiDomKultury
                 MessageBox.Show("Musisz wybrać miejsce");
                 return;
             }
-            NavigationService.Navigate(new Payment(selectedSeats));
+            NavigationService.Navigate(new Payment(selectedSeats, seans));
         }
     }
 }

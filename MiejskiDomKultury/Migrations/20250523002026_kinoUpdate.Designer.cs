@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MiejskiDomKultury.Data;
 
@@ -11,9 +12,11 @@ using MiejskiDomKultury.Data;
 namespace MiejskiDomKultury.Migrations
 {
     [DbContext(typeof(DbContextDomKultury))]
-    partial class DbContextDomKulturyModelSnapshot : ModelSnapshot
+    [Migration("20250523002026_kinoUpdate")]
+    partial class kinoUpdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -167,20 +170,17 @@ namespace MiejskiDomKultury.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("Data")
+                    b.Property<DateTime>("DoKiedy")
                         .HasColumnType("datetime2");
-
-                    b.Property<TimeSpan>("GodzinaKoncowa")
-                        .HasColumnType("time");
-
-                    b.Property<TimeSpan>("GodzinaPoczatkowa")
-                        .HasColumnType("time");
 
                     b.Property<int>("IdSali")
                         .HasColumnType("int");
 
                     b.Property<int>("IdUzytkownika")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("OdKiedy")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 

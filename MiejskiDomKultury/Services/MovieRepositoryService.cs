@@ -35,6 +35,12 @@ namespace MiejskiDomKultury.Services
             _context.SaveChanges();
         }
 
+        public void AddSeansBilet(SeansBilet seansBilet)
+        {
+            _context.Bilety.Add(seansBilet);
+            _context.SaveChanges();
+        }
+
         public List<Seans> GetAllSeansByDate(DateTime date)
         {
           return _context.Seanse.Include(p=>p.Film).Where(p=>p.DataStart.Date == date.Date).ToList();

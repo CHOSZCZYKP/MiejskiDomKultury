@@ -43,6 +43,8 @@
     <PackageReference Include="PDFsharp" Version="6.1.1" />
     <PackageReference Include="Stripe.net" Version="48.1.0" />
     <PackageReference Include="System.Speech" Version="9.0.5" />
+    <PackageReference Include="ZXing.Net" Version="0.16.10" />
+    <PackageReference Include="ZXing.Net.Bindings.Windows.Compatibility" Version="0.16.13" />
   </ItemGroup>
 
   <ItemGroup>
