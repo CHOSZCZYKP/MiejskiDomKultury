@@ -26,5 +26,7 @@ namespace MiejskiDomKultury.Interfaces
         void AddSeans(Seans seans);
 
         List<Seans> GetAllSeansByDate(DateTime date);
+
+        void AddSeansBilet(SeansBilet seansBilet);
     }
 }

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using MiejskiDomKultury.Model;
+using MiejskiDomKultury.Services;
 
 namespace MiejskiDomKultury
 {
@@ -11,27 +13,83 @@ namespace MiejskiDomKultury
     public partial class Payment : Page
     {
         private const int SeatPrice = 32;
-
-        public Payment(HashSet<int> seats)
+        private PaymentListener _paymentListener;
+        private string _currentSessionId;
+        int price;
+        Seans seans;
+        HashSet<int> seats;
+        MovieRepositoryService movieRepositoryService;
+        public Payment(HashSet<int> seats, Seans seans)
         {
             InitializeComponent();
-
-            
+            this.seans = seans;
+            this.seats = seats;
             int totalPrice = seats.Count * SeatPrice;
-
+            price = totalPrice;
             
             string seatsList = string.Join(", ", seats);
             string summaryText = $"Wybrałeś miejsca: {seatsList}\n" +
                                  $"Liczba miejsc: {seats.Count}\n" +
                                  $"Łączna kwota do zapłaty: {totalPrice} zł";
-
+            movieRepositoryService = new MovieRepositoryService();
      
             SummaryTextBlock.Text = summaryText;
         }
 
         private void OnPayNowClicked(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Płatność została pomyślnie zakończona!");
+            StartLocalServer();
+            var stripeService = new StripeService();
+            _currentSessionId = stripeService.CreateCheckoutSession(price);
+        }
+
+
+        private void StartLocalServer()
+        {
+            _paymentListener = new PaymentListener(58741);
+            Task.Run(() => _paymentListener.StartListeningAsync(
+                sessionId => HandlePaymentSuccess(sessionId),
+                sessionId => HandlePaymentCancel(sessionId)
+            ));
+        }
+
+        private void HandlePaymentSuccess(string sessionId)
+        {
+            if (sessionId != _currentSessionId) return;
+
+
+            MessageBox.Show("Platnosc sie  powiodla");
+
+            Dispatcher.Invoke(() => { 
+
+             List < SeansBilet > tickets = new List<SeansBilet>();
+
+            foreach (var x in seats)
+            {
+                    var seansBilet = new SeansBilet
+                    {
+                        Date = DateTime.Now,
+                        SeansId = seans.Id, 
+                     
+                        SeatNumber = x,
+                        Cena = 32
+                    };
+                   
+                movieRepositoryService.AddSeansBilet(seansBilet);
+                    seansBilet.Seans = seans;
+                     tickets.Add(seansBilet);
+                }
+            PdfService pdfService = new PdfService();
+            pdfService.GenerateTickets(tickets);
+
+            NavigationService.Navigate(new Home());
+        });
+        }
+
+        private void HandlePaymentCancel(string sessionId)
+        {
+            MessageBox.Show("Platnosc sie nie powiodla");
+            _paymentListener.Stop();
         }
 
     }
