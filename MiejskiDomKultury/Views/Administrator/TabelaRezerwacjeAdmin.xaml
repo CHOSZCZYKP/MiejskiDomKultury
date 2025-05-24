@@ -4,14 +4,34 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:MiejskiDomKultury.Views.Administrator"
+      xmlns:core="clr-namespace:MiejskiDomKultury"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="TabelaRezerwacjeAdmin">
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <core:PlaceholderTextBox x:Name="WyszukajRezerwacjiAdmin"
+                                 Width="300"
+                                 Placeholder="Wyszukaj rezerwację..."
+                                 VerticalAlignment="Center"
+                                 HorizontalAlignment="Center"
+                                 Margin="10"
+                                 Padding="10" 
+                                 Text="{Binding WyszukiwanaFraza, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+
         <DataGrid x:Name="DataGridRezerwacjeAdmin"
-          Width="auto"
-          Margin="10">
+                  Grid.Row="1"
+                  Width="auto"
+                  Margin="10"
+                  CanUserAddRows="False"
+                  IsReadOnly="True"
+                  AutoGenerateColumns="False"
+                  ItemsSource="{Binding RezerwacjaSaliCollectionView}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Imię"
                                     Binding="{Binding Imie}"
@@ -22,11 +42,14 @@
                 <DataGridTextColumn Header="Email"
                                     Binding="{Binding Email}"
                                     Width="*" />
-                <DataGridTextColumn Header="Od kiedy"
-                                    Binding="{Binding OdKiedy}"
+                <DataGridTextColumn Header="Data"
+                                    Binding="{Binding Data}"
                                     Width="0.5*" />
-                <DataGridTextColumn Header="Do kiedy"
-                                    Binding="{Binding DoKiedy}"
+                <DataGridTextColumn Header="Od"
+                                    Binding="{Binding GodzinaPoczatkowa}"
+                                    Width="0.5*" />
+                <DataGridTextColumn Header="Do"
+                                    Binding="{Binding GodzinaKoncowa}"
                                     Width="0.5*" />
                 <DataGridTextColumn Header="Nazwa sali"
                                     Binding="{Binding NazwaSali}"

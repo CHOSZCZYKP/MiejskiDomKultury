@@ -15,5 +15,7 @@ namespace MiejskiDomKultury.Interfaces
         IEnumerable<Sala> PobierzDostepneSale(DateTime od, DateTime doKiedy);
         IEnumerable<RezewacjeSaleDto> PobierzSaleRezerwacje();*/
         IEnumerable<Rezerwacja> GetAllRezerwacje();
+        Dictionary<string, int> GetHowManyTimesRoomBooked();
+        IEnumerable<RezerwacjaSaliPrzezUzytkownikaDto> GetAllRezerwacjeWithUserAndRoom();
     }
 }
