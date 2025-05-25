@@ -32,6 +32,12 @@
                     Margin="10"
                     Width="200"
                     Command="{Binding UsunPrzedmiotCommand}" />
+            <Button x:Name="EdytujPrzedmiotPrzycisk"
+                    Content="Edytuj"
+                    Padding="10"
+                    Margin="10"
+                    Width="200"
+                    Command="{Binding EdytujPrzedmiotCommand}" />
         </StackPanel>
 
         <core:PlaceholderTextBox x:Name="WyszukajPrzedmiot"
@@ -47,32 +53,31 @@
         <DataGrid x:Name="DataGridPrzedmiotyAdmin"
                   ItemsSource="{Binding PrzedmiotCollectionView}"
                   SelectedItem="{Binding WybranyPrzedmiot, Mode=TwoWay}"
-                  RowEditEnding="DataGridPrzedmiotyAdmin_RowEditEnding"
                   Grid.Row="2"
                   Width="auto"
                   Margin="10"
                   AutoGenerateColumns="False"
                   CanUserAddRows="False"
-                  IsReadOnly="False">
+                  IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nazwa"
-                        Binding="{Binding Nazwa}"
-                        Width="2*" />
+                                    Binding="{Binding Nazwa}"
+                                    Width="2*" />
                 <DataGridTextColumn Header="Stan"
-                        Binding="{Binding Stan}"
-                        Width="*" />
+                                    Binding="{Binding Stan}"
+                                    Width="*" />
                 <DataGridTextColumn Header="Typ"
-                        Binding="{Binding Typ}"
-                        Width="*" />
+                                    Binding="{Binding Typ}"
+                                    Width="*" />
                 <DataGridTextColumn Header="Cena za dobe"
-                        Binding="{Binding CenaZaDobe_Wartosc}"
-                        Width="*" />
+                                    Binding="{Binding CenaZaDobe_Wartosc}"
+                                    Width="*" />
                 <DataGridTextColumn Header="Waluta"
                                     Binding="{Binding CenaZaDobe_Waluta}"
                                     Width="*" />
                 <DataGridCheckBoxColumn Header="Dostepność"
-                        Binding="{Binding Dostepnosc}"
-                        Width="*" />
+                                        Binding="{Binding Dostepnosc}"
+                                        Width="*" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
