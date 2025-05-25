@@ -25,9 +25,13 @@ namespace MiejskiDomKultury.ViewModel
         public ICommand DodajPrzedmiotCommand { get; }
         public event Func<Task<bool>>? WywolajOknoDodajNowyPrzedmiot;
 
+        private PrzekaznikCommand _edytujPrzedmiotCommand;
+        public ICommand EdytujPrzedmiotCommand => _edytujPrzedmiotCommand;
+        public event Func<Task<bool>>? WywolajOknoEdytujPrzedmiot;
+
         private PrzekaznikCommand _usunPrzdmiotCommand;
         public ICommand UsunPrzedmiotCommand => _usunPrzdmiotCommand;
-        public ICommand ZapiszZmianyCommand { get; }
+        //public ICommand ZapiszZmianyCommand { get; }
 
         public ObservableCollection<Przedmiot> PrzemiotyCollection
         {
@@ -48,6 +52,7 @@ namespace MiejskiDomKultury.ViewModel
                 _wybranyPrzedmiot = value;
                 OnPropertyChanged(nameof(WybranyPrzedmiot));
                 _usunPrzdmiotCommand.RaiseCanExecuteChanged();
+                _edytujPrzedmiotCommand?.RaiseCanExecuteChanged();
             }
         }
 
@@ -161,8 +166,8 @@ namespace MiejskiDomKultury.ViewModel
             _przedmiotRepository = new PrzedmiotRepository(context);
             DodajPrzedmiotCommand = new PrzekaznikCommand(async () => await DodajPrzedmiot());
             _usunPrzdmiotCommand = new PrzekaznikCommand(async () => await UsunPrzedmiot(),() => WybranyPrzedmiot != null);
-            ZapiszZmianyCommand = new PrzekaznikCommand(async () => await EdytowanieKomorek(), () => WybranyPrzedmiot != null);
-           
+           // ZapiszZmianyCommand = new PrzekaznikCommand(async () => await EdytowanieKomorek(), () => WybranyPrzedmiot != null);
+            _edytujPrzedmiotCommand = new PrzekaznikCommand(async () => await EdytujPrzedmiot(), () => WybranyPrzedmiot != null);
             var przedmioty = _przedmiotRepository.GetAllPrzedmioty();
             PrzemiotyCollection = new ObservableCollection<Przedmiot>(przedmioty);
             PrzedmiotCollectionView = CollectionViewSource.GetDefaultView(PrzemiotyCollection);
@@ -192,13 +197,32 @@ namespace MiejskiDomKultury.ViewModel
             }
         }
 
-        private async Task EdytowanieKomorek()
+        private async Task EdytujPrzedmiot()
+        {
+            if (WywolajOknoEdytujPrzedmiot != null && WybranyPrzedmiot != null)
+            {
+
+                bool wynik = await WywolajOknoEdytujPrzedmiot.Invoke();
+                if (wynik)
+                {
+                    var przedmioty = _przedmiotRepository.GetAllPrzedmioty();
+                    PrzemiotyCollection = new ObservableCollection<Przedmiot>(przedmioty);
+                    PrzedmiotCollectionView = CollectionViewSource.GetDefaultView(PrzemiotyCollection);
+                }
+            }
+            else
+            {
+                return;
+            }
+        }
+
+        /*private async Task EdytowanieKomorek()
         {
             if (WybranyPrzedmiot != null)
             {
                 await _przedmiotRepository.EditPrzedmiot(WybranyPrzedmiot);
             }
-        }
+        }*/
 
         private bool FilterPrzedmiot(object obj)
         {

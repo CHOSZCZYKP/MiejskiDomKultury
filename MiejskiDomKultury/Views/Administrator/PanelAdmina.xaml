@@ -14,7 +14,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         
-        <StackPanel Orientation="Horizontal" 
+        <WrapPanel Orientation="Horizontal" 
                     Margin="10"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Center">
@@ -22,66 +22,66 @@
                     Content="Użytkownicy"
                     Margin="10"
                     Padding="10"
-                    Width="auto"
+                    Width="120"
                     Click="TabelaUzytkownicy_Click" />
             <Button x:Name="TabelaCzarnaLista"
                     Content="Czarna lista"
                     Margin="10"
                     Padding="10"
-                    Width="auto"
+                    Width="120"
                     Click="TabelaBany_Click"/>
             <Button x:Name="TabelaSale"
                     Content="Sale"
                     Margin="10"
                     Padding="10"
-                    Width="auto"
+                    Width="120"
                     Click="TabelaSale_Click"/>
             <Button x:Name="TabelaWypozyczenia"
                     Content="Wypożyczenia"
                     Margin="10"
                     Padding="10"
-                    Width="auto"
+                    Width="120"
                     Click="TabelaWypozyczenia_Click"/>
             <Button x:Name="Wykresy"
                     Content="Wykresy"
                     Margin="10"
                     Padding="10"
-                    Width="auto"
+                    Width="120"
                     Click="Wykresy_Click"/>
             <Button x:Name="TabelaTransakcje"
                     Content="Transakcje"
                     Margin="10"
                     Padding="10"
-                    Width="auto" 
+                    Width="120" 
                     Click="TabelaTransakcje_Click"/>
             <Button x:Name="TabelaRezerwacje"
                     Content="Rezerwacje"
                     Margin="10"
                     Padding="10"
-                    Width="auto"
+                    Width="120"
                     Click="TabelaRezerwacje_Click"/>
             <Button x:Name="TabelaPrzedmioty"
                     Content="Przedmioty"
                     Margin="10"
                     Padding="10"
-                    Width="auto"
+                    Width="120"
                     Click="TabelaPrzedmioty_Click"/>
 
             <Button x:Name="AddFilm"
                     Content="Filmy"
                     Margin="10"
                     Padding="10"
-                    Width="auto"
+                    Width="120"
                     Click="AddFilm_Click"/>
 
             <Button x:Name="AddOgloszenie"
                     Content="Ogloszenia"
                     Margin="10"
                     Padding="10"
-                    Width="auto"
+                    Width="120"
                     Click="AddOgloszenie_Click"/>
 
-        </StackPanel>
+        </WrapPanel>
         <Frame x:Name="ContentAdmin" 
                Grid.Row="1" 
                NavigationUIVisibility="Hidden" />

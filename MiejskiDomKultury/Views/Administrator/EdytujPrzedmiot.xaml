@@ -1,0 +1,182 @@
+﻿<Window x:Class="MiejskiDomKultury.Views.Administrator.EdytujPrzedmiot"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MiejskiDomKultury.Views.Administrator"
+        mc:Ignorable="d"
+        Title="EdytujPrzedmiot" Height="500" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock x:Name="EdytujPrzedmiotTextBlock"
+                   Text="Edytuj przedmiot"
+                   Grid.ColumnSpan="2"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   Margin="10"
+                   Padding="10"
+                   FontSize="36"
+                   FontWeight="Bold" />
+        
+        <TextBlock x:Name="DodajPrzedmiotNazwa"
+                   Grid.Row="1"
+                   Text="Nazwa:"
+                   Margin="10"
+                   Padding="5"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Right"/>
+        <TextBox x:Name="WprowadzNazwePrzedmiotu"
+                 Text="{Binding Nazwa, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                 Grid.Column="1"
+                 Grid.Row="1"
+                 Margin="10"
+                 Padding="5"
+                 VerticalAlignment="Center"
+                 HorizontalAlignment="Left"
+                 Width="200"/>
+        <TextBlock Foreground="Red" 
+                   FontSize="12" 
+                   Margin="10,0,0,0"
+                   Grid.Column="1"
+                   Grid.Row="2"
+                   Text="{Binding ElementName=WprowadzNazwePrzedmiotu, Path=(Validation.Errors)[0].ErrorContent}" />
+
+        <TextBlock x:Name="DodajStanNazwa"
+                   Grid.Row="3"
+                   Text="Stan:"
+                   Margin="10"
+                   Padding="5"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Right"/>
+        <TextBox x:Name="WprowadzStanPrzedmiotu"
+                 Text="{Binding Stan, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                 Grid.Column="1"
+                 Grid.Row="3"
+                 Margin="10"
+                 Padding="5"
+                 VerticalAlignment="Center"
+                 HorizontalAlignment="Left"
+                 Width="200"/>
+        <TextBlock Foreground="Red" 
+                   FontSize="12" 
+                   Margin="10,0,0,0"
+                   Grid.Column="1"
+                   Grid.Row="4"
+                   Text="{Binding ElementName=WprowadzStanPrzedmiotu, Path=(Validation.Errors)[0].ErrorContent}" />    
+
+        <TextBlock x:Name="DodajTypNazwa"
+                   Grid.Row="5"
+                   Text="Typ:"
+                   Margin="10"
+                   Padding="5"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Right"/>
+        <TextBox x:Name="WprowadzTypPrzedmiotu"
+                 Text="{Binding Typ, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                 Grid.Column="1"
+                 Grid.Row="5"
+                 Margin="10"
+                 Padding="5"
+                 VerticalAlignment="Center"
+                 HorizontalAlignment="Left"
+                 Width="200"/>
+        <TextBlock Foreground="Red" 
+                   FontSize="12" 
+                   Margin="10,0,0,0"
+                   Grid.Column="1"
+                   Grid.Row="6"
+                   Text="{Binding ElementName=WprowadzTypPrzedmiotu, Path=(Validation.Errors)[0].ErrorContent}" />
+
+        <TextBlock x:Name="DodajCenaZaDobeNazwa"
+                   Grid.Row="7"
+                   Text="Cena za dobę:"
+                   Margin="10"
+                   Padding="5"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Right"/>
+        <TextBox x:Name="WprowadzCeneZaDobePrzedmiotu"
+                 Text="{Binding Cena_Wartosc, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                 Grid.Column="1"
+                 Grid.Row="7"
+                 Margin="10"
+                 Padding="5"
+                 VerticalAlignment="Center"
+                 HorizontalAlignment="Left"
+                 Width="200"/>
+        <TextBlock Foreground="Red" 
+                   FontSize="12" 
+                   Margin="10,0,0,0"
+                   Grid.Column="1"
+                   Grid.Row="8"
+                   Text="{Binding ElementName=WprowadzCeneZaDobePrzedmiotu, Path=(Validation.Errors)[0].ErrorContent}" />
+
+        <TextBlock x:Name="DodajPrzedmiotCenaZaDobeWaluta"
+                   Grid.Row="9"
+                   Text="Waluta:"
+                   Margin="10"
+                   Padding="5"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Right"/>
+        <ComboBox x:Name="WalutaComboBox"
+                  Grid.Row="9"
+                  Grid.Column="1"
+                  Margin="15,10,10,10"
+                  Padding="5"
+                  Width="190" 
+                  VerticalAlignment="Center"
+                  HorizontalAlignment="Left"
+                  ItemsSource="{Binding WalutaComboBox}"
+                  SelectedValue="{Binding Przedmiot.CenaZaDobe_Waluta, Mode=TwoWay}"/>
+
+        <TextBlock x:Name="DodajDostepnoscNazwa"
+                   Grid.Row="10"
+                   Text="Dostępność:"
+                   Margin="10"
+                   Padding="5"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Right"/>
+        <CheckBox x:Name="CheckBoxDostepnosc"
+                  Content="Czy przedmiot jest dostępny?"
+                  Grid.Column="1"
+                  Grid.Row="10"
+                  HorizontalAlignment="Left"
+                  VerticalAlignment="Center"
+                  Margin="10" 
+                  IsChecked="{Binding Przedmiot.Dostepnosc}"/>
+        <StackPanel Orientation="Horizontal"
+                    Grid.Row="11"
+                    Grid.Column="1"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Right">
+            <Button x:Name="EdytujPrzedmiotPrzycisk"
+                    Content="Zapisz"
+                    Margin="10"
+                    Padding="10"
+                    Command="{Binding ZapiszCommand}"/>
+            <Button x:Name="AnulujNowyPrzedmiotPrzycisk"
+                    Content="Anuluj"
+                    Margin="10"
+                    Padding="10"
+                    Command="{Binding AnulujCommand}"
+                    CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"/>
+        </StackPanel>
+    </Grid>
+</Window>

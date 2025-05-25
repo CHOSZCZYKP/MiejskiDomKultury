@@ -1,9 +1,11 @@
 ﻿using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
+using LiveChartsCore.SkiaSharpView.Painting;
 using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using MiejskiDomKultury.Data;
 using MiejskiDomKultury.Interfaces;
 using MiejskiDomKultury.Repositories;
+using SkiaSharp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,29 +16,47 @@ namespace MiejskiDomKultury.ViewModel
 {
     public class WykresViewModel
     {
-        //przykładowe dane żeby pokazać mniej więcej jak to będzie wyglądać
         private readonly ITranskacjaRepository _transkacjaRepository;
-        public IEnumerable<ISeries> SeriesLine { get; set; }
+        private readonly IRezerwacjaRepository _rezerwacjaRepository;
+        public Axis[] YAxis { get; set; }
         public Axis[] XAxis { get; set; }
 
         public IEnumerable<ISeries> SeriesColumn { get; set; }
-        public IEnumerable<ISeries> SeriesRow { get; set; }
         public IEnumerable<ISeries> SeriesPie { get; set; }
 
         public WykresViewModel()
         {
             var context = new DbContextDomKultury();
             _transkacjaRepository = new TransakcjaRepository(context);
+            _rezerwacjaRepository = new RezerwacjeRepository(context);
 
-            SeriesColumn = new ISeries[]
+            var listaSalZZajetoscia = _rezerwacjaRepository.GetHowManyTimesRoomBooked();
+
+            SeriesColumn = new[]
             {
                 new ColumnSeries<int>
                 {
-                    Values = new int[] {1, 2, 8, 19, 4}
+                    Values = listaSalZZajetoscia.Select(s => s.Value).ToArray(),
                 }
             };
 
-            SeriesPie = _transkacjaRepository.GetAllTransakcjeGroupTyp().Select(x => new PieSeries<int>
+            YAxis = new[]
+            {
+                new Axis
+                {
+                    MinLimit = 0,
+                    MinStep = 1,
+                }
+            };
+            XAxis = new[]
+            {
+                new Axis
+                {
+                    Labels = listaSalZZajetoscia.Select(x => x.Key).ToArray()
+                }
+            };
+
+        SeriesPie = _transkacjaRepository.GetAllTransakcjeGroupTyp().Select(x => new PieSeries<int>
             {
                 Name = x.Key,
                 Values = new int[] { x.Value },

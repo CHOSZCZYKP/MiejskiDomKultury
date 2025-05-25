@@ -23,33 +23,74 @@ namespace MiejskiDomKultury.Repositories
         public IEnumerable<Sala> GetAllSale()
             => _dbContextDom.Sale.ToList();
 
-        //zwraca sale ktore nie są zarezerwowane w danym dniu
-        public IEnumerable<Sala> GetAvailableAtDay(DateOnly date)
+
+        // idk czy to zadziala
+        public Dictionary<Sala, string> GetAvailableAtDay(DateOnly date)
         {
-          return  _dbContextDom.Rezerwacje
-       .Where(a => DateOnly.FromDateTime(a.OdKiedy) != date || DateOnly.FromDateTime(a.DoKiedy) != date)
-       .Select(s => s.Sala)
-       .ToList();
+
+            TimeSpan start = TimeSpan.Parse("8:00");
+            TimeSpan end = TimeSpan.Parse("22:00");
+            var  reserverations=_dbContextDom.Rezerwacje.Include(a=>a.Sala).Where(p=>DateOnly.FromDateTime(p.Data) ==date).ToList();
+            
+            var sale = reserverations.Select(p=>p.Sala).Distinct().ToList();
+           
+            Dictionary<Sala,string> result = new Dictionary<Sala, string>();
+
+            foreach(var sala in sale)
+            {
+                string freeHours="";
+                TimeSpan lastHour =start;
+                int i = 0;
+                var reservationRoom = sala.Rezerwacje.OrderBy(a => a.GodzinaPoczatkowa);
+                foreach (var res in reservationRoom) {
+                    i++;
+                    if (res.GodzinaPoczatkowa > start)
+                    {
+                        freeHours =$"{start} do {res.GodzinaPoczatkowa}";
+                        lastHour=res.GodzinaPoczatkowa;
+                    }
+
+                    if (lastHour < res.GodzinaPoczatkowa) {
+                        freeHours +=$"{lastHour} do {res.GodzinaPoczatkowa}";
+                        lastHour = res.GodzinaPoczatkowa;
+                    }
+                    
+                    if(res.GodzinaKoncowa < end && i==reservationRoom.Count()-1)
+                    {
+                        freeHours += $"{res.GodzinaKoncowa} do {end}";
+                    }
+                
+                    result.Add(sala,freeHours);
+                }
+
+            }
+            return result;
         }
 
-        public bool IsSalaFreeByHourToHour(DateTime start, DateTime end,string name)
+        //tu tez nie wiem
+        public bool IsSalaFreeByHourToHour(DateTime start, DateTime end, string name)
         {
-            var rezerwacje = _dbContextDom.Sale
-            .Where(s => s.Nazwa == name)
-            .Select(s => s.Rezerwacje)
-            .FirstOrDefault();
+            var reservation = _dbContextDom.Sale
+                .Where(s => s.Nazwa == name)
+                .SelectMany(s => s.Rezerwacje)
+                .ToList();
 
-            foreach(var rez in rezerwacje)
+            foreach (var rez in reservation)
             {
-               if(rez.DoKiedy>start && rez.DoKiedy<end || (rez.OdKiedy >= start && rez.DoKiedy <=end) || (rez.OdKiedy>start && rez.OdKiedy<end))
-                {
+                var startRes = rez.Data.Date + rez.GodzinaPoczatkowa;
+                var endRes = rez.Data.Date + rez.GodzinaKoncowa;
+
+                
+                bool colision =
+                    (start < endRes && end > startRes);
+
+                if (colision)
                     return false;
-                }
             }
-
-
 
             return true;
         }
+
     }
 }
+

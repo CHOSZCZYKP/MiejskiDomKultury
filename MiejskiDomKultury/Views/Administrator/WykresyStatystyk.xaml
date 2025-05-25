@@ -40,6 +40,8 @@
                        HorizontalAlignment="Center"
                        Margin="5"/>
             <lvc:CartesianChart Series="{Binding SeriesColumn}"
+                                YAxes="{Binding YAxis}"
+                                XAxes="{Binding XAxis}"
                                 Margin="10"
                                 Grid.Row="4"
                                 Height="400"/>

@@ -112,7 +112,7 @@ namespace MiejskiDomKultury.Services
             string CheckAllAvailableRooms(string date)
             {
                 var rooms = _saleRepository.GetAvailableAtDay(DateOnly.Parse(date));
-                return string.Join(", ", rooms);
+                return $"{rooms.Select(p=>p.Key)} od {rooms.Select(p => p.Value)}";
             }
 
             string GetAllRooms()

@@ -11,20 +11,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace MiejskiDomKultury.Views.Administrator
 {
     /// <summary>
-    /// Logika interakcji dla klasy TabelaRezerwacjeAdmin.xaml
+    /// Logika interakcji dla klasy EdytujPrzedmiot.xaml
     /// </summary>
-    public partial class TabelaRezerwacjeAdmin : Page
+    public partial class EdytujPrzedmiot : Window
     {
-        public TabelaRezerwacjeAdmin()
+        public EdytujPrzedmiot()
         {
             InitializeComponent();
-            DataContext = new TabelaRezerwacjeAdminViewModel();
         }
     }
 }

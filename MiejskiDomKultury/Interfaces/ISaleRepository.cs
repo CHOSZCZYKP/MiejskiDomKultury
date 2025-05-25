@@ -12,7 +12,7 @@ namespace MiejskiDomKultury.Interfaces
         IEnumerable<Sala> GetAllSale();
 
 
-        IEnumerable<Sala> GetAvailableAtDay(DateOnly date);
+        Dictionary<Sala, string> GetAvailableAtDay(DateOnly date);
 
         bool IsSalaFreeByHourToHour(DateTime start, DateTime end, string name);
     }

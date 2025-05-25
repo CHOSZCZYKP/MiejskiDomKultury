@@ -80,8 +80,11 @@ namespace MiejskiDomKultury
                      tickets.Add(seansBilet);
                 }
             PdfService pdfService = new PdfService();
-            pdfService.GenerateTickets(tickets);
+            var att= pdfService.GenerateTickets(tickets);
+                EmailService emailService = new EmailService();
 
+                //Trzeba dać prawdziwy adres email!!!
+                emailService.sendTickets(att, "kubanczyk03@wp.pl");
             NavigationService.Navigate(new Home());
         });
         }

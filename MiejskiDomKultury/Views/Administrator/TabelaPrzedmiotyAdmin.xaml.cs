@@ -26,9 +26,10 @@ namespace MiejskiDomKultury.Views.Administrator
         public TabelaPrzedmiotyAdmin()
         {
             InitializeComponent();
-            // DataContext = new TabelaPrzedmiotyViewModel();
+           // DataContext = new TabelaPrzedmiotyViewModel();
             _viewModel = new TabelaPrzedmiotyViewModel();
             _viewModel.WywolajOknoDodajNowyPrzedmiot += WyswietlDodajNowyPrzedmiot;
+            _viewModel.WywolajOknoEdytujPrzedmiot += WyswietlEdycjePrzedmiotu;
             DataContext = _viewModel;
         }
 
@@ -40,17 +41,20 @@ namespace MiejskiDomKultury.Views.Administrator
             return Task.FromResult(wynik == true);
         }
 
-        private void DataGridPrzedmiotyAdmin_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)
+        private Task<bool> WyswietlEdycjePrzedmiotu()
         {
-            if (e.EditAction == DataGridEditAction.Commit)
-            {
-                var edytowanyPrzedmiot = e.Row.Item as Przedmiot;
+            EdytujPrzedmiot edytujPrzedmiot = new EdytujPrzedmiot();
+            var vm = new EdytujPrzedmiotViewModel(_viewModel.WybranyPrzedmiot);
 
-                if (_viewModel.ZapiszZmianyCommand.CanExecute(edytowanyPrzedmiot))
-                {
-                    _viewModel.ZapiszZmianyCommand.Execute(edytowanyPrzedmiot);
-                }
-            }
+            vm.CloseDialogWithResult += (result) =>
+            {
+                edytujPrzedmiot.DialogResult = result;
+                edytujPrzedmiot.Close();
+            };
+
+            edytujPrzedmiot.DataContext = vm;
+            bool? wynik = edytujPrzedmiot.ShowDialog();
+            return Task.FromResult(wynik == true);
         }
     }
 }
