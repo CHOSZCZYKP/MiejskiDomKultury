@@ -1,4 +1,6 @@
-﻿using MiejskiDomKultury.Model;
+﻿using Microsoft.EntityFrameworkCore;
+using MiejskiDomKultury.Data;
+using MiejskiDomKultury.Model;
 using MiejskiDomKultury.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -38,8 +40,15 @@ namespace MiejskiDomKultury
             var selectedItem = DataGridPrzedmioty.SelectedItem as Przedmiot;
             if (selectedItem == null) return;
 
-            var wypDat = new WypozyczenieDaty(selectedItem);
-            bool? result = wypDat.ShowDialog();
+            using (var db = new DbContextDomKultury())
+            {
+                var wypozyczenia = db.Wypozyczenia
+                    .Where(w => w.IdPrzedmiotu == selectedItem.Id)
+                    .ToList();
+
+                var wypDat = new WypozyczenieDaty(selectedItem, wypozyczenia);
+                wypDat.ShowDialog();
+            }
         }
     }
 }
