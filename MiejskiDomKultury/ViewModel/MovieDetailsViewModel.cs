@@ -18,7 +18,6 @@ namespace MiejskiDomKultury.ViewModel
 
         public MovieDetailsViewModel(Film film)
         {
-            // jesli CzyLangAngielski to false
             if (!Settings.Default.CzyLangAngielski)
             {
                 film.Opis = film.OpisPL;
@@ -29,6 +28,7 @@ namespace MiejskiDomKultury.ViewModel
             LoadShowDates(film.Id);
             NavigateToSeatsCommand = new RelayCommand<string>(OnNavigateToSeats);
         }
+
 
         private void LoadShowDates(int movieId)
         {
@@ -62,28 +62,5 @@ namespace MiejskiDomKultury.ViewModel
     }
 
 
-    public class RelayCommand<T> : ICommand
-    {
-        private readonly Action<T> _execute;
-        private readonly Func<T, bool> _canExecute;
 
-        public RelayCommand(Action<T> execute, Func<T, bool> canExecute = null)
-        {
-            _execute = execute;
-            _canExecute = canExecute;
-        }
-
-        public bool CanExecute(object parameter)
-        {
-            return _canExecute == null || _canExecute((T)parameter);
-        }
-
-        public void Execute(object parameter)
-        {
-            _execute((T)parameter);
-        }
-
-        public event EventHandler CanExecuteChanged;
-        public void RaiseCanExecuteChanged() => CanExecuteChanged?.Invoke(this, EventArgs.Empty);
-    }
 }

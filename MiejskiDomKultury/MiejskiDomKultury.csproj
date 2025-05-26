@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\bot.png" />
     <None Remove="Assets\david.png" />
     <None Remove="Assets\despair.webp" />
     <None Remove="Assets\die1.png" />
@@ -17,11 +18,14 @@
     <None Remove="Assets\die4.png" />
     <None Remove="Assets\die5.png" />
     <None Remove="Assets\die6.png" />
+    <None Remove="Assets\disabled.png" />
+    <None Remove="Assets\imperator.jpg" />
     <None Remove="Assets\news1.webp" />
     <None Remove="Assets\news2.webp" />
     <None Remove="Assets\news3.webp" />
     <None Remove="Assets\news4.webp" />
     <None Remove="Assets\news5.webp" />
+    <None Remove="Assets\plik.txt" />
     <None Remove="Assets\settings.png" />
     <None Remove="Assets\song.mp3" />
     <None Remove="Assets\volume-up.png" />
@@ -51,6 +55,9 @@
     <Resource Include="Assets\david.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Content Include="Assets\bot.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Assets\despair.webp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -72,6 +79,12 @@
     <Content Include="Assets\die6.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\disabled.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\imperator.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Assets\news1.webp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -85,6 +98,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\news5.webp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\plik.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Resource Include="Assets\settings.png">

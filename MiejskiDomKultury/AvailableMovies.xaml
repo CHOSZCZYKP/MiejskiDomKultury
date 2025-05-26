@@ -6,6 +6,8 @@
       xmlns:local="clr-namespace:MiejskiDomKultury"
       xmlns:vm="clr-namespace:MiejskiDomKultury.ViewModels"
       mc:Ignorable="d" 
+      xmlns:sys="clr-namespace:System;assembly=mscorlib"
+
       d:DesignHeight="450" d:DesignWidth="800"
       Title="AvailableMovies">
 
@@ -16,7 +18,8 @@
     <Grid Margin="10">
         <StackPanel>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10">
-                <Label VerticalAlignment="Center">Wyszukaj po nazwie</Label>
+                <Label VerticalAlignment="Center" Content="{StaticResource wyszukaj}" />
+
                 <TextBox Width="300" FontSize="20" 
                          Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
             </StackPanel>
@@ -26,10 +29,12 @@
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal" Margin="0 5">
                             <TextBlock Text="{Binding Tytul}" Width="200" VerticalAlignment="Center"/>
-                            <Button Content="Do szczegółów" 
-        Margin="10 0 0 0"
-        Command="{Binding DataContext.NavigateToDetailsCommand, RelativeSource={RelativeSource AncestorType=ListBox}}"
-        CommandParameter="{Binding}" />
+                            <Button 
+    Content="{StaticResource detale}" 
+    Margin="10 0 0 0"
+    Command="{Binding DataContext.NavigateToDetailsCommand, RelativeSource={RelativeSource AncestorType=ListBox}}"
+    CommandParameter="{Binding}" />
+
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

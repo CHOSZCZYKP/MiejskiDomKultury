@@ -27,4 +27,13 @@
     <sys:String x:Key="menuChat">AI Assistant</sys:String>
     <sys:String x:Key="menuKino">Fidelio Cinema</sys:String>
 
+    <!-- AvailableMovies.xaml-->
+    <sys:String x:Key="detale">Details</sys:String>
+    <sys:String x:Key="wyszukaj">Search by title</sys:String>
+
+    <!-- MovieDetails.xaml-->
+    <sys:String x:Key="rok">Year</sys:String>
+    <sys:String x:Key="gatunek">Genre</sys:String>
+    <sys:String x:Key="role">Main cast</sys:String>
+    <sys:String x:Key="seanse">Available showtimes</sys:String>
 </ResourceDictionary>

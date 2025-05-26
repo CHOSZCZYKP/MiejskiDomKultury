@@ -37,6 +37,7 @@
                             Click="Ustawiania_Click">
                         <Image Source="Assets\settings.png"/>
                     </Button>
+                    
                     <Button x:Name="Music"
         Margin="5"
         Padding="5"
@@ -47,6 +48,22 @@
            Stretch="Uniform"
            RenderOptions.BitmapScalingMode="HighQuality"/>
                     </Button>
+                    
+                    
+                    <Button x:Name="VoiceToggleButton"
+        Margin="5"
+        Padding="5"
+        Click="VoiceToggleButton_Click">
+                        <Image x:Name="VoiceToggleIcon"
+           Width="16" 
+           Height="16"
+           Stretch="Uniform"
+           RenderOptions.BitmapScalingMode="HighQuality"/>
+                    </Button>
+
+                    
+                    
+                    
                     <Button x:Name="PanelMenu"
                             Content="{DynamicResource navMenu}"
                             Margin="5"

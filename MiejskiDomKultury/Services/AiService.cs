@@ -43,7 +43,7 @@ namespace MiejskiDomKultury.Services
 
             List<OpenAI.Chat.ChatMessage> messages = new()
     {
-        new UserChatMessage($"Wygeneruj newsa związanego z miastem Ostrołęka, obecna data "+DateTime.Now)
+        new UserChatMessage($"Wygeneruj krótkiego newsa związanego z miastem Ostrołęka")
     };
 
             ChatCompletionOptions options = new()
@@ -125,7 +125,7 @@ namespace MiejskiDomKultury.Services
                 return string.Join(", ", _movieRepository.GetAvailableMovies().Select(a=>a.Tytul));
             }
 
-            string filePath = "plik.txt";
+            string filePath = "Assets/plik.txt";
 
 
             AssistantClient client = new(Environment.GetEnvironmentVariable("OPEN_AI_API_KEY"));

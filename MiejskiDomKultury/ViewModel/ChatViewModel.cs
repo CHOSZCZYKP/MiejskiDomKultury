@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using MiejskiDomKultury.Model;
 using MiejskiDomKultury.Services;
-
+using MiejskiDomKultury.ViewModel;
 namespace MiejskiDomKultury.ViewModel
 {
     public class ChatViewModel : INotifyPropertyChanged
@@ -33,7 +33,8 @@ namespace MiejskiDomKultury.ViewModel
         public ChatViewModel()
         {
             _aiService = new AIService();
-            SendMessageCommand = new RelayCommand(async _ => await SendMessageAsync(), _ => !string.IsNullOrWhiteSpace(UserInput));
+            SendMessageCommand = new RelayCommand<object>(async _ => await SendMessageAsync(), _ => !string.IsNullOrWhiteSpace(UserInput));
+
             Messages.Add(new ChatMessage("HAL 9000", "Cześć, jak mogę Ci pomóc?"));
         }
 
@@ -44,12 +45,14 @@ namespace MiejskiDomKultury.ViewModel
             {
                 var userMessage = new ChatMessage("Ja", UserInput, isUser: true);
                 Messages.Add(userMessage);
-
+               
                 
                 thinkingMessage = new ChatMessage("HAL 9000", "Myśli...");
                 Messages.Add(thinkingMessage);
 
-                string response = await _aiService.GetAssistantResponse(UserInput);
+                string q = UserInput;
+                UserInput = string.Empty;
+                string response = await _aiService.GetAssistantResponse(q);
 
                 
                 Messages.Remove(thinkingMessage);
@@ -63,7 +66,7 @@ namespace MiejskiDomKultury.ViewModel
                     await Task.Delay(30);
                 }
 
-                UserInput = string.Empty;
+                
             }
             catch (Exception ex)
             {
@@ -81,25 +84,5 @@ namespace MiejskiDomKultury.ViewModel
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 
-    public class RelayCommand : ICommand
-    {
-        private readonly Action<object> _execute;
-        private readonly Func<object, bool> _canExecute;
-
-        public RelayCommand(Action<object> execute, Func<object, bool> canExecute = null)
-        {
-            _execute = execute;
-            _canExecute = canExecute;
-        }
-
-        public bool CanExecute(object parameter) => _canExecute == null || _canExecute(parameter);
-
-        public void Execute(object parameter) => _execute(parameter);
-
-        public event EventHandler CanExecuteChanged
-        {
-            add => CommandManager.RequerySuggested += value;
-            remove => CommandManager.RequerySuggested -= value;
-        }
-    }
+    
 }

@@ -19,10 +19,10 @@
             <TextBlock Text="{Binding Film.Tytul}" FontSize="28" FontWeight="Bold" Margin="0 0 0 20" />
             <TextBlock Text="{Binding Film.Opis}" FontSize="16" Margin="0 0 0 20" TextWrapping="Wrap" />
 
-            <TextBlock Text="Rok:" FontWeight="Bold" FontSize="18" />
+            <TextBlock Text="{DynamicResource rok}" FontWeight="Bold" FontSize="18" />
             <TextBlock Text="{Binding Film.Rok}" FontSize="16" Margin="0 0 0 20" />
 
-            <TextBlock Text="W rolach głównych:" FontWeight="Bold" FontSize="18" />
+            <TextBlock Text="{DynamicResource role}" FontWeight="Bold" FontSize="18" />
             <ItemsControl ItemsSource="{Binding Film.Aktorzy}" Margin="0 0 0 20">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
@@ -31,7 +31,7 @@
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
 
-            <TextBlock Text="Gatunek:" FontWeight="Bold" FontSize="18" />
+            <TextBlock Text="{DynamicResource gatunek}" FontWeight="Bold" FontSize="18" />
             <ItemsControl ItemsSource="{Binding Film.Gatunki}" Margin="0 0 0 20">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
@@ -40,7 +40,7 @@
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
 
-            <TextBlock Text="Dostępne seanse:" FontWeight="Bold" FontSize="18" Margin="0 0 0 10" />
+            <TextBlock Text="{DynamicResource seanse}" FontWeight="Bold" FontSize="18" Margin="0 0 0 10" />
             <ItemsControl ItemsSource="{Binding ShowDates}" Margin="0 0 0 20">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>

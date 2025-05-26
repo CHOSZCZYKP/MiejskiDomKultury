@@ -25,7 +25,7 @@ namespace MiejskiDomKultury.Services
                     {
                        
                         var fontTitle = new XFont("Arial", 20, XFontStyleEx.Bold);
-                        gfx.DrawString("Bilet do Kina", fontTitle, XBrushes.Black,
+                        gfx.DrawString("Bilet do Kina Fidelio", fontTitle, XBrushes.Black,
                             new XRect(0, 40, page.Width, page.Height), XStringFormats.TopCenter);
 
                         

@@ -7,6 +7,7 @@ using MiejskiDomKultury.Services;
 using System.Windows.Controls;
 using ControlzEx.Standard;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace MiejskiDomKultury
 {
@@ -21,6 +22,8 @@ namespace MiejskiDomKultury
         public MainWindow()
         {
             InitializeComponent();
+
+            (VoiceToggleButton.Content as Image).Source = new BitmapImage(new Uri("Assets/bot.png", UriKind.RelativeOrAbsolute));
             //proszem nie usuwac
             try
             {
@@ -85,26 +88,35 @@ namespace MiejskiDomKultury
             }
         }
 
-        private void VoiceBot_Click(int totalDiceValue)
+
+        private void VoiceToggleButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
+                var iconUri = IsVoiceOn
+                    ? new Uri("Assets/disabled.png", UriKind.RelativeOrAbsolute)
+                    : new Uri("Assets/bot.png", UriKind.RelativeOrAbsolute);
+
+                (VoiceToggleButton.Content as Image).Source = new BitmapImage(iconUri);
+
                 if (IsVoiceOn)
                 {
                     cts.Cancel();
+                    IsVoiceOn = false;
                 }
                 else
                 {
-                    Task.Run(() =>
-                    {
-                        voiceBot.StartListening(cts.Token);
-                    });
+                    cts = new CancellationTokenSource();
+                    Task.Run(() => voiceBot.StartListening(cts.Token));
+                    IsVoiceOn = true;
                 }
             }
-            catch (Exception ex) { 
-            
+            catch (Exception ex)
+            {
+                MessageBox.Show("Błąd przy przełączaniu VoiceBota: " + ex.Message);
             }
         }
+
 
 
         private void SetVolumeFromSlider(int totalDiceValue)

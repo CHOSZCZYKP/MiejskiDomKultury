@@ -27,4 +27,14 @@
     <sys:String x:Key="menuChat">ChatBot</sys:String>
     <sys:String x:Key="menuKino">Kino Fidelio</sys:String>
 
+    
+    <!-- AvailableMovies.xaml-->
+    <sys:String x:Key="detale">Zobacz szczegóły</sys:String>
+    <sys:String x:Key="wyszukaj">Wyszukaj po nazwie</sys:String>
+
+    <!-- MovieDetails.xaml-->
+    <sys:String x:Key="rok">Rok</sys:String>
+    <sys:String x:Key="gatunek">Gatunki</sys:String>
+    <sys:String x:Key="role">W rolach głównych</sys:String>
+    <sys:String x:Key="seanse">Najbliższe seanse</sys:String>
 </ResourceDictionary>

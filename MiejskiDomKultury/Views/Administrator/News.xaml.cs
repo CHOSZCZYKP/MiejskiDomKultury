@@ -83,12 +83,8 @@ namespace MiejskiDomKultury.Views.Administrator
             }
             else
             {
-                string defaultImagePath = System.IO.Path.Combine(
-                    AppDomain.CurrentDomain.BaseDirectory,
-                    "Assets",
-                    "imperator.jpg"
-                );
-                imageData = File.ReadAllBytes(defaultImagePath);
+
+                imageData = File.ReadAllBytes("Assets/imperator.jpg");
             }
 
             Ogloszenie ogloszenie = new Ogloszenie
