@@ -36,4 +36,26 @@
     <sys:String x:Key="gatunek">Genre</sys:String>
     <sys:String x:Key="role">Main cast</sys:String>
     <sys:String x:Key="seanse">Available showtimes</sys:String>
+    
+    
+    <!-- ChatBot.xaml -->
+    <sys:String x:Key="wyslij">Send message</sys:String>
+    
+    <!-- ChatBot.xaml -->
+    <sys:String x:Key="ekran">Screen</sys:String>
+    <sys:String x:Key="wolne">Free seats</sys:String>
+    <sys:String x:Key="zajete">Taken seats</sys:String>
+    <sys:String x:Key="miejsca">Yours seats</sys:String>
+    <sys:String x:Key="zaplac">Payment</sys:String>
+
+
+ 
+
+
+    <sys:String x:Key="tytul">Title of announcement</sys:String>
+    <sys:String x:Key="createai">Creat with AI</sys:String>
+    <sys:String x:Key="tresc">Content:</sys:String>
+    <sys:String x:Key="zdjecie">Image</sys:String>
+    <sys:String x:Key="wybierzzdjecie">Select a image</sys:String>
+    <sys:String x:Key="Add announcement">Add announcement</sys:String>
 </ResourceDictionary>

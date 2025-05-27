@@ -19,12 +19,12 @@
         </Grid.RowDefinitions>
 
         <!-- Row 0 -->
-        <TextBlock Text="Tytuł ogłoszenia:" FontWeight="Bold" />
+        <Label Content="{StaticResource tytul}" FontWeight="Bold" />
         <TextBox x:Name="TitleTextBox" Grid.Row="1" Margin="0,5,0,15" />
 
         <!-- Row 2 - Nowy przycisk -->
         <Button Grid.Row="2" 
-                Content="Stwórz z AI" 
+                Content="{StaticResource createai}"
                 Width="150" 
                 HorizontalAlignment="Left" 
                 Click="CreateWithAi" 
@@ -32,8 +32,8 @@
 
         <!-- Row 3 -->
         <StackPanel Grid.Row="3">
-            <TextBlock x:Name="DescriptionLabel" 
-                       Text="Opis:" 
+            <Label x:Name="DescriptionLabel" 
+                       Content="{StaticResource tresc}"
                        FontWeight="Bold" />
             <TextBox x:Name="DescriptionTextBox" 
                      Height="100" 
@@ -43,8 +43,8 @@
 
         <!-- Nowa sekcja dla zdjęcia -->
         <StackPanel Grid.Row="4" Margin="0,15,0,10">
-            <TextBlock Text="Zdjęcie:" FontWeight="Bold"/>
-            <Button Content="Wybierz zdjęcie..." 
+            <Label Content="{StaticResource zdjecie}" FontWeight="Bold"/>
+            <Button Content="{StaticResource wybierzzdjecie}"
                     Click="SelectImage_Click"
                     Margin="0,5,0,0"
                     Width="120"
@@ -60,16 +60,10 @@
                        FontStyle="Italic"/>
         </StackPanel>
 
-        <!-- Przyciski -->
-        <Button Grid.Row="5" 
-                Content="Stwórz z AI" 
-                Width="150" 
-                HorizontalAlignment="Left" 
-                Click="CreateWithAi" 
-                Margin="0,0,0,10"/>
+  
 
         <Button Grid.Row="6" 
-                Content="Utwórz ogłoszenie" 
+                Content="{StaticResource Add announcement}"
                 Width="150" 
                 HorizontalAlignment="Left" 
                 Click="CreateAnnouncement_Click" />

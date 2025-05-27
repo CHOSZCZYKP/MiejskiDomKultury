@@ -28,9 +28,21 @@ namespace MiejskiDomKultury
             price = totalPrice;
             
             string seatsList = string.Join(", ", seats);
-            string summaryText = $"Wybrałeś miejsca: {seatsList}\n" +
+            string summaryText = "Error";
+
+            if (!Settings.Default.CzyLangAngielski)
+            {
+                 summaryText = $"Wybrałeś miejsca: {seatsList}\n" +
                                  $"Liczba miejsc: {seats.Count}\n" +
                                  $"Łączna kwota do zapłaty: {totalPrice} zł";
+            }
+            else
+            {
+                 summaryText = $"Your seats: {seatsList}\n" +
+                                $"All reserved seats: {seats.Count}\n" +
+                                $"Amount: {totalPrice} zł";
+            }
+
             movieRepositoryService = new MovieRepositoryService();
      
             SummaryTextBlock.Text = summaryText;
@@ -58,7 +70,7 @@ namespace MiejskiDomKultury
             if (sessionId != _currentSessionId) return;
 
 
-            MessageBox.Show("Platnosc sie  powiodla");
+          //  MessageBox.Show("Platnosc sie  powiodla");
 
             Dispatcher.Invoke(() => { 
 

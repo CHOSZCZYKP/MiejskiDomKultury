@@ -11,8 +11,7 @@ namespace MiejskiDomKultury.Services
     public class PaymentListener
     {
         private HttpListener _listener;
-        private string _successUrl;
-        private string _cancelUrl;
+     
 
         public PaymentListener(int port)
         {
@@ -33,13 +32,13 @@ namespace MiejskiDomKultury.Services
                 {
                     var sessionId = request.QueryString["session_id"];
                     onSuccess(sessionId);
-                    await SendResponse(context.Response, 200, "Płatność udana! Możesz zamknąć tę kartę.");
+                    await SendResponse(context.Response, 200, "Platnosc udana, mozesz zamknac te karte.\n Twoje bilety zostały wysłane na podany email oraz zapisane na twoim urządzeniue");
                 }
                 else if (request.Url.AbsolutePath == "/cancel")
                 {
                     var sessionId = request.QueryString["session_id"];
                     onCancel(sessionId);
-                    await SendResponse(context.Response, 200, "Płatność anulowana. Możesz zamknąć tę kartę.");
+                    await SendResponse(context.Response, 200, "Payment successfull, now you can close this tab. \n Your tickets have been sent to your email address and saved on your device");
                 }
             }
         }

@@ -37,4 +37,25 @@
     <sys:String x:Key="gatunek">Gatunki</sys:String>
     <sys:String x:Key="role">W rolach głównych</sys:String>
     <sys:String x:Key="seanse">Najbliższe seanse</sys:String>
+
+
+    <!-- ChatBot.xaml -->
+    <sys:String x:Key="wyslij">Wyślij</sys:String>
+
+  
+    <!-- ChatBot.xaml -->
+    <sys:String x:Key="ekran">Ekran</sys:String>
+    <sys:String x:Key="wolne">Miejsca wolne</sys:String>
+    <sys:String x:Key="zajete">Miejsca zajęte</sys:String>
+    <sys:String x:Key="miejsca">Wybrane miejsca</sys:String>
+    <sys:String x:Key="zaplac">Przejdź do płatności</sys:String>
+
+    <sys:String x:Key="tytul">Tytuł ogłoszenia</sys:String>
+    <sys:String x:Key="createai">Stwórz z AI</sys:String>
+    <sys:String x:Key="tresc">Zawartość:</sys:String>
+    <sys:String x:Key="zdjecie">Zdjęcie</sys:String>
+    <sys:String x:Key="wybierzzdjecie">Wybierz zdjęcie</sys:String>
+    <sys:String x:Key="Add announcement">Utwórz ogłoszenie</sys:String>
+
+  
 </ResourceDictionary>

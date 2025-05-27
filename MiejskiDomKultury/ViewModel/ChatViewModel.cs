@@ -34,8 +34,14 @@ namespace MiejskiDomKultury.ViewModel
         {
             _aiService = new AIService();
             SendMessageCommand = new RelayCommand<object>(async _ => await SendMessageAsync(), _ => !string.IsNullOrWhiteSpace(UserInput));
-
-            Messages.Add(new ChatMessage("HAL 9000", "Cześć, jak mogę Ci pomóc?"));
+            if (!Settings.Default.CzyLangAngielski)
+            {
+                Messages.Add(new ChatMessage("HAL 9000", "Cześć, jak mogę Ci pomóc?"));
+            }
+            else
+            {
+                Messages.Add(new ChatMessage("HAL 9000", "Hi, how can I help you?"));
+            }
         }
 
         private async Task SendMessageAsync()
@@ -45,9 +51,16 @@ namespace MiejskiDomKultury.ViewModel
             {
                 var userMessage = new ChatMessage("Ja", UserInput, isUser: true);
                 Messages.Add(userMessage);
-               
-                
-                thinkingMessage = new ChatMessage("HAL 9000", "Myśli...");
+
+                if (!Settings.Default.CzyLangAngielski)
+                {
+                    thinkingMessage = new ChatMessage("HAL 9000", "Myśli...");
+                }
+                else
+                {
+                    thinkingMessage = new ChatMessage("HAL 9000", "Thinking...");
+                }
+                //thinkingMessage = new ChatMessage("HAL 9000", "Myśli...");
                 Messages.Add(thinkingMessage);
 
                 string q = UserInput;
@@ -74,7 +87,7 @@ namespace MiejskiDomKultury.ViewModel
                 {
                     Messages.Remove(thinkingMessage);
                 }
-                Messages.Add(new ChatMessage("HAL 9000", $"Wystąpił błąd: {ex.Message}"));
+                Messages.Add(new ChatMessage("HAL 9000", $"ERROR 2137: {ex.Message}"));
             }
         }
 
