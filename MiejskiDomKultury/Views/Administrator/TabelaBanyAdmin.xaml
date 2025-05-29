@@ -45,14 +45,21 @@
                                     Binding="{Binding NazwaUzytkownika}"
                                     Width="1.1*" />
                 <DataGridTextColumn Header="Data"
-                                    Binding="{Binding Data, StringFormat=dd.MM.yyyy HH:mm:ss}"
+                                    Binding="{Binding Data, StringFormat=dd.MM.yyyy}"
                                     Width="*" />
                 <DataGridTextColumn Header="Długość"
                                     Binding="{Binding Dlugosc}"
                                     Width="0.5*" />
-                <DataGridTextColumn Header="Przyczyna"
-                                    Binding="{Binding Przyczyna}"
-                                    Width="2*" />
+                <DataGridTemplateColumn Header="Przyczyna"
+                                        Width="2*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Przyczyna}"
+                                       TextTrimming="CharacterEllipsis"
+                                       ToolTip="{Binding Przyczyna}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

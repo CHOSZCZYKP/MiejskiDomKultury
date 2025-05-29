@@ -1,5 +1,4 @@
-﻿using MiejskiDomKultury.ViewModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,20 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace MiejskiDomKultury.Views.Administrator
 {
     /// <summary>
-    /// Logika interakcji dla klasy TabelaWypozyczeniaAdmin.xaml
+    /// Interaction logic for FormularzBanu.xaml
     /// </summary>
-    public partial class TabelaWypozyczeniaAdmin : Page
+    public partial class FormularzBanu : Window
     {
-        public TabelaWypozyczeniaAdmin()
+        public FormularzBanu()
         {
             InitializeComponent();
-            DataContext = new TabelaWypozyczeniaAdminViewModel();
         }
     }
 }

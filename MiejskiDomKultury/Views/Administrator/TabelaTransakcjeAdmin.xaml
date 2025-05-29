@@ -46,7 +46,7 @@
                                     Binding="{Binding Kwota_Pelna}"
                                     Width="0.5*" />
                 <DataGridTextColumn Header="Data"
-                                    Binding="{Binding Data, StringFormat=dd.MM.yyyy HH:mm:ss}"
+                                    Binding="{Binding Data, StringFormat=dd.MM.yyyy}"
                                     Width="*" />
                 <DataGridTextColumn Header="Typ"
                                     Binding="{Binding Typ}"

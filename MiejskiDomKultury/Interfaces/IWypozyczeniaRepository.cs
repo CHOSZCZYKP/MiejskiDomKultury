@@ -1,5 +1,4 @@
 ﻿using MiejskiDomKultury.Dto;
-using MiejskiDomKultury.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace MiejskiDomKultury.Interfaces
 {
-    public interface IBanRepository
+    public interface IWypozyczeniaRepository
     {
-        IEnumerable<BanZUzytkownikiemDto> GetAllBansWithUsers();
-        void AddNewBan(Ban ban);
+        IEnumerable<WypozyczeniePrzedmiotuPrzezUzytkownika> GetAllWyozyczeniaWithUsersAndItems();
     }
 }

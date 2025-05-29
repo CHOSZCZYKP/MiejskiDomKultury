@@ -2,6 +2,7 @@
 using MiejskiDomKultury.Data;
 using MiejskiDomKultury.Dto;
 using MiejskiDomKultury.Interfaces;
+using MiejskiDomKultury.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,13 @@ namespace MiejskiDomKultury.Repositories
         {
             this._dbContextDomKultury = dbContextDomKultury;
         }
+
+        public void AddNewBan(Ban ban)
+        {
+            _dbContextDomKultury.Bany.Add(ban);
+            _dbContextDomKultury.SaveChanges();
+        }
+
         public IEnumerable<BanZUzytkownikiemDto> GetAllBansWithUsers()
             => _dbContextDomKultury.Bany
             .Include(b => b.Uzytkownik)

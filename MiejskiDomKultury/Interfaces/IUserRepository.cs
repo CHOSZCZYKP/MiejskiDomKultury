@@ -16,5 +16,6 @@ namespace MiejskiDomKultury.Interfaces
         public void AddNewUser(Uzytkownik user);
 
         IEnumerable<Uzytkownik> GetAllUsers();
+        void UpdateUser(Uzytkownik uzytkownik);
     }
 }

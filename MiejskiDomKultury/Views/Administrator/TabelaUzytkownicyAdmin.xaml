@@ -45,9 +45,30 @@
                 <DataGridTextColumn Header="Nazwa użytkownika"
                                     Binding="{Binding NazwaUzytkownika}"
                                     Width="*" />
-                <DataGridCheckBoxColumn Header="Czy ma bana"
+                <DataGridCheckBoxColumn Header="Czy ma karę"
                                         Binding="{Binding CzyMaBana}"
                                         Width="0.5*" />
+                <DataGridTemplateColumn Header="Akcja"
+                                        Width="0.5*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Command="{Binding DataContext.ZbanujOdbanujCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                    CommandParameter="{Binding}" 
+                                    Margin="2">
+                                <Button.Style>
+                                    <Style TargetType="Button">
+                                        <Setter Property="Content" Value="Zablokuj"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding CzyMaBana}" Value="True">
+                                                <Setter Property="Content" Value="Odblokuj"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
                 
             </DataGrid.Columns>
         </DataGrid>

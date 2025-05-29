@@ -4,14 +4,34 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:MiejskiDomKultury.Views.Administrator"
+      xmlns:core="clr-namespace:MiejskiDomKultury"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="TabelaWypozyczeniaAdmin">
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <core:PlaceholderTextBox x:Name="WyszukajWypozyczenie"
+                                 Placeholder="Wyszukaj wypożyczenie..."
+                                 Width="300"
+                                 VerticalAlignment="Center"
+                                 HorizontalAlignment="Center"
+                                 Margin="10"
+                                 Padding="10"
+                                 Text="{Binding WyszukiwanaFraza, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+
         <DataGrid x:Name="DataGridWypozyczeniaAdmin"
-          Width="auto"
-          Margin="10">
+                  Width="auto"
+                  Margin="10"
+                  Grid.Row="1"
+                  IsReadOnly="True"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  ItemsSource="{Binding WypozyczeniaCollectionView, Mode=TwoWay}">  
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Imię"
                                     Binding="{Binding Imie}"
@@ -23,13 +43,13 @@
                                     Binding="{Binding Email}"
                                     Width="*" />
                 <DataGridTextColumn Header="Data wypożyczenia"
-                                    Binding="{Binding DataWypozyczenia}"
+                                    Binding="{Binding DataWypozyczenia, StringFormat=dd.MM.yyyy}"
                                     Width="*" />
                 <DataGridTextColumn Header="Data zwrotu"
-                                    Binding="{Binding DataZwrotu}"
+                                    Binding="{Binding DataZwrotu, StringFormat=dd.MM.yyyy}"
                                     Width="*" />
                 <DataGridTextColumn Header="Nazwa przemiotu"
-                                    Binding="{Binding Nazwa}"
+                                    Binding="{Binding NazwaPrzedmiotu}"
                                     Width="*" />
                 <DataGridTextColumn Header="Cena"
                                     Binding="{Binding Cena}"

@@ -43,7 +43,7 @@
                                     Binding="{Binding Email}"
                                     Width="*" />
                 <DataGridTextColumn Header="Data"
-                                    Binding="{Binding Data}"
+                                    Binding="{Binding Data, StringFormat=dd.MM.yyyy}"
                                     Width="0.5*" />
                 <DataGridTextColumn Header="Od"
                                     Binding="{Binding GodzinaPoczatkowa}"

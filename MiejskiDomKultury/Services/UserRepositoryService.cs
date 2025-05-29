@@ -33,5 +33,11 @@ namespace MiejskiDomKultury.Services
         {
             return _context.Uzytkownicy.FirstOrDefault(x=>x.Email == email);
         }
+
+        public void UpdateUser(Uzytkownik uzytkownik)
+        {
+            _context.Uzytkownicy.Update(uzytkownik);
+            _context.SaveChanges();
+        }
     }
 }

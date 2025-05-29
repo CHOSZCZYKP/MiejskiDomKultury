@@ -1,5 +1,7 @@
-﻿using MiejskiDomKultury.Interfaces;
+﻿using MiejskiDomKultury.Helpers;
+using MiejskiDomKultury.Interfaces;
 using MiejskiDomKultury.Model;
+using MiejskiDomKultury.Views.Administrator;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -8,11 +10,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
+using System.Windows.Input;
 
 namespace MiejskiDomKultury.ViewModel
 {
     public class TabelaUzytkownicyAdminViewModel : INotifyPropertyChanged
     {
+        public ICommand ZbanujOdbanujCommand { get; }
         private readonly IUserRepository _userRepository;
 
         private ObservableCollection<Uzytkownik> _uzytkownikCollection;
@@ -55,6 +59,38 @@ namespace MiejskiDomKultury.ViewModel
             UzytkownikCollection = new ObservableCollection<Uzytkownik>(_userRepository.GetAllUsers());
             UzytkownikCollectionView = CollectionViewSource.GetDefaultView(UzytkownikCollection);
             UzytkownikCollectionView.Filter = FilterUzytkownicy;
+            ZbanujOdbanujCommand = new RelayCommand<Uzytkownik>(BanowanieOdbanowywanieUzytkownika);
+        }
+
+        private void BanowanieOdbanowywanieUzytkownika(Uzytkownik uzytkownik)
+        {
+            if (uzytkownik == null)
+            {
+                return;
+            }
+
+            if (uzytkownik.CzyMaBana)
+            {
+                uzytkownik.CzyMaBana = false;
+                _userRepository.UpdateUser(uzytkownik);
+                UzytkownikCollectionView.Refresh();
+            }
+            else
+            {
+                var formularzBanu = new FormularzBanu();
+                var vm = new FormularzBanViewModel(uzytkownik);
+                formularzBanu.DataContext = vm;
+
+                vm.CloseDialogWithResult += (result) =>
+                {
+                    if (result)
+                    {
+                        UzytkownikCollectionView.Refresh();
+                    }
+                    formularzBanu.Close();
+                };
+                formularzBanu.ShowDialog();
+            }
         }
 
         private bool FilterUzytkownicy(object obj)
