@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using MiejskiDomKultury.Data;
 using MiejskiDomKultury.Model;
 using MiejskiDomKultury.Repositories;
 using MiejskiDomKultury.Services;
@@ -42,7 +43,10 @@ namespace MiejskiDomKultury
 
         private void Wypozyczalnia_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new WypozyczaniePrzedmiotow());
+            if (Session.User != null)
+            {
+                NavigationService.Navigate(new WypozyczaniePrzedmiotow());
+            }
         }
         private void Chat_Click(object sender, RoutedEventArgs e)
         {

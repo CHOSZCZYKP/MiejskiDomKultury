@@ -159,9 +159,11 @@ namespace MiejskiDomKultury
             DateTime start = new DateTime(year, month, startDate);
             DateTime end = new DateTime(year, month, endDate);
 
+            var userId = Session.User.Id;
+
             var newWypozyczenie = new Wypozyczenie
             {
-                IdUzytkownika = 1,
+                IdUzytkownika = userId,
                 IdPrzedmiotu = _obiekt.Id,
                 DataWypozyczenia = start,
                 DataZwrotu = end
