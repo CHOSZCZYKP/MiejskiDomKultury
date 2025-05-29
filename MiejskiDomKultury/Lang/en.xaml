@@ -48,14 +48,22 @@
     <sys:String x:Key="miejsca">Yours seats</sys:String>
     <sys:String x:Key="zaplac">Payment</sys:String>
 
-
- 
-
-
     <sys:String x:Key="tytul">Title of announcement</sys:String>
-    <sys:String x:Key="createai">Creat with AI</sys:String>
+    <sys:String x:Key="createai">Create with AI</sys:String>
     <sys:String x:Key="tresc">Content:</sys:String>
     <sys:String x:Key="zdjecie">Image</sys:String>
-    <sys:String x:Key="wybierzzdjecie">Select a image</sys:String>
+    <sys:String x:Key="wybierzzdjecie">Select an image</sys:String>
     <sys:String x:Key="Add announcement">Add announcement</sys:String>
+
+    <!-- WypozyczaniePrzedmiotow.xaml -->
+    <sys:String x:Key="rmNazwa">Name</sys:String>
+    <sys:String x:Key="rmStan">Condition</sys:String>
+    <sys:String x:Key="rmTyp">Type</sys:String>
+    <sys:String x:Key="rmCenaZaDobe">Price per hour</sys:String>
+
+    <!-- WypozyczanieDaty.xaml -->
+    <sys:String x:Key="rmReset">Reset</sys:String>
+    <sys:String x:Key="rmReserve">Reserve</sys:String>
+    
+    
 </ResourceDictionary>

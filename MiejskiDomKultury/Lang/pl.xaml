@@ -57,5 +57,15 @@
     <sys:String x:Key="wybierzzdjecie">Wybierz zdjęcie</sys:String>
     <sys:String x:Key="Add announcement">Utwórz ogłoszenie</sys:String>
 
-  
+    <!-- WypozyczaniePrzedmiotow.xaml -->
+    <sys:String x:Key="rmNazwa">Nazwa</sys:String>
+    <sys:String x:Key="rmStan">Stan</sys:String>
+    <sys:String x:Key="rmTyp">Typ</sys:String>
+    <sys:String x:Key="rmCenaZaDobe">Cena za dobę</sys:String>
+
+    <!-- WypozyczanieDaty.xaml -->
+    <sys:String x:Key="rmReset">Resetuj</sys:String>
+    <sys:String x:Key="rmReserve">Rezerwuj</sys:String>
+
+
 </ResourceDictionary>

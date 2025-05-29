@@ -25,7 +25,19 @@ namespace MiejskiDomKultury
         private Przedmiot _obiekt;
         private List<Wypozyczenie> _wypozyczeniaList;
 
-        private Dictionary<int, Button> dayButtons = new();
+        private Dictionary<int, (Button button, Border border)> dayButtons = new();
+
+        private static readonly List<string> enMonths = new()
+        {
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        };
+
+        private static readonly List<string> plMonths = new()
+        {
+            "Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec",
+            "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień"
+        };
 
         private int month;
         private int year;
@@ -43,10 +55,13 @@ namespace MiejskiDomKultury
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            MonthComboBox.ItemsSource = Enumerable.Range(1, 12).Select(i => new DateTime(2000, i, 1).ToString("MMMM"));
+            MonthComboBox.ItemsSource = new List<string>
+            {
+                "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII"
+            };
             MonthComboBox.SelectedIndex = DateTime.Now.Month - 1;
 
-            YearComboBox.ItemsSource = Enumerable.Range(2020, 11);
+            YearComboBox.ItemsSource = Enumerable.Range(2025, 12);
             YearComboBox.SelectedItem = DateTime.Now.Year;
 
             MonthComboBox.SelectedIndex = DateTime.Now.Month - 1;
@@ -74,9 +89,19 @@ namespace MiejskiDomKultury
                 {
                     Content = day.ToString(),
                     Width = 40,
-                    Height = 40,
-                    Margin = new Thickness(5)
+                    Height = 40
                 };
+
+                Border border = new Border
+                {
+                    Width = 50,
+                    Height = 50,
+                    Margin = new Thickness(5),
+                    Child = btn,
+                    CornerRadius = new CornerRadius(4),
+                    Background = Brushes.White
+                };
+
 
                 bool isOccupied = _wypozyczeniaList.Any(w =>
                     currentDate.Date >= w.DataWypozyczenia.Date &&
@@ -84,19 +109,16 @@ namespace MiejskiDomKultury
 
                 if (isOccupied)
                 {
-                    btn.Background = Brushes.Red;
+                    border.Background = Brushes.Red;
                     btn.IsEnabled = false;
                 }
                 else
                 {
-                    btn.Click += (s, ev) =>
-                    {
-                        updateStartStop(selectedDay);
-                    };
+                    btn.Click += (s, ev) => updateStartStop(selectedDay);
                 }
 
-                DaysPanel.Children.Add(btn);
-                dayButtons[selectedDay] = btn;
+                DaysPanel.Children.Add(border);
+                dayButtons[selectedDay] = (btn, border);
             }
         }
 
@@ -121,11 +143,12 @@ namespace MiejskiDomKultury
 
             if (!taken && !encircled)
             {
-                if (startDate == 0)
+                if (startDate == 0 && selectedDate >= DateTime.Now)
                 {
                     startDate = dayNum;
+                    endDate = dayNum;
                 }
-                else if (endDate == 0)
+                else if (dayNum >= startDate)
                 {
                     endDate = dayNum;
                 }
@@ -134,17 +157,18 @@ namespace MiejskiDomKultury
             foreach (var kv in dayButtons)
             {
                 int day = kv.Key;
-                var btn = kv.Value;
+                var (btn, border) = kv.Value;
 
                 if (day >= startDate && day <= endDate)
                 {
-                    btn.Background = Brushes.LightGreen;
+                    border.Background = Brushes.LightGreen;
                 }
-                else
+                else if (btn.IsEnabled)
                 {
-                    btn.ClearValue(Button.BackgroundProperty);
+                    border.Background = Brushes.White;
                 }
             }
+
         }
 
 
@@ -159,9 +183,11 @@ namespace MiejskiDomKultury
             DateTime start = new DateTime(year, month, startDate);
             DateTime end = new DateTime(year, month, endDate);
 
+            var userId = Session.User.Id;
+
             var newWypozyczenie = new Wypozyczenie
             {
-                IdUzytkownika = 1,
+                IdUzytkownika = userId,
                 IdPrzedmiotu = _obiekt.Id,
                 DataWypozyczenia = start,
                 DataZwrotu = end
@@ -189,6 +215,16 @@ namespace MiejskiDomKultury
         {
             startDate = 0;
             endDate = 0;
+
+            foreach (var kv in dayButtons)
+            {
+                var (btn, border) = kv.Value;
+
+                if (btn.IsEnabled)
+                {
+                    border.Background = Brushes.White;
+                }
+            }
         }
     }
 }
