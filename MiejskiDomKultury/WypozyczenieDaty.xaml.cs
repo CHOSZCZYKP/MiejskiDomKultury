@@ -27,6 +27,18 @@ namespace MiejskiDomKultury
 
         private Dictionary<int, (Button button, Border border)> dayButtons = new();
 
+        private static readonly List<string> enMonths = new()
+        {
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        };
+
+        private static readonly List<string> plMonths = new()
+        {
+            "Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec",
+            "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień"
+        };
+
         private int month;
         private int year;
         private int daysInMonth;
@@ -43,7 +55,10 @@ namespace MiejskiDomKultury
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            MonthComboBox.ItemsSource = Enumerable.Range(1, 12).Select(i => new DateTime(2000, i, 1).ToString("MMMM"));
+            MonthComboBox.ItemsSource = new List<string>
+            {
+                "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII"
+            };
             MonthComboBox.SelectedIndex = DateTime.Now.Month - 1;
 
             YearComboBox.ItemsSource = Enumerable.Range(2025, 12);

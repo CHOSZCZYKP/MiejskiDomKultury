@@ -14,8 +14,8 @@
                     SelectionChanged="MonthOrYearChanged" />
                 <ComboBox x:Name="YearComboBox" Width="100"
                     SelectionChanged="MonthOrYearChanged" />
-                <Button x:Name="ResetButton" Content="Reset" Width="100" Margin="10,0,100,0" Click="ResetButton_Click"/>
-                <Button x:Name="ReserveButton" Content="Reserve" Width="100" Click="ReserveButton_Click"/>
+                <Button x:Name="ResetButton" Content="{DynamicResource rmReset}" Width="100" Margin="10,0,100,0" Click="ResetButton_Click"/>
+                <Button x:Name="ReserveButton" Content="{DynamicResource rmReserve}" Width="100" Click="ReserveButton_Click"/>
             </StackPanel>
 
             <WrapPanel x:Name="DaysPanel" />
