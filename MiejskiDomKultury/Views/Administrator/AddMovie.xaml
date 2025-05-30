@@ -22,7 +22,7 @@
 
         <!-- Search Bar -->
         <StackPanel Orientation="Vertical">
-            <core:PlaceholderTextBox Placeholder="Wprowadź tytuł..."  x:Name="SearchBox" Grid.Row="0" Grid.Column="0" Margin="0,0,10,10" FontSize="18"  />
+            <core:PlaceholderTextBox Placeholder="{DynamicResource tytulFilmu}"  x:Name="SearchBox" Grid.Row="0" Grid.Column="0" Margin="0,0,10,10" FontSize="18"  />
             <Button Content="{StaticResource wyszukaj}" Grid.Row="0" Grid.Column="1" Width="150" FontSize="18" Click="SearchButton_Click" />
         </StackPanel>
         <!-- Movie List -->

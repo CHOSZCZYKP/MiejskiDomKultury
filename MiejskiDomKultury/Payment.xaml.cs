@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using Microsoft.EntityFrameworkCore;
+using MiejskiDomKultury.Data;
 using MiejskiDomKultury.Model;
+using MiejskiDomKultury.Repositories;
 using MiejskiDomKultury.Services;
 
 namespace MiejskiDomKultury
@@ -19,6 +22,7 @@ namespace MiejskiDomKultury
         Seans seans;
         HashSet<int> seats;
         MovieRepositoryService movieRepositoryService;
+        TransakcjaRepository transakcjaService;
         public Payment(HashSet<int> seats, Seans seans)
         {
             InitializeComponent();
@@ -29,7 +33,8 @@ namespace MiejskiDomKultury
             
             string seatsList = string.Join(", ", seats);
             string summaryText = "Error";
-
+            var db = new DbContextDomKultury();
+            transakcjaService = new TransakcjaRepository(db);
             if (!Settings.Default.CzyLangAngielski)
             {
                  summaryText = $"Wybrałeś miejsca: {seatsList}\n" +
@@ -75,7 +80,7 @@ namespace MiejskiDomKultury
             Dispatcher.Invoke(() => { 
 
              List < SeansBilet > tickets = new List<SeansBilet>();
-
+                var sum = 0;
             foreach (var x in seats)
             {
                     var seansBilet = new SeansBilet
@@ -86,7 +91,7 @@ namespace MiejskiDomKultury
                         SeatNumber = x,
                         Cena = 32
                     };
-                   
+                    sum += x;
                 movieRepositoryService.AddSeansBilet(seansBilet);
                     seansBilet.Seans = seans;
                      tickets.Add(seansBilet);
@@ -96,7 +101,9 @@ namespace MiejskiDomKultury
                 EmailService emailService = new EmailService();
 
                 //Trzeba dać prawdziwy adres email!!!
-                emailService.sendTickets(att, "kubanczyk03@wp.pl");
+                emailService.sendTickets(att, Session.User.Email);
+                Transakcja t = new Transakcja { IdUzytkownika = Session.User.Id, Kwota_Wartosc = sum, Kwota_Waluta = "PLN", Typ = "Płatność elektroniczna", Data=DateTime.Now };
+                transakcjaService.AddTransakcja(t);
             NavigationService.Navigate(new Home());
         });
         }

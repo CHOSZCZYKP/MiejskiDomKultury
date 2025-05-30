@@ -23,12 +23,10 @@ namespace MiejskiDomKultury.Services
                     var page = document.AddPage();
                     using (var gfx = XGraphics.FromPdfPage(page))
                     {
-                       
                         var fontTitle = new XFont("Arial", 20, XFontStyleEx.Bold);
                         gfx.DrawString("Bilet do Kina Fidelio", fontTitle, XBrushes.Black,
                             new XRect(0, 40, page.Width, page.Height), XStringFormats.TopCenter);
 
-                        
                         var fontRegular = new XFont("Arial", 14);
                         double yPosition = 100;
 
@@ -45,13 +43,17 @@ namespace MiejskiDomKultury.Services
                         DrawQrCode(gfx, bilet.Id.ToString(), ref yPosition);
                     }
                 }
-                
-                string fileName = $"Bilety_{DateTime.Now:yyyyMMddHHmmss}.pdf";
 
-                document.Save(fileName);
-                return new Attachment(fileName);
+                // Zapis na pulpit
+                string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                string fileName = $"Bilety_{DateTime.Now:yyyyMMddHHmmss}.pdf";
+                string filePath = Path.Combine(desktopPath, fileName);
+
+                document.Save(filePath);
+                return new Attachment(filePath);
             }
         }
+
 
         private void DrawBarcode(XGraphics gfx, string code, ref double yPosition)
         {

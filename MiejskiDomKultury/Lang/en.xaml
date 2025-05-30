@@ -64,6 +64,6 @@
     <!-- WypozyczanieDaty.xaml -->
     <sys:String x:Key="rmReset">Reset</sys:String>
     <sys:String x:Key="rmReserve">Reserve</sys:String>
-    
+    <sys:String x:Key="tytulFilmu">Title</sys:String>
     
 </ResourceDictionary>

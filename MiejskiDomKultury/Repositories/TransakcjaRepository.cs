@@ -43,5 +43,13 @@ namespace MiejskiDomKultury.Repositories
                 Typ = g.Key,
                 Liczba = g.Count()
             }).ToDictionary(x => x.Typ, x => x.Liczba);
+
+        public void AddTransakcja(Transakcja t)
+        {
+            _dbContextDomKultury.Transakcje.Add(t);
+            _dbContextDomKultury.SaveChanges();
+        }
     }
+
+    
 }

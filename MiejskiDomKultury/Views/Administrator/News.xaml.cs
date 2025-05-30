@@ -83,7 +83,6 @@ namespace MiejskiDomKultury.Views.Administrator
             }
             else
             {
-
                 imageData = File.ReadAllBytes("Assets/imperator.jpg");
             }
 
@@ -92,19 +91,19 @@ namespace MiejskiDomKultury.Views.Administrator
                 Title = title,
                 Content = content,
                 CreatedAt = DateTime.UtcNow,
-                ImageData = imageData // Przypisz dane obrazu
+                ImageData = imageData
             };
 
             newsService.AddNews(ogloszenie);
 
-            MessageBox.Show("Ogłoszenie zostało utworzone!", "Sukces", MessageBoxButton.OK, MessageBoxImage.Information);
-
-
-            
+            TitleTextBox.Text = "";
+            DescriptionTextBox.Text = "";
             _selectedFileName = null;
             PreviewImage.Source = null;
             FileNameText.Text = "";
 
+            MessageBox.Show("Ogłoszenie zostało utworzone!", "Sukces", MessageBoxButton.OK, MessageBoxImage.Information);
         }
+
     }
 }

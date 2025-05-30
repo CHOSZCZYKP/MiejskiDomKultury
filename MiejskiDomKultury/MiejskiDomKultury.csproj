@@ -28,6 +28,7 @@
     <None Remove="Assets\plik.txt" />
     <None Remove="Assets\settings.png" />
     <None Remove="Assets\song.mp3" />
+    <None Remove="Assets\song2.mp3" />
     <None Remove="Assets\volume-up.png" />
   </ItemGroup>
 
@@ -108,6 +109,9 @@
     </Resource>
     <Content Include="Assets\song.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\song2.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Resource Include="Assets\volume-up.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
