@@ -49,9 +49,9 @@ namespace MiejskiDomKultury
             try
             {
                 //w pliku ustawić nie jako zasób tylko jako zawartość
-                _mediaPlayer.Open(new Uri("Assets/song.mp3", UriKind.Relative));
+                _mediaPlayer.Open(new Uri("Assets/song2.mp3", UriKind.Relative));
                 _mediaPlayer.Play();
-                _mediaPlayer.Volume = 0.1;
+                _mediaPlayer.Volume = 0.05;
               
                 _mediaPlayer.MediaEnded += (s, e) =>
                 {

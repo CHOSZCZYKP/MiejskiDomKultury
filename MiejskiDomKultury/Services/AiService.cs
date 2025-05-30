@@ -43,7 +43,7 @@ namespace MiejskiDomKultury.Services
 
             List<OpenAI.Chat.ChatMessage> messages = new()
     {
-        new UserChatMessage($"Wygeneruj krótkiego newsa związanego z miastem Ostrołęka")
+        new UserChatMessage($"Wygeneruj krótkiego newsa związanego z miastem Ostrołęka. Tytuł maks 4 słowa i treść maks 2 zdania")
     };
 
             ChatCompletionOptions options = new()
