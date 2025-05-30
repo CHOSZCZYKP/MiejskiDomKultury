@@ -37,6 +37,7 @@
                   x:Name="DataGridSale"
                   Width="auto"
                   ItemsSource="{Binding SaleCollectionView, Mode=TwoWay}"
+                  SelectedItem="{Binding WybranaSala, Mode=TwoWay}"
                   CanUserAddRows="False"
                   AutoGenerateColumns="False"
                   IsReadOnly="True"
@@ -72,7 +73,7 @@
                 <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="0.65*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
@@ -88,7 +89,8 @@
                         Margin="5"
                         Padding="5"
                         VerticalAlignment="Center"
-                        HorizontalAlignment="Left"/>
+                        HorizontalAlignment="Left"
+                        Width="130"/>
             <TextBlock x:Name="GodzinaOdTextBlock"
                        Text="Godzina od:"
                        Grid.Row="2"
@@ -104,7 +106,7 @@
                      Padding="5"
                      VerticalAlignment="Center"
                      HorizontalAlignment="Left"
-                     Width="100"/>
+                     Width="130"/>
             <TextBlock x:Name="GodzinaDoTextBlock"
                        Text="Godzina do:" 
                        Grid.Row="3"
@@ -120,7 +122,7 @@
                      Padding="5"
                      VerticalAlignment="Center"
                      HorizontalAlignment="Left"
-                     Width="100"/>
+                     Width="130"/>
             <TextBlock x:Name="RezerwowanieOkresoweTextBlock"
                        Text="Okres:" 
                        Grid.Row="4"
@@ -129,13 +131,15 @@
                        VerticalAlignment="Center"
                        HorizontalAlignment="Right"/>
             <ComboBox x:Name="RezerwowanieOkresoweComboBox"
+                      ItemsSource="{Binding OkresComboBox}"
+                      SelectedItem="{Binding WybranyOkres, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                       Grid.Column="1"
                       Grid.Row="4" 
                       Margin="5"
                       Padding="5"
                       VerticalAlignment="Center"
                       HorizontalAlignment="Left"
-                      Width="100"/>
+                      Width="130"/>
             <TextBlock x:Name="IloscCykliTextBlock"
                        Text="Ilość cykli:" 
                        Grid.Row="5"
@@ -144,22 +148,25 @@
                        VerticalAlignment="Center"
                        HorizontalAlignment="Right"/>
             <TextBox x:Name="IloscCykli"
+                     Text="{Binding IloscCykli, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                     IsEnabled="{Binding CzyJednorazowo}"
                      Grid.Row="5"
                      Grid.Column="1" 
                      Margin="5"
                      Padding="5"
                      VerticalAlignment="Center"
                      HorizontalAlignment="Left"
-                     Width="100"/>
+                     Width="130"/>
             <Button x:Name="ZarezerwujSale"
                     Content="Zarezerwuj"
-                    Width="100"
+                    Width="130"
                     Grid.Row="6"
                     Grid.Column="1" 
                     Margin="5"
                     Padding="5"
                     VerticalAlignment="Center" 
-                    HorizontalAlignment="Left"/>
+                    HorizontalAlignment="Left"
+                    Command="{Binding ZarezerwujSaleCommand}"/>
 
         </Grid>
     </Grid>
