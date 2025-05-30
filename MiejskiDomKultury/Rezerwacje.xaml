@@ -71,6 +71,9 @@
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.65*" />
@@ -91,6 +94,7 @@
                         VerticalAlignment="Center"
                         HorizontalAlignment="Left"
                         Width="130"/>
+            
             <TextBlock x:Name="GodzinaOdTextBlock"
                        Text="Godzina od:"
                        Grid.Row="2"
@@ -107,25 +111,41 @@
                      VerticalAlignment="Center"
                      HorizontalAlignment="Left"
                      Width="130"/>
+            <TextBlock Foreground="Red" 
+                       FontSize="12" 
+                       Margin="10,0,0,0"
+                       Grid.Column="1"
+                       Grid.Row="3"
+                       TextWrapping="Wrap"
+                       Text="{Binding ElementName=GodzinaOdTextBox, Path=(Validation.Errors)[0].ErrorContent}" /> 
+
             <TextBlock x:Name="GodzinaDoTextBlock"
                        Text="Godzina do:" 
-                       Grid.Row="3"
+                       Grid.Row="4"
                        Margin="5"
                        Padding="5"
                        VerticalAlignment="Center"
                        HorizontalAlignment="Right"/>
             <TextBox x:Name="GodzinaDoTextBox"
                      Text="{Binding GodzinaDo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                     Grid.Row="3"
+                     Grid.Row="4"
                      Grid.Column="1" 
                      Margin="5"
                      Padding="5"
                      VerticalAlignment="Center"
                      HorizontalAlignment="Left"
                      Width="130"/>
+            <TextBlock Foreground="Red" 
+                       FontSize="12" 
+                       Margin="10,0,0,0"
+                       Grid.Column="1"
+                       Grid.Row="5"
+                       TextWrapping="Wrap"
+                       Text="{Binding ElementName=GodzinaDoTextBox, Path=(Validation.Errors)[0].ErrorContent}" />
+
             <TextBlock x:Name="RezerwowanieOkresoweTextBlock"
                        Text="Okres:" 
-                       Grid.Row="4"
+                       Grid.Row="6"
                        Margin="5"
                        Padding="5"
                        VerticalAlignment="Center"
@@ -134,15 +154,16 @@
                       ItemsSource="{Binding OkresComboBox}"
                       SelectedItem="{Binding WybranyOkres, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                       Grid.Column="1"
-                      Grid.Row="4" 
+                      Grid.Row="6" 
                       Margin="5"
                       Padding="5"
                       VerticalAlignment="Center"
                       HorizontalAlignment="Left"
                       Width="130"/>
+            
             <TextBlock x:Name="IloscCykliTextBlock"
                        Text="Ilość cykli:" 
-                       Grid.Row="5"
+                       Grid.Row="7"
                        Margin="5"
                        Padding="5"
                        VerticalAlignment="Center"
@@ -150,17 +171,25 @@
             <TextBox x:Name="IloscCykli"
                      Text="{Binding IloscCykli, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                      IsEnabled="{Binding CzyJednorazowo}"
-                     Grid.Row="5"
+                     Grid.Row="7"
                      Grid.Column="1" 
                      Margin="5"
                      Padding="5"
                      VerticalAlignment="Center"
                      HorizontalAlignment="Left"
                      Width="130"/>
+            <TextBlock Foreground="Red" 
+                       FontSize="12" 
+                       Margin="10,0,0,0"
+                       Grid.Column="1"
+                       Grid.Row="8"
+                       TextWrapping="Wrap"
+                       Text="{Binding ElementName=IloscCykli, Path=(Validation.Errors)[0].ErrorContent}" />   
+
             <Button x:Name="ZarezerwujSale"
                     Content="Zarezerwuj"
                     Width="130"
-                    Grid.Row="6"
+                    Grid.Row="9"
                     Grid.Column="1" 
                     Margin="5"
                     Padding="5"

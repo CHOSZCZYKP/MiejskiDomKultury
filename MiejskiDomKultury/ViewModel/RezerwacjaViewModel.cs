@@ -1,27 +1,32 @@
-﻿using MiejskiDomKultury.Data;
+﻿using LiveChartsCore.Kernel;
+using MiejskiDomKultury.Data;
 using MiejskiDomKultury.Helpers;
 using MiejskiDomKultury.Interfaces;
 using MiejskiDomKultury.Model;
 using MiejskiDomKultury.Repositories;
 using MiejskiDomKultury.Services;
 using System;
+using System.Collections;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Printing;
 using System.Windows;
 using System.Windows.Data;
+using System.Windows.Documents;
 using System.Windows.Input;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace MiejskiDomKultury.ViewModel
 {
-    public class RezerwacjaViewModel : INotifyPropertyChanged
+    public class RezerwacjaViewModel : INotifyPropertyChanged, INotifyDataErrorInfo
     {
         private readonly IRezerwacjaRepository _rezerwacjaRepository;
         private readonly ISaleRepository _saleRepository;
 
         private PrzekaznikCommand _zarezerwujSaleCommand;
         public ICommand ZarezerwujSaleCommand => _zarezerwujSaleCommand;
+
+        private readonly Dictionary<string, List<string>> _errors = new();
 
         private ObservableCollection<Sala> _saleCollection = new();
         public ObservableCollection<Sala> SaleCollection
@@ -66,6 +71,7 @@ namespace MiejskiDomKultury.ViewModel
             {
                 _godzinaOd = value;
                 OnPropertyChanged(nameof(GodzinaOd));
+                ValidateProperty(nameof(GodzinaOd), value);
                 SaleCollectionView.Refresh();
             }
         }
@@ -78,6 +84,7 @@ namespace MiejskiDomKultury.ViewModel
             {
                 _godzinaDo = value;
                 OnPropertyChanged(nameof(GodzinaDo));
+                ValidateProperty(nameof(GodzinaDo), value);
                 SaleCollectionView.Refresh();
             }
         }
@@ -102,6 +109,7 @@ namespace MiejskiDomKultury.ViewModel
             {
                 _iloscCykli = value;
                 OnPropertyChanged(nameof(IloscCykli));
+                ValidateProperty(nameof(IloscCykli), value);
                 SaleCollectionView.Refresh();
             }
         }
@@ -273,8 +281,69 @@ namespace MiejskiDomKultury.ViewModel
             return !czyZajeta && spelniaFraze;
         }
 
+        private void ValidateProperty(string propertyName, string value)
+        {
+            if (_errors.ContainsKey(propertyName))
+                _errors.Remove(propertyName);
+
+            var errors = new List<string>();
+
+            if (string.IsNullOrWhiteSpace(value) && !WybranyOkres.Equals("Jednorazowo"))
+            {
+                var wyswietl = propertyName switch
+                {
+                    nameof(GodzinaOd) => "Godzina od",
+                    nameof(GodzinaDo) => "Godzina do",
+                    _ => propertyName
+                };
+
+                errors.Add($"Pole {wyswietl} jest wymagane.");
+            }
+            else if (propertyName == nameof(GodzinaOd) || propertyName == nameof(GodzinaDo))
+            {
+                if (!TimeSpan.TryParseExact(value, "hh\\:mm", null, out TimeSpan parsedTime))
+                {
+                    errors.Add("Wprowadź godzinę w formacie HH:mm");
+                }
+                else if (parsedTime.Hours < 0 || parsedTime.Hours > 23
+                    || parsedTime.Minutes < 0 || parsedTime.Minutes > 59)
+                {
+                    errors.Add("Godzina musi być między 00:00 a 23:59");
+                }
+                else if (TimeSpan.TryParse(GodzinaOd, out TimeSpan godzOd) && TimeSpan.TryParse(GodzinaDo, out TimeSpan godzDo)
+                    && godzOd > godzDo)
+                {
+                    errors.Add("Godzina początkowa musi być mniejsz od końcowej");
+                }
+
+            }
+            else if (!int.TryParse(value, out int wynik) && propertyName == nameof(IloscCykli) && !WybranyOkres.Equals("Jednorazowo"))
+            {
+                errors.Add("Wprowadź liczbę");
+            }
+            else if (wynik <= 0 && propertyName == nameof(IloscCykli) && !WybranyOkres.Equals("Jednorazowo"))
+            {
+                errors.Add("Wprowadź liczbę większą od 0");
+            }
+
+            if (errors.Any())
+                _errors[propertyName] = errors;
+
+            ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
+        }
+
         public event PropertyChangedEventHandler? PropertyChanged;
+
         protected void OnPropertyChanged(string propName) =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
+
+        public bool HasErrors => _errors.Count > 0;
+        public event EventHandler<DataErrorsChangedEventArgs>? ErrorsChanged;
+        public IEnumerable GetErrors(string? propertyName)
+        {
+            if (_errors.ContainsKey(propertyName))
+                return _errors[propertyName];
+            return null;
+        }
     }
 }
