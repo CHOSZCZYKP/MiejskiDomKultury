@@ -26,6 +26,7 @@ namespace MiejskiDomKultury
       
             InitializeComponent();
             DataContext = new RezerwacjaViewModel();
+            DataRezerwacji.BlackoutDates.Add(new CalendarDateRange(DateTime.MinValue, DateTime.Today.AddDays(-1)));
         }
     }
 }

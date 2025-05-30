@@ -1,4 +1,5 @@
 ﻿using MiejskiDomKultury.Data;
+using MiejskiDomKultury.Helpers;
 using MiejskiDomKultury.Interfaces;
 using MiejskiDomKultury.Model;
 using MiejskiDomKultury.Repositories;
@@ -7,6 +8,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Printing;
+using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
 using static System.Runtime.InteropServices.JavaScript.JSType;
@@ -17,6 +19,9 @@ namespace MiejskiDomKultury.ViewModel
     {
         private readonly IRezerwacjaRepository _rezerwacjaRepository;
         private readonly ISaleRepository _saleRepository;
+
+        private PrzekaznikCommand _zarezerwujSaleCommand;
+        public ICommand ZarezerwujSaleCommand => _zarezerwujSaleCommand;
 
         private ObservableCollection<Sala> _saleCollection = new();
         public ObservableCollection<Sala> SaleCollection
@@ -88,20 +93,129 @@ namespace MiejskiDomKultury.ViewModel
                 SaleCollectionView.Refresh();
             }
         }
+
+        private string _iloscCykli;
+        public string IloscCykli
+        {
+            get => _iloscCykli;
+            set
+            {
+                _iloscCykli = value;
+                OnPropertyChanged(nameof(IloscCykli));
+                SaleCollectionView.Refresh();
+            }
+        }
+
+        private string _wybranyOkres;
+        public string WybranyOkres
+        {
+            get => _wybranyOkres;
+            set
+            {
+                _wybranyOkres = value;
+                OnPropertyChanged(nameof(WybranyOkres));
+                OnPropertyChanged(nameof(CzyJednorazowo));
+                SaleCollectionView.Refresh();
+                if (_wybranyOkres == "Jednorazowo")
+                {
+                    IloscCykli = string.Empty;
+                }
+            }
+        }
+
+        private Sala _wybranaSala;
+        public Sala WybranaSala
+        {
+            get => _wybranaSala;
+            set
+            {
+                _wybranaSala = value;
+                OnPropertyChanged(nameof(WybranaSala));
+                _zarezerwujSaleCommand.RaiseCanExecuteChanged();
+            }
+        }
+
         #endregion
+
+        public List<string> OkresComboBox { get; set; } = new List<string>()
+        {
+            "Jednorazowo",
+            "1 raz w tygodniu",
+            "1 raz w miesiącu",
+            "1 raz w roku"
+        };
 
         public RezerwacjaViewModel()
         {
             DbContextDomKultury context = new DbContextDomKultury();
             _saleRepository = new SaleRepository(context);
             _rezerwacjaRepository = new RezerwacjeRepository(context);
-            SaleCollection = new ObservableCollection<Sala>(_saleRepository.GetAllSale());
-            RezerwacjeCollection = new ObservableCollection<Rezerwacja>(_rezerwacjaRepository.GetAllRezerwacje());
-            SaleCollectionView = CollectionViewSource.GetDefaultView(SaleCollection);
-            SaleCollectionView.Filter = FilterSale;
+            LadowanieDanychDoWidoku();
+            _zarezerwujSaleCommand = new PrzekaznikCommand(Zarezerwuj, CzyMoznaZarezerwoac);
             Data = DateTime.Now;
+            WybranyOkres = "Jednorazowo";
         }
 
+        private void LadowanieDanychDoWidoku()
+        {
+            SaleCollection = new ObservableCollection<Sala>(_saleRepository.GetAllSale());
+            RezerwacjeCollection = new ObservableCollection<Rezerwacja>(_rezerwacjaRepository.GetAllRezerwacjeOdDzis());
+            SaleCollectionView = CollectionViewSource.GetDefaultView(SaleCollection);
+            SaleCollectionView.Filter = FilterSale;
+        }
+
+        public bool CzyJednorazowo => WybranyOkres.Equals("Jednorazowo") ? false : true;
+
+
+        private bool CzyMoznaZarezerwoac()
+        {
+            return WybranaSala != null && TimeSpan.TryParse(GodzinaOd, out _) && TimeSpan.TryParse(GodzinaDo, out _);
+        }
+
+        private void Zarezerwuj()
+        {
+            var uzytkownicyRepository = new UserRepositoryService();
+            var zwyklyUzytkownik = uzytkownicyRepository.GetAllUsers().FirstOrDefault(u => u.Rola == "User");
+
+            var wszystkieDatyRezerwacji = new List<DateTime>();
+
+            if (WybranyOkres == "Jednorazowo")
+            {
+                wszystkieDatyRezerwacji.Add(Data);
+            }
+            else if (int.TryParse(IloscCykli, out int iloscCykliInt))
+            {
+                var aktualnaData = Data;
+                for (int i = 0; i < iloscCykliInt; i++)
+                {
+                    wszystkieDatyRezerwacji.Add(aktualnaData);
+                    aktualnaData = WybranyOkres switch
+                    {
+                        "1 raz w tygodniu" => aktualnaData.AddDays(7),
+                        "1 raz w miesiącu" => aktualnaData.AddMonths(1),
+                        "1 raz w roku" => aktualnaData.AddYears(1),
+                        _ => aktualnaData
+                    };
+                }
+            }
+            foreach (var dataRezerwacji in wszystkieDatyRezerwacji)
+            {
+                var nowaRezerwacja = new Rezerwacja
+                {
+                    IdSali = WybranaSala.Id,
+                    IdUzytkownika = zwyklyUzytkownik.Id,
+                    Data = dataRezerwacji,
+                    GodzinaPoczatkowa = TimeSpan.Parse(GodzinaOd),
+                    GodzinaKoncowa = TimeSpan.Parse(GodzinaDo)
+                };
+                _rezerwacjaRepository.AddNewRezerwacja(nowaRezerwacja);
+            }
+
+            MessageBox.Show("Pomyślnie dodano rezerwacje.", "Dodatnie rezerwacji", MessageBoxButton.OK, MessageBoxImage.Information);
+
+            LadowanieDanychDoWidoku();
+
+        }
 
         private bool FilterSale(object obj)
         {
@@ -122,11 +236,39 @@ namespace MiejskiDomKultury.ViewModel
             if (!jestData || !godzinaOdZParsowana || !godzinaDoZParsowana)
                 return spelniaFraze;
 
-            bool czyZajeta = RezerwacjeCollection.Any(r =>
-                r.IdSali == sala.Id
-                && r.Data.Date == Data.Date
-                && (godzinaOd < r.GodzinaKoncowa && godzinaDo > r.GodzinaPoczatkowa)
-            );
+            var wszystkieDatyRezerwacji = new List<DateTime>();
+            var aktualnaData = Data;
+
+            if (WybranyOkres.Equals("Jednorazowo") && string.IsNullOrWhiteSpace(IloscCykli))
+            {
+                wszystkieDatyRezerwacji.Add(aktualnaData);
+            }
+            else
+            {
+                if (int.TryParse(IloscCykli, out int iloscCykilInt))
+                {
+                    for (int i = 0; i < iloscCykilInt; i++)
+                    {
+                        wszystkieDatyRezerwacji.Add(aktualnaData);
+
+                        aktualnaData = WybranyOkres switch
+                        {
+                            "1 raz w tygodniu" => aktualnaData.AddDays(7),
+                            "1 raz w miesiącu" => aktualnaData.AddMonths(1),
+                            "1 raz w roku" => aktualnaData.AddYears(1),
+                            _ => aktualnaData
+                        };
+
+                    }
+                }
+            }
+
+            bool czyZajeta = wszystkieDatyRezerwacji.Any(wszystkieDatyRezerwacji =>
+                RezerwacjeCollection.Any(r =>
+                    r.IdSali == sala.Id &&
+                    r.Data.Date == wszystkieDatyRezerwacji.Date &&
+                    godzinaOd < r.GodzinaKoncowa &&
+                    godzinaDo > r.GodzinaPoczatkowa));
 
             return !czyZajeta && spelniaFraze;
         }

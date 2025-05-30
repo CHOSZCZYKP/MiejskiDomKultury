@@ -19,8 +19,14 @@ namespace MiejskiDomKultury.Repositories
             this._dbContextDomKultury = dbContextDomKultury;
         }
 
-        public IEnumerable<Rezerwacja> GetAllRezerwacje()
-            => _dbContextDomKultury.Rezerwacje.ToList();
+        public void AddNewRezerwacja(Rezerwacja rezerwacja)
+        {
+            _dbContextDomKultury.Rezerwacje.Add(rezerwacja);
+            _dbContextDomKultury.SaveChanges();
+        }
+
+        public IEnumerable<Rezerwacja> GetAllRezerwacjeOdDzis()
+            => _dbContextDomKultury.Rezerwacje.Where(r => r.Data >= DateTime.Today).ToList();
 
         public IEnumerable<RezerwacjaSaliPrzezUzytkownikaDto> GetAllRezerwacjeWithUserAndRoom()
             => _dbContextDomKultury.Rezerwacje
