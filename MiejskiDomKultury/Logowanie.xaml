@@ -24,7 +24,7 @@
                    Margin="5"
                    Padding="5" Height="37" />
                 <local:PlaceholderTextBox Placeholder="login" x:Name="TextBoxLogin" 
-                 Width="200" 
+                 Width="250" 
                  FontSize="20" 
                  Margin="5" 
                  Padding="5" />
@@ -37,14 +37,14 @@
                    Margin="5"
                    Padding="5" Height="37"/>
                 <local:PlaceholderPasswordBox Placeholder="haslo" x:Name="PasswordBox" 
-                     Width="200" 
+                     Width="250" 
                      FontSize="20" 
                      Margin="5" 
                      Padding="5" />
             </StackPanel>
 
             <Button Content="Zaloguj się" 
-            Width="280" 
+            Width="330" 
             FontSize="20" 
             Margin="5" 
             Padding="5" 

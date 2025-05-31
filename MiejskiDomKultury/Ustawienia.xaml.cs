@@ -1,4 +1,5 @@
-﻿using MiejskiDomKultury.Model;
+﻿using MiejskiDomKultury.Data;
+using MiejskiDomKultury.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,7 @@ namespace MiejskiDomKultury
         {
             InitializeComponent();
             UstawStanPrzycisku();
+            PasswordBoxEnabled();
         }
         private void UstawStanPrzycisku()
         {
@@ -73,6 +75,22 @@ namespace MiejskiDomKultury
         {
             Motywy.ZmianaLang(new Uri("/Lang/pl.xaml", UriKind.Relative));
             LangToggleButton.Content = "Polski";
+        }
+
+        private void PasswordBoxEnabled()
+        {
+            if (Session.CzyZalogowany)
+            {
+                StareHasloUstawienia.IsEnabled = true;
+                NoweHasloUstawienia.IsEnabled = true;
+                PowtorzNoweHasloUstawienia.IsEnabled = true;
+            }
+            else
+            {
+                StareHasloUstawienia.IsEnabled = false;
+                NoweHasloUstawienia.IsEnabled = false;
+                PowtorzNoweHasloUstawienia.IsEnabled = false;
+            }
         }
     }
 }

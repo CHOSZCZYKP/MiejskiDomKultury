@@ -27,11 +27,7 @@
                   Placeholder="Wyszukaj sale..."
                   Margin="10"
                   Text="{Binding WyszukiwanaFraza, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"                    />
-            <Button x:Name="ButtonSzukajSali" Grid.Column="1"
-            Content="Szukaj"
-            Margin="10"
-            Padding="10"
-            Width="80" />
+            
         </Grid>
         <DataGrid Grid.Row="1"
                   x:Name="DataGridSale"
