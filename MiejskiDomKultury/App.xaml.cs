@@ -50,6 +50,7 @@ namespace MiejskiDomKultury
             // tu trzeba wrzucić widoki, które wykorzystują DI, jeśli nie wykorzystują to też można xdd
             services.AddTransient<Logowanie>();
             services.AddTransient<Home>();
+            services.AddTransient<MainWindow>();
             services.AddTransient<Rejestracja>();
             services.AddTransient<PanelAdmina>();
             services.AddTransient<TabelaUzytkownicyAdmin>();

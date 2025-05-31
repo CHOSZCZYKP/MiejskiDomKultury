@@ -24,32 +24,36 @@ namespace MiejskiDomKultury
     /// Logika interakcji dla klasy Logowanie.xaml
     /// </summary>
     public partial class Logowanie : Page
-{
-    private readonly IUserRepository _userRepository;
-
-
-        //tu jest DI
-    public Logowanie(IUserRepository userRepository)
     {
-        _userRepository = userRepository;
-        InitializeComponent();
-    }
+        private readonly IUserRepository _userRepository;
 
-    private void Login_Click(object sender, RoutedEventArgs e)
-    {
-        var email = TextBoxLogin.Text;
-            var password = PasswordBox.Password;
-        var user = _userRepository.GetUserByEmail(email);
 
-        if (user == null || user.HasloHash!= PasswordHasher.HashPassword(password))
+            //tu jest DI
+        public Logowanie(IUserRepository userRepository)
         {
-            MessageBox.Show("Błędne dane logowania", "Błąd", MessageBoxButton.OK, MessageBoxImage.Warning);
-            return;
+            _userRepository = userRepository;
+            InitializeComponent();
         }
 
-        Session.User = user;
+        private void Login_Click(object sender, RoutedEventArgs e)
+        {
+            var email = TextBoxLogin.Text;
+                var password = PasswordBox.Password;
+            var user = _userRepository.GetUserByEmail(email);
+
+            if (user == null || user.HasloHash!= PasswordHasher.HashPassword(password))
+            {
+                MessageBox.Show("Błędne dane logowania", "Błąd", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            Session.Login(user);
+            if (Application.Current.MainWindow is MainWindow mainWindow)
+            {
+                mainWindow.WidocznoscPrzyciskow();
+            }
             NavigationService.Navigate(new Home());
         }
-}
+    }
 
 }

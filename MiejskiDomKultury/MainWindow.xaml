@@ -84,6 +84,11 @@
                             Margin="5" 
                             Padding="5" 
                             Click="Logowanie_Click" />
+                    <Button x:Name="Wyloguj" 
+                            Content="Wyloguj" 
+                            Margin="5" 
+                            Padding="5" 
+                            Click="Wyloguj_Click" />
                 </StackPanel>
             </Grid>
         </Border>

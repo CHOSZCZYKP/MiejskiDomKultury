@@ -38,7 +38,14 @@ namespace MiejskiDomKultury
 
         private void Rezeracja_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Rezerwacje());
+            if (Session.User != null)
+            {
+                NavigationService.Navigate(new Rezerwacje());
+            }
+            else
+            {
+                MessageBox.Show("Musisz się zalogować żeby móc zarezerwować salę", "Zaloguj się", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
 
         private void Wypozyczalnia_Click(object sender, RoutedEventArgs e)
@@ -46,6 +53,10 @@ namespace MiejskiDomKultury
             if (Session.User != null)
             {
                 NavigationService.Navigate(new WypozyczaniePrzedmiotow());
+            }
+            else
+            {
+                MessageBox.Show("Musisz się zalogować żeby móc wypożyczyć przedmiot", "Zaloguj się", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
         private void Chat_Click(object sender, RoutedEventArgs e)

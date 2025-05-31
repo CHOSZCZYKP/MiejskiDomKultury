@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using ControlzEx.Standard;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using MiejskiDomKultury.Data;
 
 namespace MiejskiDomKultury
 {
@@ -22,7 +23,7 @@ namespace MiejskiDomKultury
         public MainWindow()
         {
             InitializeComponent();
-
+            WidocznoscPrzyciskow();
             (VoiceToggleButton.Content as Image).Source = new BitmapImage(new Uri("Assets/bot.png", UriKind.RelativeOrAbsolute));
             //proszem nie usuwac
             try
@@ -41,7 +42,7 @@ namespace MiejskiDomKultury
             }
             Main.Content = App.ServiceProvider.GetRequiredService<Home>();
             PlayBackgroundMusic();
-            
+
         }
 
         private void PlayBackgroundMusic()
@@ -149,6 +150,38 @@ namespace MiejskiDomKultury
         {
             Ustawienia ustawienia = new Ustawienia();
             ustawienia.Show();
+        }
+
+        public void WidocznoscPrzyciskow()
+        {
+            if (Session.CzyZalogowany)
+            {
+                Logowanie.Visibility = Visibility.Collapsed;
+                Rejestracja.Visibility = Visibility.Collapsed;
+                Wyloguj.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                Logowanie.Visibility = Visibility.Visible;
+                Rejestracja.Visibility = Visibility.Visible;
+                Wyloguj.Visibility = Visibility.Collapsed;
+            }
+
+            if (Session.CzyAdmin)
+            {
+                PanelAdmina.Visibility = Visibility.Visible;
+            }
+            else
+            {  
+                PanelAdmina.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        private void Wyloguj_Click(object sender, RoutedEventArgs e)
+        {
+            Session.Logout();
+            WidocznoscPrzyciskow();
+            Main.Content = App.ServiceProvider.GetRequiredService<Home>();
         }
     }
 }

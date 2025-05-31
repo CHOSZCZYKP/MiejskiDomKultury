@@ -12,10 +12,13 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MahApps.Metro.Controls;
 using MiejskiDomKultury.Data;
+using MiejskiDomKultury.Helpers;
 using MiejskiDomKultury.Interfaces;
 using MiejskiDomKultury.Model;
 using MiejskiDomKultury.Services;
+using MiejskiDomKultury.ViewModel;
 
 namespace MiejskiDomKultury
 {
@@ -24,61 +27,28 @@ namespace MiejskiDomKultury
     /// </summary>
     public partial class Rejestracja : Page
     {
-
-        private readonly IUserRepository _userRepository;
-
-
-        public Rejestracja(IUserRepository userRepository)
+        public Rejestracja()
         {
-            _userRepository = userRepository;
             InitializeComponent();
+            DataContext = new RejestracjaUzytkownika();
         }
 
-
-        public void Zarejestruj_Click(object sender, RoutedEventArgs e)
+        private void haslo_PasswordChanged(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(ImieTextBox.Text) ||
-               string.IsNullOrWhiteSpace(NazwiskoTextBox.Text) ||
-               string.IsNullOrWhiteSpace(EmailTextBox.Text) ||
-               string.IsNullOrWhiteSpace(NazwaUzytkownikaTextBox.Text) ||
-               string.IsNullOrWhiteSpace(HasloPasswordBox.Password) ||
-               string.IsNullOrWhiteSpace(SecondHasloPasswordBox.Password)
-               == true)
+            if (DataContext is RejestracjaUzytkownika vm)
             {
-                MessageBox.Show("Wszystkie pola są wymagane.", "Błąd", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
+                vm.Haslo = haslo.Password;
+                ValidationHelpers.UpdateValidation(haslo, nameof(vm.Haslo), vm);
             }
+        }
 
-
-            if (_userRepository.DoesUserExist(EmailTextBox.Text))
+        private void PowtorzHaslo_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            if (DataContext is RejestracjaUzytkownika vm)
             {
-                MessageBox.Show("Użytkownik o danym email już istnieje", "Błąd", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
+                vm.PowtorzHaslo = PowtorzHaslo.Password;
+                ValidationHelpers.UpdateValidation(PowtorzHaslo, nameof(vm.PowtorzHaslo), vm);
             }
-
-            if (SecondHasloPasswordBox.Password != HasloPasswordBox.Password)
-            {
-                MessageBox.Show("Podane hasła są różne", "Błąd", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
-            }
-
-            
-            var uzytkownik = new Uzytkownik
-            {
-                Imie = ImieTextBox.Text,
-                Nazwisko = NazwiskoTextBox.Text,
-                Email = EmailTextBox.Text,
-                NazwaUzytkownika = NazwaUzytkownikaTextBox.Text,
-                HasloHash = PasswordHasher.HashPassword(HasloPasswordBox.Password), 
-                Rola = "User",
-                
-                
-            };
-
-            _userRepository.AddNewUser(uzytkownik);
-
-            MessageBox.Show("Udana rejestracja", "Błąd", MessageBoxButton.OK, MessageBoxImage.Warning);
-            return;
         }
     }
 }

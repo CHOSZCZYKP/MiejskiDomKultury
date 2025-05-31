@@ -182,9 +182,6 @@ namespace MiejskiDomKultury.ViewModel
 
         private void Zarezerwuj()
         {
-            var uzytkownicyRepository = new UserRepositoryService();
-            var zwyklyUzytkownik = uzytkownicyRepository.GetAllUsers().FirstOrDefault(u => u.Rola == "User");
-
             var wszystkieDatyRezerwacji = new List<DateTime>();
 
             if (WybranyOkres == "Jednorazowo")
@@ -211,7 +208,7 @@ namespace MiejskiDomKultury.ViewModel
                 var nowaRezerwacja = new Rezerwacja
                 {
                     IdSali = WybranaSala.Id,
-                    IdUzytkownika = zwyklyUzytkownik.Id,
+                    IdUzytkownika = Session.User!.Id,
                     Data = dataRezerwacji,
                     GodzinaPoczatkowa = TimeSpan.Parse(GodzinaOd),
                     GodzinaKoncowa = TimeSpan.Parse(GodzinaDo)
