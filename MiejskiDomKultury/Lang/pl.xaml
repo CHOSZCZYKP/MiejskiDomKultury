@@ -42,7 +42,7 @@
     <!-- ChatBot.xaml -->
     <sys:String x:Key="wyslij">Wyślij</sys:String>
 
-  
+    
     <!-- ChatBot.xaml -->
     <sys:String x:Key="ekran">Ekran</sys:String>
     <sys:String x:Key="wolne">Miejsca wolne</sys:String>
@@ -68,4 +68,15 @@
     <sys:String x:Key="rmReserve">Rezerwuj</sys:String>
     <sys:String x:Key="tytulFilmu">Wprowadź tytuł</sys:String>
 
+
+    <sys:String x:Key="rejestracja">Formularz rejestracji</sys:String>
+    <sys:String x:Key="imie">Imie</sys:String>
+    <sys:String x:Key="nazwisko">Nazwisko</sys:String>
+    <sys:String x:Key="emial">Email</sys:String>
+    <sys:String x:Key="nazwa">Nazwa użytkownika</sys:String>
+    <sys:String x:Key="haslo">Hasło</sys:String>
+    <sys:String x:Key="haslo2">Powtórz hasło</sys:String>
+
+    <sys:String x:Key="mojeKonto">Moje konto</sys:String>
+    <sys:String x:Key="logowanie">Logowanie</sys:String>
 </ResourceDictionary>

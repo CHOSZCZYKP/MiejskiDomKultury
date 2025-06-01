@@ -15,7 +15,7 @@
                        FontWeight="Bold" 
                        TextAlignment="Center" 
                        TextWrapping="Wrap" />
-            <Button Content="Zapłać teraz" 
+            <Button Content="{DynamicResource zaplac}" 
                     Width="200" 
                     Height="50" 
                     Margin="0,20,0,0" 

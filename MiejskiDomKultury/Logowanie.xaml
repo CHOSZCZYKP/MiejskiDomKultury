@@ -9,46 +9,58 @@
       Title="Logowanie">
 
     <Grid>
-        <StackPanel VerticalAlignment="Top"
-            HorizontalAlignment="Center">
-            <TextBlock Text="Logowanie" 
-               FontWeight="Bold" 
-               FontSize="30"  
-               Margin="30,50,30 10"
-               HorizontalAlignment="Center"/>
+        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center">
+            <TextBlock Text="{DynamicResource logowanie}" 
+                   FontWeight="Bold" 
+                   FontSize="30"  
+                   Margin="30,50,30,10"
+                   HorizontalAlignment="Center"/>
 
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <TextBlock x:Name="text_login" 
-                   Text="Email:" 
-                   FontSize="20"
-                   Margin="5"
-                   Padding="5" Height="37" />
-                <local:PlaceholderTextBox Placeholder="login" x:Name="TextBoxLogin" 
-                 Width="250" 
-                 FontSize="20" 
-                 Margin="5" 
-                 Padding="5" />
-            </StackPanel>
+            <Grid Width="400" Margin="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
 
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <TextBlock x:Name="text_haslo" 
-                   Text="Hasło:" 
-                   FontSize="20"
-                   Margin="5"
-                   Padding="5" Height="37"/>
-                <local:PlaceholderPasswordBox Placeholder="haslo" x:Name="PasswordBox" 
-                     Width="250" 
-                     FontSize="20" 
-                     Margin="5" 
-                     Padding="5" />
-            </StackPanel>
+                <TextBlock Grid.Column="0"
+                       Text="{DynamicResource emial}" 
+                       FontSize="20"
+                       VerticalAlignment="Center"
+                       Padding="5" />
+                <local:PlaceholderTextBox Grid.Column="1"
+                                      Placeholder="login" 
+                                      x:Name="TextBoxLogin" 
+                                      FontSize="20" 
+                                      Margin="5,0" 
+                                      Padding="5" />
+            </Grid>
+
+            <Grid Width="400" Margin="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0"
+                       Text="{DynamicResource haslo}" 
+                       FontSize="20"
+                       VerticalAlignment="Center"
+                       Padding="5" />
+                <local:PlaceholderPasswordBox Grid.Column="1"
+                                          Placeholder="haslo" 
+                                          x:Name="PasswordBox" 
+                                          FontSize="20" 
+                                          Margin="5,0" 
+                                          Padding="5" />
+            </Grid>
 
             <Button Content="Zaloguj się" 
-            Width="330" 
-            FontSize="20" 
-            Margin="5" 
-            Padding="5" 
-            Click="Login_Click"/>
+                Width="400" 
+                FontSize="20" 
+                Margin="5" 
+                Padding="5" 
+                Click="Login_Click"/>
         </StackPanel>
     </Grid>
+
 </Page>

@@ -27,7 +27,7 @@
 
 
         <StackPanel Grid.Row="1" Orientation="Horizontal">
-            <TextBox Text="{Binding UserInput, UpdateSourceTrigger=PropertyChanged}" Width="300" />
+            <TextBox Text="{Binding UserInput, UpdateSourceTrigger=PropertyChanged}" Width="700" />
             <Button Content="{StaticResource wyslij}" Command="{Binding SendMessageCommand}" Margin="10,0,0,0" />
         </StackPanel>
     </Grid>

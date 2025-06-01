@@ -63,11 +63,13 @@ namespace MiejskiDomKultury
 
         private void StartLocalServer()
         {
-            _paymentListener = new PaymentListener(58741);
-            Task.Run(() => _paymentListener.StartListeningAsync(
-                sessionId => HandlePaymentSuccess(sessionId),
-                sessionId => HandlePaymentCancel(sessionId)
-            ));
+           
+                _paymentListener = new PaymentListener(58741);
+                Task.Run(() => _paymentListener.StartListeningAsync(
+                    sessionId => HandlePaymentSuccess(sessionId),
+                    sessionId => HandlePaymentCancel(sessionId)
+                ));
+           
         }
 
         private void HandlePaymentSuccess(string sessionId)
@@ -86,12 +88,12 @@ namespace MiejskiDomKultury
                     var seansBilet = new SeansBilet
                     {
                         Date = DateTime.Now,
-                        SeansId = seans.Id, 
-                     
+                        SeansId = seans.Id,
+                        UserId = Session.User.Id,
                         SeatNumber = x,
                         Cena = 32
                     };
-                    sum += x;
+                    sum += 32;
                 movieRepositoryService.AddSeansBilet(seansBilet);
                     seansBilet.Seans = seans;
                      tickets.Add(seansBilet);
@@ -100,12 +102,12 @@ namespace MiejskiDomKultury
             var att= pdfService.GenerateTickets(tickets);
                 EmailService emailService = new EmailService();
 
-                //Trzeba dać prawdziwy adres email!!!
                 emailService.sendTickets(att, Session.User.Email);
                 Transakcja t = new Transakcja { IdUzytkownika = Session.User.Id, Kwota_Wartosc = sum, Kwota_Waluta = "PLN", Typ = "Płatność elektroniczna", Data=DateTime.Now };
                 transakcjaService.AddTransakcja(t);
-            NavigationService.Navigate(new Home());
-        });
+                NavigationService.Navigate(new Success());
+
+            });
         }
 
         private void HandlePaymentCancel(string sessionId)

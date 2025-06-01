@@ -49,6 +49,11 @@ namespace MiejskiDomKultury.Repositories
             _dbContextDomKultury.Transakcje.Add(t);
             _dbContextDomKultury.SaveChanges();
         }
+
+        public List<Transakcja> GetTranskacjeByUzytkownik(int id)
+        {
+            return _dbContextDomKultury.Transakcje.Where(a=>a.IdUzytkownika==id).ToList();
+        }
     }
 
     

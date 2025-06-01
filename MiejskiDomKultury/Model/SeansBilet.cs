@@ -14,6 +14,9 @@ namespace MiejskiDomKultury.Model
         public int Cena {  get; set; }
         public int SeatNumber { get; set; }
 
+        public int UserId { get; set; }
+        public Uzytkownik User { get; set; }
+
         public DateTime Date { get; set; } = DateTime.Now;
 
     }

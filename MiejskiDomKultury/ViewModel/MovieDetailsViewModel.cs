@@ -5,6 +5,8 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Navigation;
+using MiejskiDomKultury.Data;
 using MiejskiDomKultury.Model;
 using MiejskiDomKultury.Services;
 
@@ -51,7 +53,16 @@ namespace MiejskiDomKultury.ViewModel
            
             var seatsPage = new SeatsReservation(showDate, Film);
             var mainWindow = Application.Current.MainWindow as MainWindow;
-            mainWindow?.Main.Navigate(seatsPage);
+        
+
+            if (Session.User != null)
+            {
+                mainWindow?.Main.Navigate(seatsPage);
+            }
+            else
+            {
+                MessageBox.Show("Musisz się zalogować żeby móc zarezerwować miejsce", "Zaloguj się", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

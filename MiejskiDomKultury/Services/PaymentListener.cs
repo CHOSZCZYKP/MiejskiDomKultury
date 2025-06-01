@@ -32,7 +32,7 @@ namespace MiejskiDomKultury.Services
                 {
                     var sessionId = request.QueryString["session_id"];
                     onSuccess(sessionId);
-                    await SendResponse(context.Response, 200, "Platnosc udana, mozesz zamknac te karte.\n Twoje bilety zostały wysłane na podany email oraz zapisane na twoim urządzeniue");
+                    await SendResponse(context.Response, 200, "Platnosc udana, mozesz zamknac te karte.\n Twoje bilety zostały wyslane na podany email oraz zapisane na twoim urzadzeniu");
                 }
                 else if (request.Url.AbsolutePath == "/cancel")
                 {

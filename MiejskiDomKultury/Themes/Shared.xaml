@@ -115,6 +115,7 @@
         <Setter Property="Background" Value="Gray"/>
 
     </Style>
+    
     <Style x:Key="FreeSeatButtonStyle" TargetType="Button">
         <Setter Property="Background" Value="CornflowerBlue"/>
 

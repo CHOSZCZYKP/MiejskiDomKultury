@@ -31,7 +31,7 @@
         </Grid.ColumnDefinitions>
 
         <TextBlock x:Name="FormularzRejestracji"
-                   Text="Formularz rejestracji"
+                   Text="{DynamicResource rejestracja}"
                    FontSize="24"
                    FontWeight="Bold"
                    Margin="5"
@@ -41,7 +41,7 @@
                    HorizontalAlignment="Center" />
 
         <TextBlock x:Name="ImieTextBlock"
-                   Text="Imie:"
+                   Text="{DynamicResource imie}"
                    Margin="5"
                    Padding="5"
                    Grid.Row="1"
@@ -65,7 +65,7 @@
                    Text="{Binding ElementName=ImieTextBox, Path=(Validation.Errors)[0].ErrorContent}" />
 
         <TextBlock x:Name="NazwiskoTextBlock"
-                   Text="Nazwisko:"
+                   Text="{DynamicResource nazwisko}"
                    Margin="5"
                    Padding="5"
                    Grid.Row="3"
@@ -89,7 +89,7 @@
                    Text="{Binding ElementName=NazwiskoTextBox, Path=(Validation.Errors)[0].ErrorContent}" />
 
         <TextBlock x:Name="EmailTextBlock"
-                   Text="Email:"
+                   Text="{DynamicResource emial}"
                    Margin="5"
                    Padding="5"
                    Grid.Row="5"
@@ -113,7 +113,7 @@
                    Text="{Binding ElementName=EmailTextBox, Path=(Validation.Errors)[0].ErrorContent}" />
 
         <TextBlock x:Name="NazwaUzytkownikaTextBlock"
-                   Text="Nazwa użytkownika:"
+                   Text="{DynamicResource nazwa}"
                    Margin="5"
                    Padding="5"
                    Grid.Row="7"
@@ -137,7 +137,7 @@
                    Text="{Binding ElementName=NazwaUzytkownikaTextBox, Path=(Validation.Errors)[0].ErrorContent}" />
 
         <TextBlock x:Name="hasloTextBox"
-                   Text="Hasło:"
+                   Text="{DynamicResource haslo}"
                    Margin="5"
                    Padding="5"
                    Grid.Row="9"
@@ -163,7 +163,7 @@
 
 
         <TextBlock x:Name="hasloPowtorzTextBox"
-                   Text="Powtórz hasło:"
+                   Text="{DynamicResource haslo2}"
                    Margin="5"
                    Padding="5"
                    Grid.Row="11"

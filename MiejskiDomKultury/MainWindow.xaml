@@ -74,6 +74,12 @@
                             Margin="5"
                             Padding="5"
                             Click="PanelAdmina_Click" />
+                             <Button x:Name="MojeKonto" 
+                             Content="{DynamicResource mojeKonto}" 
+                             Margin="5" 
+                             Padding="5" 
+                                     Visibility="Collapsed"
+                             Click="Konto_Click" />
                     <Button x:Name="Rejestracja" 
                             Content="{DynamicResource navRejestracja}" 
                             Margin="5" 

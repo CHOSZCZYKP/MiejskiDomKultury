@@ -159,6 +159,7 @@ namespace MiejskiDomKultury
                 Logowanie.Visibility = Visibility.Collapsed;
                 Rejestracja.Visibility = Visibility.Collapsed;
                 Wyloguj.Visibility = Visibility.Visible;
+                MojeKonto.Visibility = Visibility.Visible;
             }
             else
             {
@@ -175,6 +176,11 @@ namespace MiejskiDomKultury
             {  
                 PanelAdmina.Visibility = Visibility.Collapsed;
             }
+        }
+        private void Konto_Click (object sender, RoutedEventArgs e)
+        {
+       
+            Main.Content = App.ServiceProvider.GetRequiredService<MyAccount>();
         }
 
         private void Wyloguj_Click(object sender, RoutedEventArgs e)

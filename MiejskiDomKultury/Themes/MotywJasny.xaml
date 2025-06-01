@@ -38,7 +38,10 @@
         <GradientStop Color="#EFD3A5" Offset="0.0"/>
         <GradientStop Color="#ffe1b0" Offset="1.0"/>
     </LinearGradientBrush>
+    <Style x:Key="TakenSeatButtonStyle" TargetType="Button">
+        <Setter Property="Background" Value="Gray"/>
 
+    </Style>
     <!-- ListBox Style -->
     <Style TargetType="{x:Type ListBox}">
         <Setter Property="Background" Value="{StaticResource ControlBackgroundBrush}"/>

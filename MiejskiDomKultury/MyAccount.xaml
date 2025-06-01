@@ -1,0 +1,53 @@
+﻿<Page x:Class="MiejskiDomKultury.MyAccount"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="Moje Konto">
+
+    <ScrollViewer>
+        <StackPanel Margin="20">
+            <TextBlock Text="👤 Twoje konto"
+                       FontSize="24"
+                       FontWeight="Bold"
+                       Margin="0,0,0,20"/>
+
+            <!-- Informacje o użytkowniku -->
+            <StackPanel Orientation="Vertical" Margin="0,0,0,20">
+                <TextBlock Text="{Binding UserName}" FontSize="18"/>
+                <TextBlock Text="{Binding Email}" FontSize="14" Foreground="Gray"/>
+            </StackPanel>
+
+            <!-- Lista biletów -->
+            <TextBlock Text="🎫 Twoje bilety" FontSize="20" FontWeight="Bold" Margin="0,10"/>
+            <ItemsControl x:Name="TicketsList">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="Gray" BorderThickness="1" Padding="10" Margin="0,5">
+                            <StackPanel>
+                                <TextBlock Text="{Binding Seans.Film.Tytul}" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding Seans.DataStart}"/>
+                                <TextBlock Text="Miejsce: "><Run Text="{Binding SeatNumber}" /></TextBlock>
+                                <TextBlock Text="Cena: "><Run Text="{Binding Cena}"/> zł</TextBlock>
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+            <!-- Lista transakcji -->
+            <TextBlock Text="💳 Twoje transakcje" FontSize="20" FontWeight="Bold" Margin="0,20,0,10"/>
+            <ItemsControl x:Name="TransakcjeList">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="DarkGray" BorderThickness="1" Padding="10" Margin="0,5">
+                            <StackPanel>
+                                <TextBlock Text="{Binding Typ}" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding Data}" />
+                                <TextBlock Text="{Binding Kwota_Pelna}" Foreground="DarkGreen"/>
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

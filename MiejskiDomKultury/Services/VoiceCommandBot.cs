@@ -38,23 +38,13 @@ namespace MiejskiDomKultury.Services
             Choices commands = new Choices(
                 "what time is it",
                 "shutdown",
-                "how are you",
-                "tell me a joke",
                 "what is your name",
-                "who created you",
                 "what can you do",
-                "open the pod bay doors",
-                "will you sing a song",
-                "do you read me hal",
-                "i'm afraid",
-                "what's the problem",
-                "is everything okay",
-                "will you stop",
-                "go to cinema view",
-                "go to chat view",
-                "go to home view",
-                "go to rent room view",
-                "go to rent item view"
+                "go to cinema",
+                "go to AI assistant",
+                "go to home ",
+                "go to room reservation",
+                "go to equipment rental "
             );
 
             GrammarBuilder gbCommand = new GrammarBuilder();
@@ -91,7 +81,7 @@ namespace MiejskiDomKultury.Services
             {
                 if (e.Result.Grammar.Name == "WakeWord")
                 {
-                    synthesizer.Speak("Hey, whats up!");
+                    synthesizer.Speak("Hey, how can i help you!");
                 }
                 else if (e.Result.Grammar.Name == "Command")
                 {
@@ -108,27 +98,25 @@ namespace MiejskiDomKultury.Services
                         case "what is your name":
                             synthesizer.Speak("I am HAL 9000, your voice assistant.");
                             break;
-                        case "who created you":
-                            synthesizer.Speak("I was created in HALL Illinois by Mr. Langley");
-                            break;
+                        
                         case "what can you do":
                             synthesizer.Speak("I can respond to your commands, tell the time, and even share a joke.");
                             break;
                         
 
-                        case "go to cinema view":
+                        case "go to cinema ":
                             mainFrame.Dispatcher.Invoke(() => mainFrame.Navigate(new AvailableMovies()));
                             break;
-                        case "go to chat view":
+                        case "go to ai assistant":
                             mainFrame.Dispatcher.Invoke(() => mainFrame.Navigate(new ChatBot()));
                             break;
-                        case "go to home view":
+                        case "go to home":
                             mainFrame.Dispatcher.Invoke(() => mainFrame.Navigate(new Home()));
                             break;
-                        case "go to rent room view":
+                        case "go to room reservation":
                              mainFrame.Dispatcher.Invoke(() => mainFrame.Navigate(new Rezerwacje()));
                             break;
-                        case "go to rent item view":
+                        case "go to equipment renal":
                             mainFrame.Dispatcher.Invoke(() => mainFrame.Navigate(new WypozyczaniePrzedmiotow()));
                             break;
 

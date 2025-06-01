@@ -1,0 +1,28 @@
+﻿<Page x:Class="MiejskiDomKultury.Success"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="Sukces">
+
+    <Grid >
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Text="✅ Płatność zakończona sukcesem!"
+                       FontSize="28"
+                       FontWeight="Bold"
+                       Foreground="Green"
+                       TextAlignment="Center"
+                       Margin="20" />
+
+            <TextBlock Text="Dziękujemy za zakup. Bilety zostały wysłane na Twój adres e-mail."
+                       FontSize="16"
+                       TextAlignment="Center"
+                       Margin="10,0,10,20"
+                       TextWrapping="Wrap" />
+
+            <Button Content="Powrót do strony głównej"
+                    Width="250"
+                    Height="50"
+                    FontSize="16"
+                    Click="BackToHome_Click" />
+        </StackPanel>
+    </Grid>
+</Page>

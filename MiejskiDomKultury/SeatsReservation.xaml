@@ -35,7 +35,7 @@
                         <ColumnDefinition Width="60" />
                     </Grid.ColumnDefinitions>
                 <Label Grid.Column="0" Content="{StaticResource zajete}"></Label>
-                    <Label Grid.Column="1" Background="Gray" Width="50" Height="20" HorizontalAlignment="Right"/>
+                    <Label Grid.Column="1" Background="WhiteSmoke" Width="50" Height="20" HorizontalAlignment="Right"/>
                 </Grid>
 
                 <Grid Margin="5">

@@ -86,6 +86,15 @@ namespace MiejskiDomKultury.Data
                     .HasForeignKey(r => r.IdSali);
             });
 
+            modelBuilder.Entity<SeansBilet>(mb =>
+            {
+                mb.HasKey(t => t.Id);
+                mb.HasOne(p => p.User)
+                .WithMany(a => a.Bilety)
+                .HasForeignKey(s => s.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+            });
+
          
         }
     }

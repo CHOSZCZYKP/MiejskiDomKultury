@@ -21,7 +21,8 @@ namespace MiejskiDomKultury.Interfaces
 
         void AddFilm(Film film);
 
-     
+
+        List<SeansBilet> GetBiletyByUzytkownik(int id);
 
         void AddSeans(Seans seans);
 

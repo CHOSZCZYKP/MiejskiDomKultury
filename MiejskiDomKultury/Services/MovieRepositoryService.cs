@@ -56,7 +56,10 @@ namespace MiejskiDomKultury.Services
            
         }
 
-
+        public List<SeansBilet> GetBiletyByUzytkownik(int id)
+        {
+            return _context.Bilety.Include(a=>a.Seans).ThenInclude(a=>a.Film).Where(a=>a.UserId==id).ToList();
+        }
 
         public List<int> GetFreeSeats(int seansId)
         {

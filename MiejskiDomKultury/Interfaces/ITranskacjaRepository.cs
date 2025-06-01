@@ -12,6 +12,8 @@ namespace MiejskiDomKultury.Interfaces
     {
         IEnumerable<Transakcja> GetAllTransakcja();
         IEnumerable<TransakcjaZUzytkownikiemDto> GetAllTransakcjeZUzytkownikami();
+
+        List<Transakcja> GetTranskacjeByUzytkownik(int id);
         Dictionary<string, int> GetAllTransakcjeGroupTyp();
 
         void AddTransakcja(Transakcja t);

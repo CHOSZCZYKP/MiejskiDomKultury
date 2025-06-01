@@ -120,7 +120,7 @@
             </Setter.Value>
         </Setter>
     </Style>
-
+ 
     <!-- PasswordBox Style -->
     <Style TargetType="{x:Type PasswordBox}">
         <Setter Property="Background" Value="{StaticResource ControlBackgroundBrush}"/>

@@ -65,5 +65,16 @@
     <sys:String x:Key="rmReset">Reset</sys:String>
     <sys:String x:Key="rmReserve">Reserve</sys:String>
     <sys:String x:Key="tytulFilmu">Title</sys:String>
-    
+
+
+    <sys:String x:Key="rejestracja">Register form</sys:String>
+    <sys:String x:Key="imie">Name</sys:String>
+    <sys:String x:Key="nazwisko">Surname</sys:String>
+    <sys:String x:Key="emial">Email</sys:String>
+    <sys:String x:Key="nazwa">Username</sys:String>
+    <sys:String x:Key="haslo">Password</sys:String>
+    <sys:String x:Key="haslo2">Repeat your password</sys:String>
+    <sys:String x:Key="mojeKonto">My account</sys:String>
+
+    <sys:String x:Key="logowanie">Log in</sys:String>
 </ResourceDictionary>

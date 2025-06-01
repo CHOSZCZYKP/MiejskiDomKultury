@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MiejskiDomKultury.Data;
 
@@ -11,9 +12,11 @@ using MiejskiDomKultury.Data;
 namespace MiejskiDomKultury.Migrations
 {
     [DbContext(typeof(DbContextDomKultury))]
-    partial class DbContextDomKulturyModelSnapshot : ModelSnapshot
+    [Migration("20250601183746_zmianaBiletUzytkownik")]
+    partial class zmianaBiletUzytkownik
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -443,7 +446,7 @@ namespace MiejskiDomKultury.Migrations
                     b.HasOne("MiejskiDomKultury.Model.Uzytkownik", "User")
                         .WithMany("Bilety")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Seans");
