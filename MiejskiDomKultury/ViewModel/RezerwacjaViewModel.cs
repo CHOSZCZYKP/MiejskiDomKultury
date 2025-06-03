@@ -1,4 +1,5 @@
 ﻿using LiveChartsCore.Kernel;
+using Microsoft.Extensions.DependencyInjection;
 using MiejskiDomKultury.Data;
 using MiejskiDomKultury.Helpers;
 using MiejskiDomKultury.Interfaces;
@@ -14,6 +15,8 @@ using System.Windows;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Navigation;
+using System.Windows.Threading;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace MiejskiDomKultury.ViewModel
@@ -22,11 +25,16 @@ namespace MiejskiDomKultury.ViewModel
     {
         private readonly IRezerwacjaRepository _rezerwacjaRepository;
         private readonly ISaleRepository _saleRepository;
-
+        private readonly ITranskacjaRepository _transkacjaRepository;
+        private Sala PrzechowanieSali;
         private PrzekaznikCommand _zarezerwujSaleCommand;
         public ICommand ZarezerwujSaleCommand => _zarezerwujSaleCommand;
 
         private readonly Dictionary<string, List<string>> _errors = new();
+
+        private PaymentListener _paymentListener;
+        private string _currentSessionId;
+        private int price;
 
         private ObservableCollection<Sala> _saleCollection = new();
         public ObservableCollection<Sala> SaleCollection
@@ -158,6 +166,8 @@ namespace MiejskiDomKultury.ViewModel
             DbContextDomKultury context = new DbContextDomKultury();
             _saleRepository = new SaleRepository(context);
             _rezerwacjaRepository = new RezerwacjeRepository(context);
+            _transkacjaRepository = new TransakcjaRepository(context);
+
             LadowanieDanychDoWidoku();
             _zarezerwujSaleCommand = new PrzekaznikCommand(Zarezerwuj, CzyMoznaZarezerwoac);
             Data = DateTime.Now;
@@ -183,7 +193,7 @@ namespace MiejskiDomKultury.ViewModel
         private void Zarezerwuj()
         {
             var wszystkieDatyRezerwacji = new List<DateTime>();
-
+ 
             if (WybranyOkres == "Jednorazowo")
             {
                 wszystkieDatyRezerwacji.Add(Data);
@@ -214,12 +224,77 @@ namespace MiejskiDomKultury.ViewModel
                     GodzinaKoncowa = TimeSpan.Parse(GodzinaDo)
                 };
                 _rezerwacjaRepository.AddNewRezerwacja(nowaRezerwacja);
+                PrzechowanieSali = WybranaSala;
             }
 
-            MessageBox.Show("Pomyślnie dodano rezerwacje.", "Dodatnie rezerwacji", MessageBoxButton.OK, MessageBoxImage.Information);
-
+            /* MessageBox.Show("Pomyślnie dodano rezerwacje.", "Dodatnie rezerwacji", MessageBoxButton.OK, MessageBoxImage.Information);*/
+            StartLocalServer();
+            var stripeService = new StripeService();
+            if (int.TryParse(IloscCykli, out int ic) && WybranyOkres != "Jednorazowo")
+            {
+                price = (int)WybranaSala.CenaZaGodz_Wartosc * ic;
+            }
+            else
+            {
+                price = (int)WybranaSala.CenaZaGodz_Wartosc;
+            }
+            _currentSessionId = stripeService.CreateCheckoutSession(price);
             LadowanieDanychDoWidoku();
 
+        }
+
+        private void StartLocalServer()
+        {
+
+            _paymentListener = new PaymentListener(58741);
+            Task.Run(() => _paymentListener.StartListeningAsync(
+                sessionId => HandlePaymentSuccess(sessionId),
+                sessionId => HandlePaymentCancel(sessionId)
+            ));
+
+        }
+
+        private void HandlePaymentSuccess(string sessionId)
+        {
+            if (sessionId != _currentSessionId) return;
+            Application.Current.Dispatcher.Invoke( () => {
+                
+            if (int.TryParse(IloscCykli, out int iloscInt) && WybranyOkres != "Jednorazowo")
+            {
+                Transakcja t = new Transakcja
+                {
+                    IdUzytkownika = Session.User.Id,
+                    Kwota_Wartosc = PrzechowanieSali.CenaZaGodz_Wartosc * iloscInt,
+                    Kwota_Waluta = PrzechowanieSali.CenaZaGodz_Waluta,
+                    Typ = "Płatność elektroniczna",
+                    Data = DateTime.Now
+                };
+                _transkacjaRepository.AddTransakcja(t);
+            }
+            else
+            {
+                Transakcja t = new Transakcja
+                {
+                    IdUzytkownika = Session.User.Id,
+                    Kwota_Wartosc = PrzechowanieSali.CenaZaGodz_Wartosc,
+                    Kwota_Waluta = PrzechowanieSali.CenaZaGodz_Waluta,
+                    Typ = "Płatność elektroniczna",
+                    Data = DateTime.Now
+                };
+                _transkacjaRepository.AddTransakcja(t);
+            }
+
+            if (Application.Current.MainWindow is MainWindow mainWindow)
+            {
+                mainWindow.Main.Content = App.ServiceProvider.GetRequiredService<Success>();
+            }
+            });
+        }
+
+        private void HandlePaymentCancel(string sessionId)
+        {
+            MessageBox.Show("Platnosc sie nie powiodla");
+            _paymentListener.Stop();
         }
 
         private bool FilterSale(object obj)

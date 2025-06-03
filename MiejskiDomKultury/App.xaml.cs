@@ -69,6 +69,7 @@ namespace MiejskiDomKultury
             services.AddTransient<AIService>();
             services.AddTransient< NewsService>();
             services.AddTransient<MyAccount>();
+            services.AddTransient<Success>();
             services.AddTransient<DbContextDomKultury>();
             services.AddDbContext<DbContextDomKultury>(options =>
             {
