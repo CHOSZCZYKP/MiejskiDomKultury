@@ -73,13 +73,20 @@ namespace MiejskiDomKultury.ViewModel
                 var botMessage = new ChatMessage("HAL 9000", "");
                 Messages.Add(botMessage);
 
-                for (int i = 0; i < response.Length; i++)
+                // Dodawanie literka po literce
+                foreach (char c in response)
                 {
-                    botMessage.Message += response[i];
-                    await Task.Delay(30);
+                    botMessage.Message += c;
+
+                    // Wymuś powiadomienie o zmianie
+                    OnPropertyChanged(nameof(Messages));
+
+                    await Task.Delay(30); // Opóźnienie w milisekundach (możesz dostosować)
                 }
 
-                
+
+
+
             }
             catch (Exception ex)
             {

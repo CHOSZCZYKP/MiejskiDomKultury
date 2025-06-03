@@ -16,9 +16,12 @@
         <ListBox ItemsSource="{Binding Messages}" Grid.Row="0" Margin="0,0,0,10">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Margin="0,5">
+                    <StackPanel Margin="0,5" MaxWidth="1200" HorizontalAlignment="Left">
+                       
                         <TextBlock FontWeight="Bold" Foreground="Gray" Text="{Binding Sender}" />
-                        <TextBlock Text="{Binding Message}" TextWrapping="Wrap" Margin="10,0,0,0" />
+                        <TextBlock Text="{Binding Message}" 
+                           TextWrapping="Wrap" 
+                           Margin="10,0,0,0" />
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
@@ -26,9 +29,10 @@
 
 
 
+
         <StackPanel Grid.Row="1" Orientation="Horizontal">
             <TextBox Text="{Binding UserInput, UpdateSourceTrigger=PropertyChanged}" Width="700" />
-            <Button Content="{StaticResource wyslij}" Command="{Binding SendMessageCommand}" Margin="10,0,0,0" />
+            <Button Content="{DynamicResource wyslij}" Command="{Binding SendMessageCommand}" Margin="10,0,0,0" />
         </StackPanel>
     </Grid>
 </Page>

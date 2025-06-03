@@ -257,16 +257,29 @@ namespace MiejskiDomKultury.ViewModel
         private void HandlePaymentSuccess(string sessionId)
         {
             if (sessionId != _currentSessionId) return;
-            Application.Current.Dispatcher.Invoke( () => {
-                
-            if (int.TryParse(IloscCykli, out int iloscInt) && WybranyOkres != "Jednorazowo")
+            Application.Current.Dispatcher.Invoke(async () => {
+                var stripe = new Stripe.StripeClient(Environment.GetEnvironmentVariable("STRIPE_KEY"));
+                var service = new Stripe.Checkout.SessionService(stripe);
+                var session = await service.GetAsync(sessionId);
+
+                var paymentIntentId = session.PaymentIntentId;
+                var paymentIntentService = new Stripe.PaymentIntentService(stripe);
+                var paymentIntent = await paymentIntentService.GetAsync(paymentIntentId);
+
+                var paymentMethodType = paymentIntent.PaymentMethodTypes.Count > 0
+                    ? paymentIntent.PaymentMethodTypes[0]
+                    : "unknown";
+
+
+                string typPlatnosci = ConvertPaymentType(paymentMethodType);
+                if (int.TryParse(IloscCykli, out int iloscInt) && WybranyOkres != "Jednorazowo")
             {
                 Transakcja t = new Transakcja
                 {
                     IdUzytkownika = Session.User.Id,
                     Kwota_Wartosc = PrzechowanieSali.CenaZaGodz_Wartosc * iloscInt,
                     Kwota_Waluta = PrzechowanieSali.CenaZaGodz_Waluta,
-                    Typ = "Płatność elektroniczna",
+                    Typ = typPlatnosci,
                     Data = DateTime.Now
                 };
                 _transkacjaRepository.AddTransakcja(t);
@@ -352,7 +365,17 @@ namespace MiejskiDomKultury.ViewModel
 
             return !czyZajeta && spelniaFraze;
         }
-
+        private string ConvertPaymentType(string stripeType)
+        {
+            return stripeType switch
+            {
+                "card" => "Karta",
+                "blik" => "BLIK",
+                "p24" => "Przelewy24",
+                "paypal" => "PayPal",
+                _ => "Inna metoda"
+            };
+        }
         private void ValidateProperty(string propertyName, string value)
         {
             if (_errors.ContainsKey(propertyName))

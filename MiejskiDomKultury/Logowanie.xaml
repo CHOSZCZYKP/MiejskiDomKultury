@@ -28,7 +28,7 @@
                        VerticalAlignment="Center"
                        Padding="5" />
                 <local:PlaceholderTextBox Grid.Column="1"
-                                      Placeholder="login" 
+                                      Placeholder="{DynamicResource emial}" 
                                       x:Name="TextBoxLogin" 
                                       FontSize="20" 
                                       Margin="5,0" 
@@ -47,14 +47,14 @@
                        VerticalAlignment="Center"
                        Padding="5" />
                 <local:PlaceholderPasswordBox Grid.Column="1"
-                                          Placeholder="haslo" 
+                                          Placeholder="{DynamicResource haslo}" 
                                           x:Name="PasswordBox" 
                                           FontSize="20" 
                                           Margin="5,0" 
                                           Padding="5" />
             </Grid>
 
-            <Button Content="Zaloguj się" 
+            <Button Content="{DynamicResource logowanie}" 
                 Width="400" 
                 FontSize="20" 
                 Margin="5" 

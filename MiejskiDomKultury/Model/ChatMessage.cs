@@ -22,7 +22,7 @@ public class ChatMessage : INotifyPropertyChanged
     public ChatMessage(string sender, string message, bool isUser = false)
     {
         Sender = sender;
-        Message = message;
+        _message = message;
         IsUser = isUser;
     }
 

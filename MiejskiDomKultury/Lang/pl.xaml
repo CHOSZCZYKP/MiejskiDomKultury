@@ -76,7 +76,17 @@
     <sys:String x:Key="nazwa">Nazwa użytkownika</sys:String>
     <sys:String x:Key="haslo">Hasło</sys:String>
     <sys:String x:Key="haslo2">Powtórz hasło</sys:String>
-
+    <sys:String x:Key="mojeKonto2">👤 Moje konto</sys:String>
     <sys:String x:Key="mojeKonto">Moje konto</sys:String>
+    <sys:String x:Key="twojeBilety">🎫 Twoje bilety</sys:String>
+    <sys:String x:Key="twojeTransakcje">💳 Twoje transakcje</sys:String>
+    <sys:String x:Key="miejsceLabel">Miejsce:</sys:String>
+    <sys:String x:Key="cenaLabel">Cena:</sys:String>
     <sys:String x:Key="logowanie">Logowanie</sys:String>
+
+    <sys:String x:Key="sukces">✅ Płatność zakończona sukcesem!</sys:String>
+    <sys:String x:Key="info">Dziękujemy za zakup. Bilety zostały wysłane na Twój adres e-mail.</sys:String>
+    <sys:String x:Key="gohome">Powrót do strony głównej</sys:String>
+
+    <sys:String x:Key="log">Zaloguj się</sys:String>
 </ResourceDictionary>

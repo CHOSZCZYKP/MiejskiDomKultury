@@ -5,20 +5,20 @@
 
     <Grid >
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock Text="✅ Płatność zakończona sukcesem!"
+            <TextBlock Text="{DynamicResource sukces}"
                        FontSize="28"
                        FontWeight="Bold"
                        Foreground="Green"
                        TextAlignment="Center"
                        Margin="20" />
 
-            <TextBlock Text="Dziękujemy za zakup. Bilety zostały wysłane na Twój adres e-mail."
+            <TextBlock Text="{DynamicResource info}"
                        FontSize="16"
                        TextAlignment="Center"
                        Margin="10,0,10,20"
                        TextWrapping="Wrap" />
 
-            <Button Content="Powrót do strony głównej"
+            <Button Content="{DynamicResource gohome}"
                     Width="250"
                     Height="50"
                     FontSize="16"

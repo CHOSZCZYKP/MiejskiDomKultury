@@ -66,7 +66,7 @@
     <sys:String x:Key="rmReserve">Reserve</sys:String>
     <sys:String x:Key="tytulFilmu">Title</sys:String>
 
-
+    
     <sys:String x:Key="rejestracja">Register form</sys:String>
     <sys:String x:Key="imie">Name</sys:String>
     <sys:String x:Key="nazwisko">Surname</sys:String>
@@ -75,6 +75,16 @@
     <sys:String x:Key="haslo">Password</sys:String>
     <sys:String x:Key="haslo2">Repeat your password</sys:String>
     <sys:String x:Key="mojeKonto">My account</sys:String>
+    <sys:String x:Key="mojeKonto2">👤 My account</sys:String>
+    <sys:String x:Key="twojeBilety">🎫 Tickets</sys:String>
+    <sys:String x:Key="twojeTransakcje">💳 Payments</sys:String>
+    <sys:String x:Key="miejsceLabel">Seats:</sys:String>
+    <sys:String x:Key="cenaLabel">Price:</sys:String>
 
     <sys:String x:Key="logowanie">Log in</sys:String>
+
+    <sys:String x:Key="sukces">✅ Payment completed successfully!</sys:String>
+    <sys:String x:Key="info">Thank you for your purchase. Tickets have been sent to your email address.</sys:String>
+    <sys:String x:Key="gohome">Return to homepage</sys:String>
+    <sys:String x:Key="log">Log in</sys:String>
 </ResourceDictionary>

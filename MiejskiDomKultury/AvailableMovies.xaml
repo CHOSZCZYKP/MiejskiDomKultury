@@ -18,7 +18,7 @@
     <Grid Margin="10">
         <StackPanel>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10">
-                <Label VerticalAlignment="Center" Content="{StaticResource wyszukaj}" />
+                <Label VerticalAlignment="Center" Content="{DynamicResource wyszukaj}" />
 
                 <TextBox Width="300" FontSize="20" 
                          Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
@@ -30,7 +30,7 @@
                         <StackPanel Orientation="Horizontal" Margin="0 5">
                             <TextBlock Text="{Binding Tytul}" Width="200" VerticalAlignment="Center"/>
                             <Button 
-    Content="{StaticResource detale}" 
+    Content="{DynamicResource detale}" 
     Margin="10 0 0 0"
     Command="{Binding DataContext.NavigateToDetailsCommand, RelativeSource={RelativeSource AncestorType=ListBox}}"
     CommandParameter="{Binding}" />

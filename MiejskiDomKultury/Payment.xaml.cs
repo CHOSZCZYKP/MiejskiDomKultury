@@ -76,39 +76,74 @@ namespace MiejskiDomKultury
         {
             if (sessionId != _currentSessionId) return;
 
-
-          //  MessageBox.Show("Platnosc sie  powiodla");
-
-            Dispatcher.Invoke(() => { 
-
-             List < SeansBilet > tickets = new List<SeansBilet>();
-                var sum = 0;
-            foreach (var x in seats)
+            Dispatcher.Invoke(async () =>
             {
+                var stripe = new Stripe.StripeClient(Environment.GetEnvironmentVariable("STRIPE_KEY")); 
+                var service = new Stripe.Checkout.SessionService(stripe);
+                var session = await service.GetAsync(sessionId);
+
+                var paymentIntentId = session.PaymentIntentId;
+                var paymentIntentService = new Stripe.PaymentIntentService(stripe);
+                var paymentIntent = await paymentIntentService.GetAsync(paymentIntentId);
+
+                var paymentMethodType = paymentIntent.PaymentMethodTypes.Count > 0
+                    ? paymentIntent.PaymentMethodTypes[0]
+                    : "unknown";
+
+              
+                string typPlatnosci = ConvertPaymentType(paymentMethodType);
+
+              
+                List<SeansBilet> tickets = new List<SeansBilet>();
+                int sum = 0;
+
+                foreach (var seat in seats)
+                {
                     var seansBilet = new SeansBilet
                     {
                         Date = DateTime.Now,
                         SeansId = seans.Id,
                         UserId = Session.User.Id,
-                        SeatNumber = x,
-                        Cena = 32
+                        SeatNumber = seat,
+                        Cena = SeatPrice
                     };
-                    sum += 32;
-                movieRepositoryService.AddSeansBilet(seansBilet);
+                    sum += SeatPrice;
+                    movieRepositoryService.AddSeansBilet(seansBilet);
                     seansBilet.Seans = seans;
-                     tickets.Add(seansBilet);
+                    tickets.Add(seansBilet);
                 }
-            PdfService pdfService = new PdfService();
-            var att= pdfService.GenerateTickets(tickets);
+
+                PdfService pdfService = new PdfService();
+                var attachment = pdfService.GenerateTickets(tickets);
+
                 EmailService emailService = new EmailService();
+                emailService.sendTickets(attachment, Session.User.Email);
 
-                emailService.sendTickets(att, Session.User.Email);
-                Transakcja t = new Transakcja { IdUzytkownika = Session.User.Id, Kwota_Wartosc = sum, Kwota_Waluta = "PLN", Typ = "Płatność elektroniczna", Data=DateTime.Now };
+                Transakcja t = new Transakcja
+                {
+                    IdUzytkownika = Session.User.Id,
+                    Kwota_Wartosc = sum,
+                    Kwota_Waluta = "PLN",
+                    Typ = typPlatnosci, 
+                    Data = DateTime.Now
+                };
                 transakcjaService.AddTransakcja(t);
-                NavigationService.Navigate(new Success());
 
+                NavigationService.Navigate(new Success());
             });
         }
+        private string ConvertPaymentType(string stripeType)
+        {
+            return stripeType switch
+            {
+                "card" => "Karta",
+                "blik" => "BLIK",
+                "p24" => "Przelewy24",
+                "paypal" => "PayPal",
+                _ => "Inna metoda"
+            };
+        }
+
 
         private void HandlePaymentCancel(string sessionId)
         {
