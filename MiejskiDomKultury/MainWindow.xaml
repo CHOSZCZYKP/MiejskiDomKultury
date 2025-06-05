@@ -68,6 +68,7 @@
                             Content="{DynamicResource navMenu}"
                             Margin="5"
                             Padding="5"
+                            Width="80"
                             Click="PanelMenu_Click" />
                     <Button x:Name="PanelAdmina"
                             Content="{DynamicResource navAdmin}"
@@ -78,22 +79,26 @@
                              Content="{DynamicResource mojeKonto}" 
                              Margin="5" 
                              Padding="5" 
+                            Width="80"
                                      Visibility="Collapsed"
                              Click="Konto_Click" />
                     <Button x:Name="Rejestracja" 
                             Content="{DynamicResource navRejestracja}" 
                             Margin="5" 
                             Padding="5" 
+                            Width="80"
                             Click="Rejestracja_Click" />
                     <Button x:Name="Logowanie" 
                             Content="{DynamicResource navLogin}" 
                             Margin="5" 
                             Padding="5" 
+                            Width="80"
                             Click="Logowanie_Click" />
                     <Button x:Name="Wyloguj" 
                             Content="Wyloguj" 
                             Margin="5" 
                             Padding="5" 
+                            Width="80"
                             Click="Wyloguj_Click" />
                 </StackPanel>
             </Grid>

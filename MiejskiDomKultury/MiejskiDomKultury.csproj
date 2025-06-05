@@ -9,6 +9,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Nowy folder\**" />
+    <EmbeddedResource Remove="Nowy folder\**" />
+    <None Remove="Nowy folder\**" />
+    <Page Remove="Nowy folder\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Assets\bot.png" />
     <None Remove="Assets\david.png" />
     <None Remove="Assets\despair.webp" />
@@ -131,10 +138,6 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Nowy folder\" />
   </ItemGroup>
 
 </Project>

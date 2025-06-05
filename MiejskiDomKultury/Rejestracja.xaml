@@ -34,11 +34,11 @@
                    Text="{DynamicResource rejestracja}"
                    FontSize="24"
                    FontWeight="Bold"
-                   Margin="5"
+                   Margin="12 5 5 5"
                    Padding="5"
-                   Grid.ColumnSpan="2"
+                   Grid.Column="1"
                    VerticalAlignment="Center"
-                   HorizontalAlignment="Center" />
+                   HorizontalAlignment="Left" />
 
         <TextBlock x:Name="ImieTextBlock"
                    Text="{DynamicResource imie}"
@@ -189,10 +189,10 @@
 
         <Button x:Name="Rejestruj"
                 Content="Zarejestruj"
-                Grid.ColumnSpan="2"
+                Grid.Column="1"
                 Grid.Row="13"
                 VerticalAlignment="Center"
-                HorizontalAlignment="Center"
+                HorizontalAlignment="Left"
                 Width="250"
                 Margin="5"
                 Padding="5"
