@@ -8,7 +8,8 @@
         Title="Ustawienia" Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="2*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -25,11 +26,11 @@
                    Text="{DynamicResource ustTytul}"
                    FontSize="36"
                    FontWeight="Bold"
-                   Margin="30"
+                   Margin="0 30 30 30"
                    Padding="10"
                    VerticalAlignment="Center"
-                   HorizontalAlignment="Center"
-                   Grid.ColumnSpan="2" />
+                   HorizontalAlignment="Left"
+                   Grid.Column="1" />
         <TextBlock x:Name="JezykTextBlock"
                    Grid.Row="1"
                    Text="{DynamicResource ustLang}"
@@ -121,15 +122,19 @@
                     Grid.Row="6"
                     Grid.Column="1"
                     VerticalAlignment="Center"
-                    HorizontalAlignment="Right">
+                    HorizontalAlignment="Left">
             <Button x:Name="ZapiszUstawienia"
                     Content="Zapisz"
-                    Margin="10"
-                    Padding="10"/>
+                    Margin="5 10 0 10"
+                    Padding="10"
+                    Width="95"
+                    Click="Zapisz_Click"/>
             <Button x:Name="AnulujUstawienia"
                     Content="Anuluj"
                     Margin="10"
-                    Padding="10"/>
+                    Padding="10"
+                    Width="95"
+                    Click="Anuluj_Click"/>
         </StackPanel>
     </Grid>
 </Window>

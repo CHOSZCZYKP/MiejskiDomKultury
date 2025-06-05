@@ -38,7 +38,7 @@ namespace MiejskiDomKultury
         private void Login_Click(object sender, RoutedEventArgs e)
         {
             var email = TextBoxLogin.Text;
-                var password = PasswordBox.Password;
+            var password = PasswordBox.Password;
             var user = _userRepository.GetUserByEmail(email);
 
             if (user == null || user.HasloHash!= PasswordHasher.HashPassword(password))

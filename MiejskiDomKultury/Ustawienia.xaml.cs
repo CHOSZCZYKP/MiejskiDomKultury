@@ -1,4 +1,5 @@
 ﻿using MiejskiDomKultury.Data;
+using MiejskiDomKultury.Interfaces;
 using MiejskiDomKultury.Model;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace MiejskiDomKultury
@@ -91,6 +93,38 @@ namespace MiejskiDomKultury
                 NoweHasloUstawienia.IsEnabled = false;
                 PowtorzNoweHasloUstawienia.IsEnabled = false;
             }
+        }
+
+        private void Zapisz_Click(object sender, RoutedEventArgs e)
+        {
+            if (Session.CzyZalogowany)
+            {
+                var stareHaslo = StareHasloUstawienia.Password;
+                var noweHaslo = NoweHasloUstawienia.Password;
+                var powtNoweHaslo = PowtorzNoweHasloUstawienia.Password;
+
+                if (noweHaslo == powtNoweHaslo && PasswordHasher.HashPassword(stareHaslo) == Session.User.HasloHash)
+                {
+                    using (var context = new DbContextDomKultury())
+                    {
+                        var userToUpdate = context.Uzytkownicy.FirstOrDefault(u => u.Id == Session.User.Id);
+                        if (userToUpdate != null)
+                        {
+                            userToUpdate.HasloHash = PasswordHasher.HashPassword(noweHaslo);
+                            context.SaveChanges();
+
+                            MessageBox.Show("Hasło zostało zmienione.\nZmiany zostaną zastosowane po zamknięciu aplikacji.");
+                        }
+                    }
+                } else {
+                    MessageBox.Show("Błędne hasło.");
+                }
+            }
+        }
+
+        private void Anuluj_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
