@@ -21,19 +21,19 @@
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center">
             <Button x:Name="DodajPrzedmiot"
-                    Content="Dodaj"
+                    Content="{DynamicResource dodaj}"
                     Padding="10"
                     Margin="10"
                     Width="200"
                     Command="{Binding DodajPrzedmiotCommand}"/>
             <Button x:Name="UsunPrzedmiot"
-                    Content="Usuń"
+                    Content="{DynamicResource usun}"
                     Padding="10"
                     Margin="10"
                     Width="200"
                     Command="{Binding UsunPrzedmiotCommand}" />
             <Button x:Name="EdytujPrzedmiotPrzycisk"
-                    Content="Edytuj"
+                    Content="{DynamicResource edytuj}"
                     Padding="10"
                     Margin="10"
                     Width="200"
@@ -42,7 +42,7 @@
 
         <core:PlaceholderTextBox x:Name="WyszukajPrzedmiot"
                                  Grid.Row="1"
-                                 Placeholder="Wyszukaj przedmiot..."
+                                 Placeholder="{DynamicResource wyszukajPrzedmiot}"
                                  Width="300"
                                  Margin="5"
                                  Padding="5"
@@ -60,22 +60,22 @@
                   CanUserAddRows="False"
                   IsReadOnly="True">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Nazwa"
+                <DataGridTextColumn Header="{DynamicResource nazwaPrzedmiotu}"
                                     Binding="{Binding Nazwa}"
                                     Width="2*" />
-                <DataGridTextColumn Header="Stan"
+                <DataGridTextColumn Header="{DynamicResource stan}"
                                     Binding="{Binding Stan}"
                                     Width="*" />
-                <DataGridTextColumn Header="Typ"
+                <DataGridTextColumn Header="{DynamicResource typ}"
                                     Binding="{Binding Typ}"
                                     Width="*" />
-                <DataGridTextColumn Header="Cena za dobe"
+                <DataGridTextColumn Header="{DynamicResource cenaZaDobe}"
                                     Binding="{Binding CenaZaDobe_Wartosc}"
                                     Width="*" />
-                <DataGridTextColumn Header="Waluta"
+                <DataGridTextColumn Header="{DynamicResource waluta}"
                                     Binding="{Binding CenaZaDobe_Waluta}"
                                     Width="*" />
-                <DataGridCheckBoxColumn Header="Dostepność"
+                <DataGridCheckBoxColumn Header="{DynamicResource dostepnosc}"
                                         Binding="{Binding Dostepnosc}"
                                         Width="*" />
             </DataGrid.Columns>

@@ -20,7 +20,7 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <TextBlock Text="Formularz kary"
+        <TextBlock Text="{DynamicResource formularzKary}"
                    FontSize="36"
                    FontWeight="Bold"
                    Margin="10"
@@ -30,7 +30,7 @@
                    Grid.ColumnSpan="2"/>
         
         <TextBlock x:Name="DlugoscKaryTextBlock"
-                   Text="Podaj długość kary (w dniach):"
+                   Text="{DynamicResource dlugoscKary}"
                    Margin="10"
                    Padding="10"
                    VerticalAlignment="Center"
@@ -53,7 +53,7 @@
                    Text="{Binding ElementName=DlugoscKaryTextBox, Path=(Validation.Errors)[0].ErrorContent}" />
 
         <TextBlock x:Name="PrzyczynaKaryTextBlock"
-                   Text="Podaj długość kary (w dniach):"
+                   Text="{DynamicResource podajPrzyczyne}"
                    Margin="10"
                    Padding="10"
                    VerticalAlignment="Center"
@@ -83,12 +83,12 @@
                     VerticalAlignment="Center"
                     HorizontalAlignment="Right">
             <Button x:Name="DodajBanaUzytkownikowiPrzycisk"
-                    Content="Zgłoś"
+                    Content="{DynamicResource zglos}"
                     Margin="10"
                     Padding="10"
                     Command="{Binding ZglosCommand}"/>
             <Button x:Name="AnulujFormularzKaryPrzycisk"
-                    Content="Anuluj"
+                    Content="{DynamicResource anuluj}"
                     Margin="10"
                     Padding="10"
                     Command="{Binding AnulujCommand}"

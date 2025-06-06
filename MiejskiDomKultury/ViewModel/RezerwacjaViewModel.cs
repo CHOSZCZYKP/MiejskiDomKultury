@@ -273,34 +273,34 @@ namespace MiejskiDomKultury.ViewModel
 
                 string typPlatnosci = ConvertPaymentType(paymentMethodType);
                 if (int.TryParse(IloscCykli, out int iloscInt) && WybranyOkres != "Jednorazowo")
-            {
-                Transakcja t = new Transakcja
                 {
-                    IdUzytkownika = Session.User.Id,
-                    Kwota_Wartosc = PrzechowanieSali.CenaZaGodz_Wartosc * iloscInt,
-                    Kwota_Waluta = PrzechowanieSali.CenaZaGodz_Waluta,
-                    Typ = typPlatnosci,
-                    Data = DateTime.Now
-                };
-                _transkacjaRepository.AddTransakcja(t);
-            }
-            else
-            {
-                Transakcja t = new Transakcja
+                    Transakcja t = new Transakcja
+                    {
+                        IdUzytkownika = Session.User.Id,
+                        Kwota_Wartosc = PrzechowanieSali.CenaZaGodz_Wartosc * iloscInt,
+                        Kwota_Waluta = PrzechowanieSali.CenaZaGodz_Waluta,
+                        Typ = typPlatnosci,
+                        Data = DateTime.Now
+                    };
+                    _transkacjaRepository.AddTransakcja(t);
+                }
+                else
                 {
-                    IdUzytkownika = Session.User.Id,
-                    Kwota_Wartosc = PrzechowanieSali.CenaZaGodz_Wartosc,
-                    Kwota_Waluta = PrzechowanieSali.CenaZaGodz_Waluta,
-                    Typ = "Płatność elektroniczna",
-                    Data = DateTime.Now
-                };
-                _transkacjaRepository.AddTransakcja(t);
-            }
+                    Transakcja t = new Transakcja
+                    {
+                        IdUzytkownika = Session.User.Id,
+                        Kwota_Wartosc = PrzechowanieSali.CenaZaGodz_Wartosc,
+                        Kwota_Waluta = PrzechowanieSali.CenaZaGodz_Waluta,
+                        Typ = typPlatnosci,
+                        Data = DateTime.Now
+                    };
+                    _transkacjaRepository.AddTransakcja(t);
+                }
 
-            if (Application.Current.MainWindow is MainWindow mainWindow)
-            {
-                mainWindow.Main.Content = App.ServiceProvider.GetRequiredService<Success>();
-            }
+                if (Application.Current.MainWindow is MainWindow mainWindow)
+                {
+                    mainWindow.Main.Content = App.ServiceProvider.GetRequiredService<Success>();
+                }
             });
         }
 

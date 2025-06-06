@@ -16,7 +16,7 @@
         </Grid.RowDefinitions>
 
         <core:PlaceholderTextBox x:Name="WyszukajBan"
-                                 Placeholder="Wyszukaj użytkownika..."
+                                 Placeholder="{DynamicResource wyszukajUzytkownika}"
                                  Width="300"
                                  Margin="10"
                                  Padding="10"
@@ -32,25 +32,25 @@
                   CanUserAddRows="False"
                   ItemsSource="{Binding BanCollectionView, Mode=TwoWay}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Imię"
+                <DataGridTextColumn Header="{DynamicResource imie}"
                                     Binding="{Binding Imie}"
                                     Width="*" />
-                <DataGridTextColumn Header="Nazwisko"
+                <DataGridTextColumn Header="{DynamicResource nazwisko}"
                                     Binding="{Binding Nazwisko}"
                                     Width="*" />
-                <DataGridTextColumn Header="Email"
+                <DataGridTextColumn Header="{DynamicResource emial}"
                                     Binding="{Binding Email}"
                                     Width="*" />
-                <DataGridTextColumn Header="Nazwa użytkownika"
+                <DataGridTextColumn Header="{DynamicResource nazwa}"
                                     Binding="{Binding NazwaUzytkownika}"
                                     Width="1.1*" />
-                <DataGridTextColumn Header="Data"
+                <DataGridTextColumn Header="{DynamicResource data}"
                                     Binding="{Binding Data, StringFormat=dd.MM.yyyy}"
                                     Width="*" />
-                <DataGridTextColumn Header="Długość"
+                <DataGridTextColumn Header="{DynamicResource dlugosc}"
                                     Binding="{Binding Dlugosc}"
                                     Width="0.5*" />
-                <DataGridTemplateColumn Header="Przyczyna"
+                <DataGridTemplateColumn Header="{DynamicResource przyczyna}"
                                         Width="2*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

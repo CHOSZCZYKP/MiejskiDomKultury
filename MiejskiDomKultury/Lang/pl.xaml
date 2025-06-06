@@ -89,4 +89,89 @@
     <sys:String x:Key="gohome">Powrót do strony głównej</sys:String>
 
     <sys:String x:Key="log">Zaloguj się</sys:String>
+
+    <!--PanelAdmina-->
+    <sys:String x:Key="uzytkownicy">Użytkownicy</sys:String>
+    <sys:String x:Key="czarnaLista">Czarna lista</sys:String>
+    <sys:String x:Key="sale">Sale</sys:String>
+    <sys:String x:Key="wypozyczenia">Wypożyczenia</sys:String>
+    <sys:String x:Key="wykresy">Wykresy</sys:String>
+    <sys:String x:Key="transakcje">Transakcje</sys:String>
+    <sys:String x:Key="rezerwacje">Rezerwacje</sys:String>
+    <sys:String x:Key="przedmioty">Przedmioty</sys:String>
+    <sys:String x:Key="filmy">Filmy</sys:String>
+    <sys:String x:Key="ogloszenia">Ogłoszenia</sys:String>
+
+    <sys:String x:Key="nazwaPrzedmiotu">Nazwa</sys:String>
+    <sys:String x:Key="stan">Stan</sys:String>
+    <sys:String x:Key="typ">Typ</sys:String>
+    <sys:String x:Key="cenaZaDobe">Cena za dobe</sys:String>
+    <sys:String x:Key="waluta">Waluta</sys:String>
+    <sys:String x:Key="dostepnosc">Dostępność</sys:String>
+    <sys:String x:Key="data">Data</sys:String>
+    <sys:String x:Key="nazwaSali">Nazwa sali</sys:String>
+    <sys:String x:Key="wyszukajUzytkownika">Wyszukaj użytkownika...</sys:String>
+
+    <sys:String x:Key="dodaj">Dodaj</sys:String>
+    <sys:String x:Key="anuluj">Anuluj</sys:String>
+    <sys:String x:Key="zapisz">Zapisz</sys:String>
+    <sys:String x:Key="zglos">Zgłoś</sys:String>
+    <sys:String x:Key="usun">Usuń</sys:String>
+    <sys:String x:Key="edytuj">Edytuj</sys:String>
+
+    <!--DodajNowyPrzedmiot-->
+    <sys:String x:Key="dodajNowyPrzemiot">Dodaj nowy przedmiot</sys:String>
+    
+    <!--EdytujPrzedmiot-->
+    <sys:String x:Key="edytujPrzemiot">Edytuj przedmiot</sys:String>
+    <sys:String x:Key="czyPrzedmiotDostepny">Czy przedmiot jest dostępny?</sys:String>
+    
+    <!--FormularzBanu-->
+    <sys:String x:Key="formularzKary">Formularz kary</sys:String>
+    <sys:String x:Key="dlugoscKary">Podaj długość kary (w dniach):</sys:String>
+    <sys:String x:Key="podajPrzyczyne">Podaj przyczynę:</sys:String>
+    
+    <!--TabelaBanyAdmin-->
+    <sys:String x:Key="dlugosc">Długość</sys:String>
+    <sys:String x:Key="przyczyna">Przyczyna</sys:String>
+    
+    <!--TabelaPrzedmiotyAdmin-->
+    <sys:String x:Key="wyszukajPrzedmiot">Wyszukaj przedmiot...</sys:String>
+
+    <!--TabelaRezerwacjeAdmin-->
+    <sys:String x:Key="wyszukajRezerwacje">Wyszukaj rezerwację...</sys:String>
+    <sys:String x:Key="od">Od</sys:String>
+    <sys:String x:Key="do">Do</sys:String>
+    
+    <!--TabelaSaleAdmin-->
+    <sys:String x:Key="wyszukajSale">Wyszukaj salę...</sys:String>
+    <sys:String x:Key="iloscMiejsc">Ilość miejsc</sys:String>
+    <sys:String x:Key="cenaZaGodzine">Cena za godzine</sys:String>
+    
+    <!--TabelaTransakcjeAdmin-->
+    <sys:String x:Key="wyszukajTransakcje">Wyszukaj transakcję...</sys:String>
+    <sys:String x:Key="wartosc">Wartość</sys:String>
+    
+    <!--TabelaUzytkownicyAdmin-->
+    <sys:String x:Key="czyMaKare">Kara</sys:String>
+    <sys:String x:Key="akcja">Akcja</sys:String>
+
+    <!--TabelaWypozyczenieAdmin-->
+    <sys:String x:Key="wyszukajWypozyczenie">Wyszukaj wypożyczenie...</sys:String>
+    <sys:String x:Key="dataWypozyczenie">Data wypożyczenia</sys:String>
+    <sys:String x:Key="dataZwrotu">Data zwrotu</sys:String>
+    <sys:String x:Key="cena">Cena</sys:String>
+    
+    <!--WykresyStatystyk-->
+    <sys:String x:Key="wykresKolowy">Wykres kołowy podział transakcji wg typu</sys:String>
+    <sys:String x:Key="wykresKolumnowy">Wykres kolumnowy najbardziej oblegana sala</sys:String>
+    
+    <!--RezerwacjeSali-->
+    <sys:String x:Key="wybierzDate">Wybierz datę:</sys:String>
+    <sys:String x:Key="godzinaOd">Godzina od:</sys:String>
+    <sys:String x:Key="godzinaDo">Godzina do:</sys:String>
+    <sys:String x:Key="okres">Okres:</sys:String>
+    <sys:String x:Key="iloscCykli">Ilość cykli:</sys:String>
+    <sys:String x:Key="zarezerwuj">Zarezerwuj</sys:String>
+
 </ResourceDictionary>

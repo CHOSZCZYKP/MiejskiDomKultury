@@ -16,7 +16,7 @@
         </Grid.RowDefinitions>
         
         <core:PlaceholderTextBox x:Name="WyszukajUzytkownika"
-                                 Placeholder="Wyszukaj salę..."
+                                 Placeholder="{DynamicResource wyszukajUzytkownika}"
                                  Width="300"
                                  VerticalAlignment="Center"
                                  HorizontalAlignment="Center"
@@ -33,22 +33,22 @@
                   IsReadOnly="True"
                   ItemsSource="{Binding UzytkownikCollectionView, Mode=TwoWay}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Imię"
+                <DataGridTextColumn Header="{DynamicResource imie}"
                                     Binding="{Binding Imie}"
                                     Width="*" />
-                <DataGridTextColumn Header="Nazwisko"
+                <DataGridTextColumn Header="{DynamicResource nazwisko}"
                                     Binding="{Binding Nazwisko}"
                                     Width="*" />
-                <DataGridTextColumn Header="Email"
+                <DataGridTextColumn Header="{DynamicResource emial}"
                                     Binding="{Binding Email}"
                                     Width="*" />
-                <DataGridTextColumn Header="Nazwa użytkownika"
+                <DataGridTextColumn Header="{DynamicResource nazwa}"
                                     Binding="{Binding NazwaUzytkownika}"
                                     Width="*" />
-                <DataGridCheckBoxColumn Header="Czy ma karę"
+                <DataGridCheckBoxColumn Header="{DynamicResource czyMaKare}"
                                         Binding="{Binding CzyMaBana}"
                                         Width="0.5*" />
-                <DataGridTemplateColumn Header="Akcja"
+                <DataGridTemplateColumn Header="{DynamicResource akcja}"
                                         Width="0.5*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

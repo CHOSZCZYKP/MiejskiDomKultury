@@ -16,7 +16,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <core:PlaceholderTextBox x:Name="WyszukajSale"
-                                 Placeholder="Wyszukaj salę..."
+                                 Placeholder="{DynamicResource wyszukajSale}"
                                  Width="300"
                                  VerticalAlignment="Center"
                                  HorizontalAlignment="Center"
@@ -33,19 +33,19 @@
                   IsReadOnly="True"
                   CanUserAddRows="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Nazwa sali"
+                <DataGridTextColumn Header="{DynamicResource nazwaSali}"
                                     Binding="{Binding Nazwa}"
                                     Width="*" />
-                <DataGridTextColumn Header="Ilość miejsc"
+                <DataGridTextColumn Header="{DynamicResource iloscMiejsc}"
                                     Binding="{Binding IloscMiejsc}"
                                     Width="0.5*" />
-                <DataGridTextColumn Header="Typ"
+                <DataGridTextColumn Header="{DynamicResource typ}"
                                     Binding="{Binding Typ}"
                                     Width="*" />
-                <DataGridTextColumn Header="Cena za godzine"
+                <DataGridTextColumn Header="{DynamicResource cenaZaGodzine}"
                                     Binding="{Binding CenaZaGodz_Wartosc}"
                                     Width="*" />
-                <DataGridTextColumn Header="Waluta"
+                <DataGridTextColumn Header="{DynamicResource waluta}"
                                     Binding="{Binding CenaZaGodz_Waluta}"
                                     Width="*" />
 

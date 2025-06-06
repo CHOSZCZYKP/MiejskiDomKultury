@@ -27,7 +27,7 @@
         </Grid.ColumnDefinitions>
 
         <TextBlock x:Name="EdytujPrzedmiotTextBlock"
-                   Text="Edytuj przedmiot"
+                   Text="{DynamicResource edytujPrzemiot}"
                    Grid.ColumnSpan="2"
                    VerticalAlignment="Center"
                    HorizontalAlignment="Center"
@@ -38,7 +38,7 @@
         
         <TextBlock x:Name="DodajPrzedmiotNazwa"
                    Grid.Row="1"
-                   Text="Nazwa:"
+                   Text="{DynamicResource nazwaPrzedmiotu}"
                    Margin="10"
                    Padding="5"
                    VerticalAlignment="Center"
@@ -61,7 +61,7 @@
 
         <TextBlock x:Name="DodajStanNazwa"
                    Grid.Row="3"
-                   Text="Stan:"
+                   Text="{DynamicResource stan}"
                    Margin="10"
                    Padding="5"
                    VerticalAlignment="Center"
@@ -84,7 +84,7 @@
 
         <TextBlock x:Name="DodajTypNazwa"
                    Grid.Row="5"
-                   Text="Typ:"
+                   Text="{DynamicResource typ}"
                    Margin="10"
                    Padding="5"
                    VerticalAlignment="Center"
@@ -107,7 +107,7 @@
 
         <TextBlock x:Name="DodajCenaZaDobeNazwa"
                    Grid.Row="7"
-                   Text="Cena za dobę:"
+                   Text="{DynamicResource cenaZaDobe}"
                    Margin="10"
                    Padding="5"
                    VerticalAlignment="Center"
@@ -130,7 +130,7 @@
 
         <TextBlock x:Name="DodajPrzedmiotCenaZaDobeWaluta"
                    Grid.Row="9"
-                   Text="Waluta:"
+                   Text="{DynamicResource waluta}"
                    Margin="10"
                    Padding="5"
                    VerticalAlignment="Center"
@@ -148,13 +148,13 @@
 
         <TextBlock x:Name="DodajDostepnoscNazwa"
                    Grid.Row="10"
-                   Text="Dostępność:"
+                   Text="{DynamicResource dostepnosc}"
                    Margin="10"
                    Padding="5"
                    VerticalAlignment="Center"
                    HorizontalAlignment="Right"/>
         <CheckBox x:Name="CheckBoxDostepnosc"
-                  Content="Czy przedmiot jest dostępny?"
+                  Content="{DynamicResource czyPrzedmiotDostepny}"
                   Grid.Column="1"
                   Grid.Row="10"
                   HorizontalAlignment="Left"
@@ -167,12 +167,12 @@
                     VerticalAlignment="Center"
                     HorizontalAlignment="Right">
             <Button x:Name="EdytujPrzedmiotPrzycisk"
-                    Content="Zapisz"
+                    Content="{DynamicResource zapisz}"
                     Margin="10"
                     Padding="10"
                     Command="{Binding ZapiszCommand}"/>
             <Button x:Name="AnulujNowyPrzedmiotPrzycisk"
-                    Content="Anuluj"
+                    Content="{DynamicResource anuluj}"
                     Margin="10"
                     Padding="10"
                     Command="{Binding AnulujCommand}"

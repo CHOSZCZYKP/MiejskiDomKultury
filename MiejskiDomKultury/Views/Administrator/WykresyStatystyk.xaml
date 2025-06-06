@@ -20,7 +20,7 @@
             </Grid.RowDefinitions>
             <TextBlock x:Name="WykresKolowy"
                        Grid.Row="0"
-                       Text="Wykres kołowy podział transakcji wg typu"
+                       Text="{DynamicResource wykresKolowy}"
                        FontSize="28"
                        FontWeight="Bold"
                        VerticalAlignment="Center"
@@ -34,7 +34,7 @@
                           Height="400"/>
             <TextBlock x:Name="WykresKolumnowy"
                        Grid.Row="3"
-                       Text="Wykres kolumnowy najbardziej oblegana sala"
+                       Text="{DynamicResource wykresKolumnowy}"
                        FontSize="28"
                        FontWeight="Bold"
                        HorizontalAlignment="Center"

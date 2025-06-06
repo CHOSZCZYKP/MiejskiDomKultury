@@ -16,7 +16,7 @@
         </Grid.RowDefinitions>
 
         <core:PlaceholderTextBox x:Name="WyszukajWypozyczenie"
-                                 Placeholder="Wyszukaj wypożyczenie..."
+                                 Placeholder="{DynamicResource wyszukajWypozyczenie}"
                                  Width="300"
                                  VerticalAlignment="Center"
                                  HorizontalAlignment="Center"
@@ -33,25 +33,25 @@
                   CanUserAddRows="False"
                   ItemsSource="{Binding WypozyczeniaCollectionView, Mode=TwoWay}">  
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Imię"
+                <DataGridTextColumn Header="{DynamicResource imie}"
                                     Binding="{Binding Imie}"
                                     Width="*" />
-                <DataGridTextColumn Header="Nazwisko"
+                <DataGridTextColumn Header="{DynamicResource nazwisko}"
                                     Binding="{Binding Nazwisko}"
                                     Width="*" />
-                <DataGridTextColumn Header="Email"
+                <DataGridTextColumn Header="{DynamicResource emial}"
                                     Binding="{Binding Email}"
                                     Width="*" />
-                <DataGridTextColumn Header="Data wypożyczenia"
+                <DataGridTextColumn Header="{DynamicResource dataWypozyczenie}"
                                     Binding="{Binding DataWypozyczenia, StringFormat=dd.MM.yyyy}"
                                     Width="*" />
-                <DataGridTextColumn Header="Data zwrotu"
+                <DataGridTextColumn Header="{DynamicResource dataZwrotu}"
                                     Binding="{Binding DataZwrotu, StringFormat=dd.MM.yyyy}"
                                     Width="*" />
-                <DataGridTextColumn Header="Nazwa przemiotu"
+                <DataGridTextColumn Header="{DynamicResource nazwaPrzedmiotu}"
                                     Binding="{Binding NazwaPrzedmiotu}"
                                     Width="*" />
-                <DataGridTextColumn Header="Cena"
+                <DataGridTextColumn Header="{DynamicResource cena}"
                                     Binding="{Binding Cena}"
                                     Width="0.5*" />
 

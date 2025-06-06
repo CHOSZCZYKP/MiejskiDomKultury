@@ -16,7 +16,7 @@
         </Grid.RowDefinitions>
         
         <core:PlaceholderTextBox x:Name="WyszukajTransakcje"
-                                 Placeholder="Wyszukaj transakcję..."
+                                 Placeholder="{DynamicResource wyszukajTransakcje}"
                                  Width="300"
                                  Margin="10"
                                  Padding="10"
@@ -33,22 +33,22 @@
                   CanUserAddRows="False"
                   ItemsSource="{Binding TransakcjaCollectionView, Mode=TwoWay}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Imię"
+                <DataGridTextColumn Header="{DynamicResource imie}"
                                     Binding="{Binding Imie}"
                                     Width="*" />
-                <DataGridTextColumn Header="Nazwisko"
+                <DataGridTextColumn Header="{DynamicResource nazwisko}"
                                     Binding="{Binding Nazwisko}"
                                     Width="*" />
-                <DataGridTextColumn Header="Email"
+                <DataGridTextColumn Header="{DynamicResource emial}"
                                     Binding="{Binding Email}"
                                     Width="*" />
-                <DataGridTextColumn Header="Wartość"
+                <DataGridTextColumn Header="{DynamicResource wartosc}"
                                     Binding="{Binding Kwota_Pelna}"
                                     Width="0.5*" />
-                <DataGridTextColumn Header="Data"
+                <DataGridTextColumn Header="{DynamicResource data}"
                                     Binding="{Binding Data, StringFormat=dd.MM.yyyy}"
                                     Width="*" />
-                <DataGridTextColumn Header="Typ"
+                <DataGridTextColumn Header="{DynamicResource typ}"
                                     Binding="{Binding Typ}"
                                     Width="0.5*" />
 

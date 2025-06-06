@@ -17,7 +17,7 @@
 
         <core:PlaceholderTextBox x:Name="WyszukajRezerwacjiAdmin"
                                  Width="300"
-                                 Placeholder="Wyszukaj rezerwację..."
+                                 Placeholder="{DynamicResource wyszukajRezerwacje}"
                                  VerticalAlignment="Center"
                                  HorizontalAlignment="Center"
                                  Margin="10"
@@ -33,25 +33,25 @@
                   AutoGenerateColumns="False"
                   ItemsSource="{Binding RezerwacjaSaliCollectionView}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Imię"
+                <DataGridTextColumn Header="{DynamicResource imie}"
                                     Binding="{Binding Imie}"
                                     Width="*" />
-                <DataGridTextColumn Header="Nazwisko"
+                <DataGridTextColumn Header="{DynamicResource nazwisko}"
                                     Binding="{Binding Nazwisko}"
                                     Width="*" />
-                <DataGridTextColumn Header="Email"
+                <DataGridTextColumn Header="{DynamicResource emial}"
                                     Binding="{Binding Email}"
                                     Width="*" />
-                <DataGridTextColumn Header="Data"
+                <DataGridTextColumn Header="{DynamicResource data}"
                                     Binding="{Binding Data, StringFormat=dd.MM.yyyy}"
                                     Width="0.5*" />
-                <DataGridTextColumn Header="Od"
+                <DataGridTextColumn Header="{DynamicResource od}"
                                     Binding="{Binding GodzinaPoczatkowa}"
                                     Width="0.5*" />
-                <DataGridTextColumn Header="Do"
+                <DataGridTextColumn Header="{DynamicResource do}"
                                     Binding="{Binding GodzinaKoncowa}"
                                     Width="0.5*" />
-                <DataGridTextColumn Header="Nazwa sali"
+                <DataGridTextColumn Header="{DynamicResource nazwaSali}"
                                     Binding="{Binding NazwaSali}"
                                     Width="*" />
             </DataGrid.Columns>
