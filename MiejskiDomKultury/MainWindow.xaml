@@ -95,7 +95,7 @@
                             Width="80"
                             Click="Logowanie_Click" />
                     <Button x:Name="Wyloguj" 
-                            Content="Wyloguj" 
+                            Content="{DynamicResource navWyloguj}" 
                             Margin="5" 
                             Padding="5" 
                             Width="80"

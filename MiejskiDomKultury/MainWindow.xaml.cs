@@ -38,7 +38,7 @@ namespace MiejskiDomKultury
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Błąd z voice botem "+ex.Message);
+                MessageBox.Show((string)Application.Current.FindResource("bladVoiceBot") + ex.Message);
             }
             Main.Content = App.ServiceProvider.GetRequiredService<Home>();
             PlayBackgroundMusic();
@@ -62,7 +62,7 @@ namespace MiejskiDomKultury
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Błąd odtwarzania: " + ex.Message);
+                MessageBox.Show((string)Application.Current.FindResource("bladOdtwarzania") + ex.Message);
             }
         }
 
@@ -114,7 +114,7 @@ namespace MiejskiDomKultury
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Błąd przy przełączaniu VoiceBota: " + ex.Message);
+                MessageBox.Show((string)Application.Current.FindResource("bladPrzyPolaczeniuVoiceBot") + ex.Message);
             }
         }
 

@@ -306,7 +306,7 @@ namespace MiejskiDomKultury.ViewModel
 
         private void HandlePaymentCancel(string sessionId)
         {
-            MessageBox.Show("Platnosc sie nie powiodla");
+            MessageBox.Show((string)Application.Current.FindResource("niepowodzeniePlatnosci"));
             _paymentListener.Stop();
         }
 

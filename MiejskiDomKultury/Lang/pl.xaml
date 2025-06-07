@@ -8,6 +8,7 @@
     <sys:String x:Key="navAdmin">Panel Admina</sys:String>
     <sys:String x:Key="navRejestracja">Rejestracja</sys:String>
     <sys:String x:Key="navLogin">Login</sys:String>
+    <sys:String x:Key="navWyloguj">Wyloguj</sys:String>
     
     <!-- Ustawienia.xaml -->
     <sys:String x:Key="ustTytul">Ustawienia</sys:String>
@@ -16,6 +17,8 @@
     <sys:String x:Key="ustNoweHaslo">Nowe Hasło:</sys:String>
     <sys:String x:Key="ustPowtorzHaslo">Powtórz Nowe Hasło:</sys:String>
     <sys:String x:Key="ustMotyw">Motyw:</sys:String>
+    <sys:String x:Key="jasnyMotyw">Motyw Jasny</sys:String>
+    <sys:String x:Key="ciemnyMotyw">Motyw Ciemny</sys:String>
 
     <sys:String x:Key="ustStareHasloInput">Wpisz stare hasło...</sys:String>
     <sys:String x:Key="ustNoweHasloInput">Wpisz nowe hasło...</sys:String>
@@ -173,5 +176,24 @@
     <sys:String x:Key="okres">Okres:</sys:String>
     <sys:String x:Key="iloscCykli">Ilość cykli:</sys:String>
     <sys:String x:Key="zarezerwuj">Zarezerwuj</sys:String>
+    
+    <!--MessageBox-->
+    <sys:String x:Key="zalogujSieTytul">Zaloguj się</sys:String>
+    <sys:String x:Key="zalogujSieWypozyczenie">Musisz się zalogować żeby móc wypożyczyć przedmiot</sys:String>
+    <sys:String x:Key="zalogujSieRezerwacja">Musisz się zalogować żeby móc zarezerwować salę</sys:String>
+    <sys:String x:Key="blad">Błąd</sys:String>
+    <sys:String x:Key="bledneLogowanie">Błędne dane logowania</sys:String>
+    <sys:String x:Key="bladVoiceBot">Błąd z voice botem</sys:String>
+    <sys:String x:Key="bladOdtwarzania">Błąd odtwarzania:</sys:String>
+    <sys:String x:Key="bladPrzyPolaczeniuVoiceBot">Błąd przy przełączaniu VoiceBota:</sys:String>
+    <sys:String x:Key="niepowodzeniePlatnosci">Platnosc sie nie powiodla</sys:String>
+    <sys:String x:Key="wyborMiejsca">Musisz wybrać miejsce</sys:String>
+    <sys:String x:Key="hasloZmienione">Hasło zostało zmienione.\nZmiany zostaną zastosowane po zamknięciu aplikacji.</sys:String>
+    <sys:String x:Key="bledneHaslo">Błędne hasło.</sys:String>
+    <sys:String x:Key="nieprawidlowaRezerwacja">Nieprawidłowa rezerwacja.</sys:String>
+    <sys:String x:Key="zapisanaRezerwacja">Rezerwacja zapisana.</sys:String>
+    <sys:String x:Key="bladRezerwacji">Błąd podczas zapisywania rezerwacji:</sys:String>
+    <sys:String x:Key="logowanieRezerwacjaMiejsca">Musisz się zalogować żeby móc zarezerwować miejsce</sys:String>
+    
 
 </ResourceDictionary>

@@ -72,7 +72,7 @@ namespace MiejskiDomKultury
             
             if (selectedSeats.Count == 0)
             {
-                MessageBox.Show("Musisz wybrać miejsce");
+                MessageBox.Show((string)Application.Current.FindResource("wyborMiejsca"));
                 return;
             }
             NavigationService.Navigate(new Payment(selectedSeats, seans));

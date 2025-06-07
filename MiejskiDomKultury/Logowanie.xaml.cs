@@ -43,7 +43,7 @@ namespace MiejskiDomKultury
 
             if (user == null || user.HasloHash!= PasswordHasher.HashPassword(password))
             {
-                MessageBox.Show("Błędne dane logowania", "Błąd", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show((string)Application.Current.FindResource("bledneLogowanie"), (string)Application.Current.FindResource("blad"), MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 

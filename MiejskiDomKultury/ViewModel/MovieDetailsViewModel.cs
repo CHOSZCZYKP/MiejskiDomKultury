@@ -61,7 +61,7 @@ namespace MiejskiDomKultury.ViewModel
             }
             else
             {
-                MessageBox.Show("Musisz się zalogować żeby móc zarezerwować miejsce", "Zaloguj się", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show((string)Application.Current.FindResource("logowanieRezerwacjaMiejsca"), (string)Application.Current.FindResource("zalogujSieTytul"), MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 

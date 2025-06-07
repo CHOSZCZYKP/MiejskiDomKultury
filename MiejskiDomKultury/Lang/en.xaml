@@ -8,6 +8,7 @@
     <sys:String x:Key="navAdmin">Admin Panel</sys:String>
     <sys:String x:Key="navRejestracja">Register</sys:String>
     <sys:String x:Key="navLogin">Login</sys:String>
+    <sys:String x:Key="navWyloguj">Logout</sys:String>
 
     <!-- Ustawienia.xaml -->
     <sys:String x:Key="ustTytul">Settings</sys:String>
@@ -16,6 +17,8 @@
     <sys:String x:Key="ustNoweHaslo">New Password:</sys:String>
     <sys:String x:Key="ustPowtorzHaslo">Repeate New Password:</sys:String>
     <sys:String x:Key="ustMotyw">Theme:</sys:String>
+    <sys:String x:Key="jasnyMotyw">Light Theme</sys:String>
+    <sys:String x:Key="ciemnyMotyw">Dark Theme</sys:String>
 
     <sys:String x:Key="ustStareHasloInput">Enter old password...</sys:String>
     <sys:String x:Key="ustNoweHasloInput">Enter new password...</sys:String>
@@ -171,4 +174,22 @@
     <sys:String x:Key="iloscCykli">Cycles:</sys:String>
     <sys:String x:Key="zarezerwuj">Book</sys:String>
 
+    <!--MessageBox-->
+    <sys:String x:Key="zalogujSieTytul">Log in</sys:String>
+    <sys:String x:Key="zalogujSieWypozyczenie">You must log in to be able to borrow an item.</sys:String>
+    <sys:String x:Key="zalogujSieRezerwacja">You must log in to be able to book a room</sys:String>
+    <sys:String x:Key="blad">Error</sys:String>
+    <sys:String x:Key="bledneLogowanie">Incorrect login details</sys:String>
+    <sys:String x:Key="bladVoiceBot">Error with voice bot</sys:String>
+    <sys:String x:Key="bladOdtwarzania">Playback error:</sys:String>
+    <sys:String x:Key="bladPrzyPolaczeniuVoiceBot">Error switching VoiceBot:</sys:String>
+    <sys:String x:Key="niepowodzeniePlatnosci">Payment failed</sys:String>
+    <sys:String x:Key="wyborMiejsca">You have to choose a place</sys:String>
+    <sys:String x:Key="hasloZmienione">The password has been changed.\nThe changes will take effect after you close the application.</sys:String>
+    <sys:String x:Key="bledneHaslo">Incorrect password.</sys:String>
+    <sys:String x:Key="nieprawidlowaRezerwacja">Invalid Reservation.</sys:String>
+    <sys:String x:Key="zapisanaRezerwacja">Reservation saved.</sys:String>
+    <sys:String x:Key="bladRezerwacji">Error saving reservation:</sys:String>
+    <sys:String x:Key="logowanieRezerwacjaMiejsca">You must log in to reserve a spot</sys:String>
+    
 </ResourceDictionary>

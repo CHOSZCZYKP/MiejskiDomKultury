@@ -44,7 +44,7 @@ namespace MiejskiDomKultury
             }
             else
             {
-                MessageBox.Show("Musisz się zalogować żeby móc zarezerwować salę", "Zaloguj się", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show((string)Application.Current.FindResource("zalogujSieRezerwacja"), (string)Application.Current.FindResource("zalogujSieTytul"), MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 
@@ -56,7 +56,7 @@ namespace MiejskiDomKultury
             }
             else
             {
-                MessageBox.Show("Musisz się zalogować żeby móc wypożyczyć przedmiot", "Zaloguj się", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show((string)Application.Current.FindResource("zalogujSieWypozyczenie"), (string)Application.Current.FindResource("zalogujSieTytul"), MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
         private void Chat_Click(object sender, RoutedEventArgs e)

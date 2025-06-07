@@ -124,13 +124,13 @@
                     VerticalAlignment="Center"
                     HorizontalAlignment="Left">
             <Button x:Name="ZapiszUstawienia"
-                    Content="Zapisz"
+                    Content="{DynamicResource zapisz}"
                     Margin="5 10 0 10"
                     Padding="10"
                     Width="95"
                     Click="Zapisz_Click"/>
             <Button x:Name="AnulujUstawienia"
-                    Content="Anuluj"
+                    Content="{DynamicResource anuluj}"
                     Margin="10"
                     Padding="10"
                     Width="95"

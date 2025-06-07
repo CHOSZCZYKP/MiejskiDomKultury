@@ -34,12 +34,12 @@ namespace MiejskiDomKultury
             if (Motywy.CzyCiemny)
             {
                 MotywToggleButton.IsChecked = true;
-                MotywToggleButton.Content = "Motyw Ciemny";
+                MotywToggleButton.Content = (string)Application.Current.FindResource("ciemnyMotyw");
             }
             else
             {
                 MotywToggleButton.IsChecked = false;
-                MotywToggleButton.Content = "Motyw Jasny";
+                MotywToggleButton.Content = (string)Application.Current.FindResource("jasnyMotyw");
             }
 
             if (Motywy.CzyAngielski)
@@ -58,25 +58,27 @@ namespace MiejskiDomKultury
         private void MotywToggleButton_Checked(object sender, RoutedEventArgs e)
         {
             Motywy.ZmianaMotywu(new Uri("/Themes/MotywCiemny.xaml", UriKind.Relative));
-            MotywToggleButton.Content = "Motyw Ciemny";
+            MotywToggleButton.Content = (string)Application.Current.FindResource("ciemnyMotyw");
         }
 
         private void MotywToggleButton_Unchecked(object sender, RoutedEventArgs e)
         {
             Motywy.ZmianaMotywu(new Uri("/Themes/MotywJasny.xaml", UriKind.Relative));
-            MotywToggleButton.Content = "Motyw Jasny";
+            MotywToggleButton.Content = (string)Application.Current.FindResource("jasnyMotyw");
         }
 
         private void LangToggleButton_Checked(object sender, RoutedEventArgs e)
         {
             Motywy.ZmianaLang(new Uri("/Lang/en.xaml", UriKind.Relative));
             LangToggleButton.Content = "English";
+            UstawStanPrzycisku();
         }
 
         private void LangToggleButton_Unchecked(object sender, RoutedEventArgs e)
         {
             Motywy.ZmianaLang(new Uri("/Lang/pl.xaml", UriKind.Relative));
             LangToggleButton.Content = "Polski";
+            UstawStanPrzycisku();
         }
 
         private void PasswordBoxEnabled()
@@ -113,11 +115,11 @@ namespace MiejskiDomKultury
                             userToUpdate.HasloHash = PasswordHasher.HashPassword(noweHaslo);
                             context.SaveChanges();
 
-                            MessageBox.Show("Hasło zostało zmienione.\nZmiany zostaną zastosowane po zamknięciu aplikacji.");
+                            MessageBox.Show((string)Application.Current.FindResource("hasloZmienione"));
                         }
                     }
                 } else {
-                    MessageBox.Show("Błędne hasło.");
+                    MessageBox.Show((string)Application.Current.FindResource("bledneHaslo"));
                 }
             }
         }

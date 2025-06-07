@@ -176,7 +176,7 @@ namespace MiejskiDomKultury
         {
             if (startDate > endDate || startDate == 0 || endDate == 0)
             {
-                MessageBox.Show("Invalid Reservation.");
+                MessageBox.Show((string)Application.Current.FindResource("nieprawidlowaRezerwacja"));
                 return;
             }
 
@@ -201,13 +201,13 @@ namespace MiejskiDomKultury
                     db.SaveChanges();
                 }
 
-                MessageBox.Show("Reservation saved.");
+                MessageBox.Show((string)Application.Current.FindResource("zapisanaRezerwacja"));
                 DialogResult = true;
                 Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error saving reservation:\n{ex.Message}\n\n{ex.InnerException?.Message}");
+                MessageBox.Show($"{(string)Application.Current.FindResource("bladRezerwacji")}\n{ex.Message}\n\n{ex.InnerException?.Message}");
             }
         }
 
