@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using MiejskiDomKultury.Model;
 using MiejskiDomKultury.Services;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace MiejskiDomKultury
 {
@@ -36,20 +38,31 @@ namespace MiejskiDomKultury
                 }
                 catch
                 {
-                    MessageBox.Show("Film o takim tytule nie istnieje!");
+                    MessageBox.Show(Settings.Default.CzyLangAngielski
+   ? "There is no movie with this title"
+   : "Film o takim tytule nie istnieje");
+                    
                 }
             }
         }
 
-        private void MovieList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private async void MovieList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (MovieList.SelectedItem is Film selectedFilm)
             {
                 _selectedFilm = selectedFilm;
                 
-                DisplayMovieDetails(selectedFilm);
-                ScreeningForm.Visibility = Visibility.Visible;
-                ScreeningTimesList.ItemsSource = _screeningTimes;
+                var ok =await DisplayMovieDetails(selectedFilm);
+                if (ok)
+                {
+                    ScreeningForm.Visibility = Visibility.Visible;
+                    ScreeningTimesList.ItemsSource = _screeningTimes;
+                }
+                else
+                {
+                    MessageBox.Show("Error 404");
+                   
+                }
             }
         }
 
@@ -57,8 +70,9 @@ namespace MiejskiDomKultury
 
         private void AddScreeningButton_Click(object sender, RoutedEventArgs e)
         {
+            ErrorMessage.Visibility = Visibility.Collapsed;
             string timeText = ScreeningTime.Text.Trim();
-            Regex timeFormatRegex = new Regex(@"^(?:[01]\d|2[0-3]):[0-5]\d$"); // Sprawdza format HH:mm
+            Regex timeFormatRegex = new Regex(@"^(?:[01]\d|2[0-3]):[0-5]\d$"); 
 
             if (ScreeningDate.SelectedDate.HasValue &&
                 !string.IsNullOrWhiteSpace(timeText) &&
@@ -66,14 +80,29 @@ namespace MiejskiDomKultury
                 TimeSpan.TryParse(timeText, out TimeSpan screeningTime))
             {
                 DateTime fullDateTime = ScreeningDate.SelectedDate.Value.Add(screeningTime);
-                if(fullDateTime< DateTime.UtcNow)
+                if (fullDateTime < DateTime.UtcNow)
                 {
-                    MessageBox.Show("Termin musi być z przyszłości");
+                    if (!Settings.Default.CzyLangAngielski)
+                    {
+                        ErrorMessage.Text = Settings.Default.CzyLangAngielski
+    ? "The term must be from the future"
+    : "Termin musi być z przyszłości";
+                    }
+                    else
+                    {
+                      
+                    }
+                    ErrorMessage.Visibility = Visibility.Visible;
                     return;
                 }
+
                 if (!_movieService.CanBeFilmAdd(_selectedFilm.Czas, fullDateTime))
                 {
-                    MessageBox.Show("Data filmu koliduje z innym!");
+                    ErrorMessage.Text = Settings.Default.CzyLangAngielski
+   ? "The screening date clashes with another screening"
+   : "Data seansu koliduje z innym seansem";
+                    ErrorMessage.Visibility = Visibility.Visible;
+                    
                     return;
                 }
                 _screeningTimes.Add(fullDateTime);
@@ -82,8 +111,14 @@ namespace MiejskiDomKultury
             }
             else
             {
-                MessageBox.Show("Proszę wprowadzić godzinę w poprawnym formacie (HH:mm).");
+                ErrorMessage.Text = Settings.Default.CzyLangAngielski
+    ? "Please enter a valid time in HH:mm format."
+    : "Proszę wprowadzić godzinę w poprawnym formacie (HH:mm).";
+
+                ErrorMessage.Visibility = Visibility.Visible;
+                return;
             }
+            
         }
 
         private void RemoveScreeningButton_Click(object sender, RoutedEventArgs e)
@@ -97,14 +132,27 @@ namespace MiejskiDomKultury
         }
 
 
-        private async void Confirm_Click(object sender, RoutedEventArgs e) // Changed from Task to void
+        private async void Confirm_Click(object sender, RoutedEventArgs e)
         {
             ErrorMessage.Visibility = Visibility.Collapsed;
-            string timeText = ScreeningTime.Text.Trim();
+            SuccessMessage.Visibility = Visibility.Collapsed;
+
+            if (_screeningTimes.Count == 0)
+            {
+                ErrorMessage.Text = Settings.Default.CzyLangAngielski
+                    ? "Please add at least one screening time."
+                    : "Dodaj przynajmniej jeden termin seansu.";
+                ErrorMessage.Visibility = Visibility.Visible;
+                return;
+            }
+
 
             if (!ScreeningDate.SelectedDate.HasValue)
             {
-                ErrorMessage.Text = "Proszę wybrać datę.";
+                ErrorMessage.Text = Settings.Default.CzyLangAngielski
+     ? "Please select a date."
+     : "Proszę wybrać datę.";
+
                 ErrorMessage.Visibility = Visibility.Visible;
                 return;
             }
@@ -118,26 +166,46 @@ namespace MiejskiDomKultury
                     _repositoryService.AddSeans(s);
                 }
 
-                MessageBox.Show("Film został dodany pomyślnie!");
-                ClearForm();
+                SuccessMessage.Text = Settings.Default.CzyLangAngielski
+     ? "The movie was added successfully!"
+     : "Film został dodany pomyślnie!";
+                SuccessMessage.Visibility = Visibility.Visible;
+
+                ClearForm(leaveSuccessMessage: true);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Wystąpił błąd: {ex.Message}");
+                ErrorMessage.Text = $"Wystąpił błąd: {ex.Message}";
+                ErrorMessage.Visibility = Visibility.Visible;
             }
         }
 
 
 
-        private async void DisplayMovieDetails(Film film)
-        {
 
-            film = await _movieService.GetMovieDetailsFromApi(film.Tytul, film.Rok);
+        private async Task<bool> DisplayMovieDetails(Film film)
+        {
+            try
+            {
+                film = await _movieService.GetMovieDetailsFromApi(film.Tytul, film.Rok);
+            }
+            catch
+            {
+                return false;
+            }
             _selectedFilm = film;
             TitleText.Text = film.Tytul;
-            YearText.Text = $"Rok: {film.Rok}";
-            
-           
+            if (!Settings.Default.CzyLangAngielski)
+            {
+                YearText.Text = $"Rok: {film.Rok}";
+            }
+            else
+            {
+                YearText.Text = $"Year: {film.Rok}";
+            }
+          
+
+
 
             if (Settings.Default.CzyLangAngielski)
             {
@@ -148,7 +216,7 @@ namespace MiejskiDomKultury
                 film.OpisPL = await _ai.Translate(film.Opis);
                 DescriptionText.Text =film.OpisPL;
             }
-            
+            return true;
         }
         public async Task<List<Film>> GetMoviesByTitle(string title)
         {
@@ -156,35 +224,31 @@ namespace MiejskiDomKultury
             return await _movieService.GetMoviesByTitleFromApi(title);
         }
 
-        private void ClearForm()
+        private void ClearForm(bool leaveSuccessMessage = false)
         {
-            // Wyczyszczenie wyszukiwania i listy filmów
             SearchBox.Text = string.Empty;
             MovieList.ItemsSource = null;
             MovieList.SelectedItem = null;
 
-            // Resetowanie wybranego filmu
             _selectedFilm = null;
 
-            // Wyczyszczenie szczegółów filmu
             TitleText.Text = string.Empty;
             YearText.Text = string.Empty;
             DescriptionText.Text = string.Empty;
 
-            // Wyczyszczenie seansów
             _screeningTimes.Clear();
-            ScreeningTimesList.ItemsSource = null; // Przypisz ponownie, jeśli potrzebne
+            ScreeningTimesList.ItemsSource = null;
             ScreeningTimesList.ItemsSource = _screeningTimes;
 
-            // Resetowanie kontrolek formularza seansów
             ScreeningDate.SelectedDate = null;
             ScreeningTime.Text = string.Empty;
 
-            // Ukryj formularz seansów
             ScreeningForm.Visibility = Visibility.Collapsed;
 
-            // Ukryj ewentualne komunikaty błędów
             ErrorMessage.Visibility = Visibility.Collapsed;
+            if (!leaveSuccessMessage)
+                SuccessMessage.Visibility = Visibility.Collapsed;
         }
+
     }
 }

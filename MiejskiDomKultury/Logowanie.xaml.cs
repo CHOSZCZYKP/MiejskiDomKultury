@@ -41,11 +41,19 @@ namespace MiejskiDomKultury
             var password = PasswordBox.Password;
             var user = _userRepository.GetUserByEmail(email);
 
-            if (user == null || user.HasloHash!= PasswordHasher.HashPassword(password))
+            if (user == null || user.HasloHash != PasswordHasher.HashPassword(password))
             {
-                MessageBox.Show((string)Application.Current.FindResource("bledneLogowanie"), (string)Application.Current.FindResource("blad"), MessageBoxButton.OK, MessageBoxImage.Warning);
+                string message = Settings.Default.CzyLangAngielski
+                    ? "Invalid login or password."
+                    : (string)Application.Current.FindResource("bledneLogowanie");
+
+                ErrorTextBlock.Text = message;
+                ErrorTextBlock.Visibility = Visibility.Visible;
                 return;
             }
+
+            ErrorTextBlock.Text = string.Empty;
+            ErrorTextBlock.Visibility = Visibility.Collapsed;
 
             Session.Login(user);
             if (Application.Current.MainWindow is MainWindow mainWindow)
@@ -54,6 +62,9 @@ namespace MiejskiDomKultury
             }
             NavigationService.Navigate(new Home());
         }
+      
+
+
     }
 
 }

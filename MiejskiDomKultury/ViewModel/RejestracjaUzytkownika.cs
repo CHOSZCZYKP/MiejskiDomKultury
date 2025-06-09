@@ -160,20 +160,75 @@ namespace MiejskiDomKultury.ViewModel
             {
                 var wyswietl = propertyName switch
                 {
-                    nameof(Imie) => "Imie",
-                    nameof(Nazwisko) => "Nazwisko",
-                    nameof(NazwaUzytkownika) => "Nazwa użytkownika",
+                    nameof(Imie) => !Settings.Default.CzyLangAngielski ? "Imie" : "Name",
+                    nameof(Nazwisko) => !Settings.Default.CzyLangAngielski ? "Nazwisko" : "Surname",
+                    nameof(NazwaUzytkownika) => !Settings.Default.CzyLangAngielski ? "Nazwa użytkownika" : "Nickname",
                     nameof(Email) => "Email",
-                    nameof(Haslo) => "Hasło",
-                    nameof(PowtorzHaslo) => "Powtórz hasło",
+                    nameof(Haslo) => !Settings.Default.CzyLangAngielski ? "Hasło" : "Password",
+                    nameof(PowtorzHaslo) => !Settings.Default.CzyLangAngielski ? "Powtórz hasło" : "Repeat password",
                     _ => propertyName
                 };
 
-                errors.Add($"Pole {wyswietl} jest wymagane.");
+                errors.Add(!Settings.Default.CzyLangAngielski
+                    ? $"Pole {wyswietl} jest wymagane."
+                    : $"{wyswietl} is required.");
             }
-            else if (nameof(PowtorzHaslo) == propertyName && value != Haslo)
+            else
             {
-                errors.Add("Hasła nie zgadzają się");
+                if (propertyName == nameof(Email))
+                {
+                    var emailRegex = new System.Text.RegularExpressions.Regex(@"^[^@\s]+@[^@\s]+\.[^@\s]+$");
+                    if (!emailRegex.IsMatch(value))
+                    {
+                        errors.Add(!Settings.Default.CzyLangAngielski
+                            ? "Niepoprawny format adresu e-mail."
+                            : "Invalid email format.");
+                    }else if (_userRepository.DoesUserExist(value))
+                    {
+                        errors.Add(!Settings.Default.CzyLangAngielski
+                            ? "Taki użytkownik już istnieje"
+                            : "This user already exists");
+                    }
+                }
+
+                if (propertyName == nameof(Haslo))
+                {
+                    if (value.Length < 8)
+                    {
+                        errors.Add(!Settings.Default.CzyLangAngielski
+                            ? "Hasło musi mieć co najmniej 8 znaków."
+                            : "Password must be at least 8 characters long.");
+                    }
+
+                    if (!value.Any(char.IsUpper))
+                    {
+                        errors.Add(!Settings.Default.CzyLangAngielski
+                            ? "Hasło musi zawierać co najmniej jedną wielką literę."
+                            : "Password must contain at least one uppercase letter.");
+                    }
+
+                    if (!value.Any(char.IsDigit))
+                    {
+                        errors.Add(!Settings.Default.CzyLangAngielski
+                            ? "Hasło musi zawierać co najmniej jedną cyfrę."
+                            : "Password must contain at least one number.");
+                    }
+
+                    // Opcjonalnie: znak specjalny
+                    if (!value.Any(ch => "!@#$%^&*()_+-=[]{}|;:',.<>?/`~".Contains(ch)))
+                    {
+                        errors.Add(!Settings.Default.CzyLangAngielski
+                            ? "Hasło powinno zawierać znak specjalny."
+                            : "Password should contain a special character.");
+                    }
+                }
+
+                if (propertyName == nameof(PowtorzHaslo) && value != Haslo)
+                {
+                    errors.Add(!Settings.Default.CzyLangAngielski
+                        ? "Hasła nie zgadzają się"
+                        : "Passwords do not match.");
+                }
             }
 
             if (errors.Any())
@@ -181,6 +236,8 @@ namespace MiejskiDomKultury.ViewModel
 
             ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
         }
+
+
 
         public event PropertyChangedEventHandler? PropertyChanged;
         protected void OnPropertyChanged(string propertyName)

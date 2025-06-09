@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Windows.Controls;
+using System.Windows.Navigation;
 using MiejskiDomKultury.Data;
 using MiejskiDomKultury.Model;
 using MiejskiDomKultury.Repositories;
@@ -14,6 +15,8 @@ namespace MiejskiDomKultury
 
         public MyAccount()
         {
+           
+
             InitializeComponent();
             transakcjaRepository = new TransakcjaRepository(new Data.DbContextDomKultury());
             movieRepositoryService = new MovieRepositoryService();

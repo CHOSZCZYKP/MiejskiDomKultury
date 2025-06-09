@@ -18,7 +18,10 @@
     <SolidColorBrush Color="#2D2D3A" x:Key="RowColor"/>
     <SolidColorBrush Color="#20202D" x:Key="AltRowColor"/>
 
+    <Style TargetType="DatePicker">
+        <Setter Property="Foreground" Value="{DynamicResource TextColor}" />
 
+    </Style>
     <LinearGradientBrush x:Key="ButtonColor" StartPoint="0,0" EndPoint="0,1">
         <GradientStop Color="#2D2D3A" Offset="0.0"/>
         <GradientStop Color="#252530" Offset="1.0"/>
@@ -34,6 +37,7 @@
         <GradientStop Color="#525268" Offset="1.0"/>
     </LinearGradientBrush>
 
+   
     <LinearGradientBrush x:Key="NavbarColor" StartPoint="0,0" EndPoint="1,0">
         <GradientStop Color="#141419" Offset="0.0"/>
         <GradientStop Color="#1B1B23" Offset="1.0"/>
@@ -89,6 +93,19 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+
+ 
+
+    <!-- Styl dla ComboBoxItem-->
+    <Style TargetType="ComboBoxItem" >
+        <Setter Property="Background" Value="{StaticResource ControlBackgroundBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+       
+    </Style>
+
+
+
 
     <!-- TextBox Style -->
     <Style TargetType="{x:Type TextBox}">

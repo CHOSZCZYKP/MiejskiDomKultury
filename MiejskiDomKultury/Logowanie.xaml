@@ -6,7 +6,8 @@
       xmlns:local="clr-namespace:MiejskiDomKultury"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Logowanie">
+      Title="Logowanie"
+      >
 
     <Grid>
         <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center">
@@ -31,6 +32,7 @@
                                       Placeholder="{DynamicResource emial}" 
                                       x:Name="TextBoxLogin" 
                                       FontSize="20" 
+                                      
                                       Margin="5,0" 
                                       Padding="5" />
             </Grid>
@@ -60,6 +62,16 @@
                 Margin="5" 
                 Padding="5" 
                 Click="Login_Click"/>
+
+            <TextBlock x:Name="ErrorTextBlock"
+           Foreground="Red"
+           FontSize="16"
+           Text=""
+           Margin="5"
+           TextWrapping="Wrap"
+           HorizontalAlignment="Center"
+           Visibility="Collapsed"/>
+
         </StackPanel>
     </Grid>
 

@@ -42,6 +42,12 @@
         <Setter Property="Background" Value="Gray"/>
 
     </Style>
+
+    <Style TargetType="ComboBoxItem" >
+        <Setter Property="Background" Value="{StaticResource ControlBackgroundBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+
+    </Style>
     <!-- ListBox Style -->
     <Style TargetType="{x:Type ListBox}">
         <Setter Property="Background" Value="{StaticResource ControlBackgroundBrush}"/>
@@ -94,6 +100,10 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+    <Style TargetType="DatePicker">
+        <Setter Property="Foreground" Value="{DynamicResource TextColor}" />
+      
     </Style>
 
     <!-- TextBox Style -->

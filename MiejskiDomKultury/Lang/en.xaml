@@ -100,7 +100,7 @@
     <sys:String x:Key="transakcje">Transactions</sys:String>
     <sys:String x:Key="rezerwacje">Reservations</sys:String>
     <sys:String x:Key="przedmioty">Items</sys:String>
-    <sys:String x:Key="filmy">Films</sys:String>
+    <sys:String x:Key="filmy">Movies</sys:String>
     <sys:String x:Key="ogloszenia">News</sys:String>
 
     <sys:String x:Key="nazwaPrzedmiotu">Name</sys:String>

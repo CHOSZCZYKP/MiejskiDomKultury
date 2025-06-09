@@ -9,6 +9,7 @@ using ControlzEx.Standard;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using MiejskiDomKultury.Data;
+using System.Windows.Navigation;
 
 namespace MiejskiDomKultury
 {
@@ -128,6 +129,7 @@ namespace MiejskiDomKultury
 
         private void Logowanie_Click(object sender, RoutedEventArgs e)
         {
+          
             Main.Content = App.ServiceProvider.GetRequiredService<Logowanie>();
         }
 
@@ -166,6 +168,7 @@ namespace MiejskiDomKultury
                 Logowanie.Visibility = Visibility.Visible;
                 Rejestracja.Visibility = Visibility.Visible;
                 Wyloguj.Visibility = Visibility.Collapsed;
+                MojeKonto.Visibility = Visibility.Collapsed;
             }
 
             if (Session.CzyAdmin)
@@ -185,9 +188,14 @@ namespace MiejskiDomKultury
 
         private void Wyloguj_Click(object sender, RoutedEventArgs e)
         {
+         
+
             Session.Logout();
             WidocznoscPrzyciskow();
             Main.Content = App.ServiceProvider.GetRequiredService<Home>();
+
+        
+
         }
     }
 }

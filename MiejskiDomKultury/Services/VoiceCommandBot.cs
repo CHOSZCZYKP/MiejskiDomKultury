@@ -104,7 +104,7 @@ namespace MiejskiDomKultury.Services
                             break;
                         
 
-                        case "go to cinema ":
+                        case "go to cinema":
                             mainFrame.Dispatcher.Invoke(() => mainFrame.Navigate(new AvailableMovies()));
                             break;
                         case "go to ai assistant":
@@ -116,7 +116,7 @@ namespace MiejskiDomKultury.Services
                         case "go to room reservation":
                              mainFrame.Dispatcher.Invoke(() => mainFrame.Navigate(new Rezerwacje()));
                             break;
-                        case "go to equipment renal":
+                        case "go to equipment rental":
                             mainFrame.Dispatcher.Invoke(() => mainFrame.Navigate(new WypozyczaniePrzedmiotow()));
                             break;
 

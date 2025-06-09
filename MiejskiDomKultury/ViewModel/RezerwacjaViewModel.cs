@@ -155,10 +155,11 @@ namespace MiejskiDomKultury.ViewModel
 
         public List<string> OkresComboBox { get; set; } = new List<string>()
         {
+         
             "Jednorazowo",
             "1 raz w tygodniu",
             "1 raz w miesiącu",
-            "1 raz w roku"
+            "1 raz w roku" 
         };
 
         public RezerwacjaViewModel()

@@ -117,7 +117,9 @@ namespace MiejskiDomKultury.Services
 
             string GetAllRooms()
             {
-                return string.Join(", ", _saleRepository.GetAllSale());
+                var allSale = _saleRepository.GetAllSale().Select(p => p.Nazwa);
+                var sale =  string.Join(", ", allSale);
+                return sale;
             }
 
             string GetAvailableMovies()
@@ -214,7 +216,7 @@ namespace MiejskiDomKultury.Services
                 {
                     assistantOptions.Tools.Add(x);
                 }
-                Assistant assistant =await client.CreateAssistantAsync("gpt-4-turbo", assistantOptions);
+                Assistant assistant =await client.CreateAssistantAsync("gpt-4o", assistantOptions);
                 #endregion
 
 
