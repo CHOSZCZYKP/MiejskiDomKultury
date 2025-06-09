@@ -115,6 +115,10 @@
     <sys:String x:Key="zapisz">Save</sys:String>
     <sys:String x:Key="usun">Remove</sys:String>
     <sys:String x:Key="edytuj">Edit</sys:String>
+    <sys:String x:Key="zglos">Report</sys:String>
+    
+    <sys:String x:Key="odblokuj">Unblock</sys:String>
+    <sys:String x:Key="zablokuj">Block</sys:String>
 
     <!--DodajNowyPrzedmiot-->
     <sys:String x:Key="dodajNowyPrzemiot">Add a new item</sys:String>

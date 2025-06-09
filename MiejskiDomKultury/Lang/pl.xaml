@@ -122,6 +122,9 @@
     <sys:String x:Key="usun">Usuń</sys:String>
     <sys:String x:Key="edytuj">Edytuj</sys:String>
 
+    <sys:String x:Key="odblokuj">Odblokuj</sys:String>
+    <sys:String x:Key="zablokuj">Zablokuj</sys:String>
+
     <!--DodajNowyPrzedmiot-->
     <sys:String x:Key="dodajNowyPrzemiot">Dodaj nowy przedmiot</sys:String>
     

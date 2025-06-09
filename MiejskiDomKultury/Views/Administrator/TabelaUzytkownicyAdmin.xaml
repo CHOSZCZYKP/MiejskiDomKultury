@@ -57,10 +57,10 @@
                                     Margin="2">
                                 <Button.Style>
                                     <Style TargetType="Button">
-                                        <Setter Property="Content" Value="Zablokuj"/>
+                                        <Setter Property="Content" Value="{DynamicResource zablokuj}"/>
                                         <Style.Triggers>
                                             <DataTrigger Binding="{Binding CzyMaBana}" Value="True">
-                                                <Setter Property="Content" Value="Odblokuj"/>
+                                                <Setter Property="Content" Value="{DynamicResource odblokuj}"/>
                                             </DataTrigger>
                                         </Style.Triggers>
                                     </Style>
